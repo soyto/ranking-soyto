@@ -1,0 +1,22 @@
+{
+  "name": "ranking-soyto",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "soyto <alf.ixos@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/soyto/ranking-soyto",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-chart.js": "~1.1.0",
+    "angular-motion": "~0.4.2",
+    "marked": "~0.3.5"
+  }
+}

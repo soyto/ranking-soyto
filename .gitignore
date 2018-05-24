@@ -1,0 +1,13 @@
+
+#Remove .idea files
+.idea
+
+#Remove node_modules
+node_modules
+
+#Dont store in git Data
+data
+
+#Bower And Dist
+app/assets/lib/bower
+app/assets/dist
