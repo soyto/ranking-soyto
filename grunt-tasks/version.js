@@ -139,6 +139,11 @@ module.exports = function() {
     var _gruntFile = grunt.file.readJSON(_file);
     var _gruntFileLock = grunt.file.readJSON(_packageLockFile);
 
+    if(newVersion == _gruntFile.version) {
+      grunt.log.ok('Current version is ' + newVersion.cyan);
+      return;
+    }
+
     _gruntFile.version = newVersion;
     _gruntFileLock.version = newVersion;
 
