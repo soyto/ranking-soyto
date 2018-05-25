@@ -1,16 +1,12 @@
+/* global require, module */
 module.exports = function(grunt) {
-  'use strict';
 
-  require('./app/assets/lib/javascript.extensions');
+  require('./grunt-tasks/version');
   require('load-grunt-tasks')(grunt);
   require('./nodeApp/blog.tasks.js')(grunt);
-  require('./nodeApp/application.tasks.js')(grunt);
   require('./nodeApp/gameforge.server.tasks')(grunt);
 
-  var $q = require('q');
-  var request = require('request');
-  var semver = require('semver');
-  var sh = require('shelljs');
+
   var colors = require('colors');
   var config = require('./nodeApp/config.js');
   var $log = require('./nodeApp/log.js');
@@ -98,4 +94,10 @@ module.exports = function(grunt) {
     grunt.task.run('concat:app');
     grunt.task.run('uglify:app');
   });
+
+  //Pulls from remote repo and compile em all
+  grunt.registerTask('pull', [
+    'git-pull',
+    'compile'
+  ]);
 };

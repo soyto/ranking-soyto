@@ -1,15 +1,22 @@
-/* global require */
-module.exports = function(grunt) {
-  'use strict';
+/* global require, module */
+module.exports = function() {
 
-  require('../app/assets/lib/javascript.extensions');
-  var $q = require('q');
-  var semver = require('semver');
   var sh = require('shelljs');
+  var grunt = require('grunt');
+  var semver = require('semver');
 
   //Sets the version if no arguments adds a suffix
-  grunt.registerTask('version', function(){
-    setVersion(this.args[0], this.args[1]);
+  grunt.registerTask('version', 'changes version, usage: version:minor, version:patch, etc', function(){
+    _setVersion(this.args[0], this.args[1]);
+  });
+
+  //Sets the version
+  grunt.registerTask('set-version', 'sets the version, ussage: set-version --newVersion=xx.xx.xx', function () {
+    var _version = grunt.option('newVersion');
+
+    if(!_version) { grunt.fatal('You must set up a new version with the format set-version --newVersion=xx.xx.xx'); }
+
+    _updateVersion(_version);
   });
 
   //Adds all contents of data folder to git
@@ -54,8 +61,17 @@ module.exports = function(grunt) {
     }
   });
 
+  //Performs pull
+  grunt.registerTask('git-pull', 'pulls from remote repository', () => {
+    var result = sh.exec('git pull');
+
+    if(result.code !== 0) {
+      grunt.fatal(result.output, {silent:true});
+    }
+  });
+
   //Publish the application without increase nothing
-  grunt.registerTask('publish', function(){
+  grunt.registerTask('publish', function() {
 
     var msg = grunt.option('message');
 
@@ -91,6 +107,7 @@ module.exports = function(grunt) {
   });
 
 
+
   /* HELPER FUNCTIONS
    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    */
@@ -98,9 +115,10 @@ module.exports = function(grunt) {
   //Sets the version:
   // type: major, minor, patch
   // suffix: whatever suffix u want
-  function setVersion(type, suffix) {
+  function _setVersion(type, suffix) {
     var file = 'package.json';
     var gruntFile = grunt.file.readJSON(file);
+
 
     if(type) {
       gruntFile.version = semver.inc(gruntFile.version, type);
@@ -110,8 +128,27 @@ module.exports = function(grunt) {
       gruntFile.version += '-' + suffix;
     }
 
-    grunt.log.ok('Version set to ' + gruntFile.version.cyan);
-    grunt.config('pkg.version', gruntFile.version);
-    grunt.file.write(file, JSON.stringify(gruntFile, null, '  '));
+    _updateVersion(gruntFile.version);
   }
-};
+
+  //Updates version
+  function _updateVersion(newVersion) {
+    var _file = 'package.json';
+    var _packageLockFile = 'package-lock.json';
+
+    var _gruntFile = grunt.file.readJSON(_file);
+    var _gruntFileLock = grunt.file.readJSON(_packageLockFile);
+
+    _gruntFile.version = newVersion;
+    _gruntFileLock.version = newVersion;
+
+    grunt.config('pkg.version', newVersion);
+
+
+    grunt.file.write(_file, JSON.stringify(_gruntFile, null, '  '));
+    grunt.file.write(_packageLockFile, JSON.stringify(_gruntFileLock, null, '  '));
+
+    grunt.log.ok('Version set to ' + newVersion.cyan);
+  }
+
+}();
