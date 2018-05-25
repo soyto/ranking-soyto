@@ -27,6 +27,7 @@
 
   function _configHtml5Mode($locationProvider) {
     $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix('!');
   }
 
   function configRoutes($routeProvider) {
