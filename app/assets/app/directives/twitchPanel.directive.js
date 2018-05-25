@@ -53,7 +53,7 @@
       'scope': {
         'twitchChannel': '=twitchChannel'
       },
-      'templateUrl': '/app/templates/directives/twitchPanel.html'
+      'templateUrl': '/assets/app/templates/directives/twitchPanel.html'
     };
   }
 

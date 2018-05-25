@@ -150,12 +150,12 @@
 
 
       $hs['$scope'].setOggs([
-        {'property': 'ogg:type', 'content': 'profile'},
-        {'property': 'ogg:first_name', 'content': characterInfo['serverName'] + '->' + characterInfo['characterName']},
-        {'property': 'ogg:title', 'content': characterInfo['serverName'] + '->' + characterInfo['characterName']},
-        {'property': 'ogg:image', 'content': characterInfo['pictureURL']},
-        {'property': 'ogg:image:type', 'content': 'image/jpeg'},
-        {'property': 'ogg:image:alt', 'content': characterInfo['characterName']},
+        {'property': 'og:type', 'content': 'profile'},
+        {'property': 'og:first_name', 'content': characterInfo['serverName'] + '->' + characterInfo['characterName']},
+        {'property': 'og:title', 'content': characterInfo['serverName'] + '->' + characterInfo['characterName']},
+        {'property': 'og:image', 'content': characterInfo['pictureURL']},
+        {'property': 'og:image:type', 'content': 'image/jpeg'},
+        {'property': 'og:image:alt', 'content': characterInfo['characterName']},
       ]);
 
       //Set up character and server names and stats

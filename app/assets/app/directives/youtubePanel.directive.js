@@ -87,7 +87,7 @@
       'scope': {
         'youtubeChannel': '=youtubeChannel'
       },
-      'templateUrl': '/app/templates/directives/youtubePanel.html'
+      'templateUrl': '/assets/app/templates/directives/youtubePanel.html'
     };
   }
 
