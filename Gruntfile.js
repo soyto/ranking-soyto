@@ -9,7 +9,6 @@ module.exports = function(grunt) {
 
   var colors = require('colors');
   var config = require('./nodeApp/config.js');
-  var $log = require('./nodeApp/log.js');
 
   var licenseTxt = grunt.file.read('LICENSE');
 
@@ -61,8 +60,8 @@ module.exports = function(grunt) {
     options: {
       debounceDelay: 250,
       dateFormat: function(time) {
-        $log.debug('The watch finished in %s', colors.cyan(time));;
-        $log.debug('Waiting for more changes');
+        grunt.log.ok('The watch finished in %s', colors.cyan(time));;
+        grunt.log.ok('Waiting for more changes');
       }
     },
     app: {
