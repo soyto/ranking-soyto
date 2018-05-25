@@ -54,6 +54,6 @@ $config.folders = {
 };
 
 $config.files = {
-  'foldersDates': $config.folders.appData + 'data.folders.js'
+  'foldersDates': $config.folders.appData + 'dates.js'
 };
 
