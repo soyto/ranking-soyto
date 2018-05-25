@@ -1,6 +1,6 @@
 
 #Remove .idea files
-.idea
+.idea/
 
 #Remove node_modules
 node_modules
