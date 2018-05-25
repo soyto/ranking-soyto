@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="mainApp" data-ng-controller="mainApp.main.controller">
 <head>
+  <base href="/" />
+  <meta name="fragment" content="!">
+  
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="P2TZOEeLURgwg_lT0V3xygwnqE2_qbjVDNnqSkxSrJ0" />
-  <meta name="fragment" content="!">
+  <meta name="robots" content="index,follow">
 
   <meta name="description" content="Soyto's ranking tool">
   <meta name="author" content="Vicente Manuel Aleixos Bellido">
-
-  <!-- Oggs -->
-  <meta data-ng-if="oggs.length > 0" data-ng-repeat="ogg in oggs" property="{{ ogg.property }}" content="{{ ogg.content }}">
+  <script type="application/ld+json" id="json-ld"></script>
 
   <!--[if IE]><link rel="shortcut icon" href="/favicon.ico"><![endif]-->
   <link rel="icon" href="/favicon.ico">
 
   <!-- Title -->
   <title data-ng-bind="title">Aion Ranking</title>
-
-  <base href="/" />
-
 
 
   <!-- bootstrap -->
