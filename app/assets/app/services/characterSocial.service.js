@@ -49,9 +49,9 @@
         'characterSocial': null
       };
 
-      return $q.likeNormal($http.get('/app/data/characterPics.json')).then(function($characterPics){
+      return $q.likeNormal($http.get('/assets/app/data/characterPics.json')).then(function($characterPics){
         _result['characterPics'] = $characterPics;
-        return $q.likeNormal($http.get('/app/data/characterSocial.json')).then(function($characterSocial){
+        return $q.likeNormal($http.get('/assets/app/data/characterSocial.json')).then(function($characterSocial){
           _result['characterSocial'] = $characterSocial;
 
           _characterSocialCache = _result;

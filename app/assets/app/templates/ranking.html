@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
-  <li><a href="#/">Home</a></li>
-  <li><a ng-href="#/ranking/{{data.serverName}}">{{data.serverName}}</a></li>
-  <li><a ng-href="#/ranking/{{data.serverName}}/{{data.date}}">{{data.date}}</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a ng-href="/ranking/{{data.serverName}}">{{data.serverName}}</a></li>
+  <li><a ng-href="/ranking/{{data.serverName}}/{{data.date}}">{{data.date}}</a></li>
 </ol>
 
 <!-- If is not empty -->
@@ -30,12 +30,12 @@
               <tr>
                 <td>Point scorers</td>
                 <td>
-                  <a ng-href="#/character/{{data.serverName}}/{{data.stats.elyos.topHP.characterID}}">
+                  <a ng-href="/character/{{data.serverName}}/{{data.stats.elyos.topHP.characterID}}">
                     {{data.stats.elyos.topHP.characterName}}
                   </a> (<span class="text-muted">{{data.stats.elyos.topHP.gloryPointChange}}</span>)
                 </td>
                 <td>
-                  <a ng-href="#/character/{{data.serverName}}/{{data.stats.asmodians.topHP.characterID}}">
+                  <a ng-href="/character/{{data.serverName}}/{{data.stats.asmodians.topHP.characterID}}">
                     {{data.stats.asmodians.topHP.characterName}}
                   </a> (<span class="text-muted">{{data.stats.asmodians.topHP.gloryPointChange}}</span>)
                 </td>
@@ -44,12 +44,12 @@
               <tr>
                 <td>Positions up</td>
                 <td>
-                  <a ng-href="#/character/{{data.serverName}}/{{data.stats.elyos.topPositionChange.characterID}}">
+                  <a ng-href="/character/{{data.serverName}}/{{data.stats.elyos.topPositionChange.characterID}}">
                     {{data.stats.elyos.topPositionChange.characterName}}
                   </a> (<span class="text-muted">{{data.stats.elyos.topPositionChange.rankingPositionChange}}</span>)
                 </td>
                 <td>
-                  <a ng-href="#/character/{{data.serverName}}/{{data.stats.asmodians.topPositionChange.characterID}}">
+                  <a ng-href="/character/{{data.serverName}}/{{data.stats.asmodians.topPositionChange.characterID}}">
                     {{data.stats.asmodians.topPositionChange.characterName}}
                   </a> (<span class="text-muted">{{data.stats.asmodians.topPositionChange.rankingPositionChange}}</span>)
                 </td>
@@ -58,12 +58,12 @@
               <tr>
                 <td>Positions down</td>
                 <td>
-                  <a ng-href="#/character/{{data.serverName}}/{{data.stats.elyos.lowerPositionChange.characterID}}">
+                  <a ng-href="/character/{{data.serverName}}/{{data.stats.elyos.lowerPositionChange.characterID}}">
                     {{data.stats.elyos.lowerPositionChange.characterName}}
                   </a> (<span class="text-muted">{{data.stats.elyos.lowerPositionChange.rankingPositionChange}}</span>)
                 </td>
                 <td>
-                  <a ng-href="#/character/{{data.serverName}}/{{data.stats.asmodians.lowerPositionChange.characterID}}">
+                  <a ng-href="/character/{{data.serverName}}/{{data.stats.asmodians.lowerPositionChange.characterID}}">
                     {{data.stats.asmodians.lowerPositionChange.characterName}}
                   </a> (<span class="text-muted">{{data.stats.asmodians.lowerPositionChange.rankingPositionChange}}</span>)
                 </td>
@@ -238,7 +238,7 @@
                 <td class="text-right">{{ characterPair.elyo.gloryPoint }}</td>
                 <td class="text-right">{{ characterPair.elyo.characterClass.name }}</td>
                 <td class="text-center">
-                  <a ng-href="#/character/{{data.serverName}}/{{characterPair.elyo.characterID}}"><b>{{ characterPair.elyo.characterName }}</b></a>
+                  <a ng-href="/character/{{data.serverName}}/{{characterPair.elyo.characterID}}"><b>{{ characterPair.elyo.characterName }}</b></a>
                   <p ng-if="characterPair.elyo.guildName">
                     <small>[{{ characterPair.elyo.guildName }}]</small>
                   </p>
@@ -248,7 +248,7 @@
                 <td>{{ characterPair.position }}<br /><i class="text-primary fa fa-exchange"></i></td>
 
                 <td class="text-center">
-                  <a ng-href="#/character/{{data.serverName}}/{{characterPair.asmodian.characterID}}"><b>{{ characterPair.asmodian.characterName }}</b></a>
+                  <a ng-href="/character/{{data.serverName}}/{{characterPair.asmodian.characterID}}"><b>{{ characterPair.asmodian.characterName }}</b></a>
                   <p ng-if="characterPair.asmodian.guildName">
                     <small>[{{ characterPair.asmodian.guildName }}]</small>
                   </p>
@@ -285,7 +285,7 @@
               <tbody>
               <tr data-ng-repeat="character in data.pagination.current.elyos">
                 <td>{{ character.position }}</td>
-                <td><a ng-href="#/character/{{data.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
+                <td><a ng-href="/character/{{data.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
                 <td>{{ character.characterClass.name }}</td>
                 <td>{{ character.guildName }}</td>
                 <td>{{ character.gloryPoint }}</td>
@@ -328,7 +328,7 @@
             <tbody>
             <tr data-ng-repeat="character in data.pagination.current.asmodians">
               <td>{{ character.position }}</td>
-              <td><a ng-href="#/character/{{data.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
+              <td><a ng-href="/character/{{data.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
               <td>{{ character.characterClass.name }}</td>
               <td>{{ character.guildName }}</td>
               <td>{{ character.gloryPoint }}</td>

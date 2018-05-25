@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
-  <li><a href="#/">Home</a></li>
-  <li><a ng-href="#/ranking/{{serverData.serverName}}">{{serverData.serverName}}</a></li>
-  <li><a ng-href="#/ranking/{{serverData.serverName}}/{{serverData.date}}">{{serverData.date}}</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a ng-href="/ranking/{{serverData.serverName}}">{{serverData.serverName}}</a></li>
+  <li><a ng-href="/ranking/{{serverData.serverName}}/{{serverData.date}}">{{serverData.date}}</a></li>
 </ol>
 
 <!-- If is not empty -->
@@ -83,7 +83,7 @@
                   <tbody>
                   <tr ng-repeat="character in elyosData">
                       <td>{{ character.position }}</td>
-                      <td><a ng-href="#/character/{{serverData.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
+                      <td><a ng-href="/character/{{serverData.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
                       <td>{{ character.characterClass.name }}</td>
                       <td>{{ character.guildName }}</td>
                       <td>{{ character.gloryPoint }}</td>
@@ -148,7 +148,7 @@
                   <tbody>
                   <tr ng-repeat="character in asmodianData">
                       <td>{{ character.position }}</td>
-                      <td><a ng-href="#/character/{{serverData.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
+                      <td><a ng-href="/character/{{serverData.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
                       <td>{{ character.characterClass.name }}</td>
                       <td>{{ character.guildName }}</td>
                       <td>{{ character.gloryPoint }}</td>

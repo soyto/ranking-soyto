@@ -1,8 +1,8 @@
 <!-- Beadcrumb -->
 <ol class="breadcrumb">
-  <li><a href="#/">Home</a></li>
-  <li><a ng-href="#/ranking/{{serverName}}">{{serverName}}</a></li>
-  <li><a ng-href="#/character/{{serverName}}/{{character.characterID}}">{{character.characterName}}</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a ng-href="/ranking/{{serverName}}">{{serverName}}</a></li>
+  <li><a ng-href="/character/{{serverName}}/{{character.characterID}}">{{character.characterName}}</a></li>
 </ol><!-- /Beadcrumb -->
 
 <div class="row">
@@ -99,7 +99,7 @@
       <!-- Search results (When there is data)-->
       <div class="list-group search-results" data-ng-show="!search.loading && search.results != null && search.results.length > 0">
         <a data-ng-repeat="searchItem in search.results" class="list-group-item search-result-item clearfix"
-           href="" data-ng-href="#/character/{{searchItem.serverName}}/{{searchItem.id}}">
+           href="" data-ng-href="/character/{{searchItem.serverName}}/{{searchItem.id}}">
 
           <div class="search-result-item-heading pull-left">
             <h4>{{searchItem.characterName}}-{{searchItem.serverName}}</h4>
@@ -183,7 +183,7 @@
             <tbody>
             <tr ng-repeat="status in pagination.current">
               <td>
-                <a ng-href="#/ranking/{{serverName}}/{{ status.date | date: 'MM-dd-yyyy' }}">
+                <a ng-href="/ranking/{{serverName}}/{{ status.date | date: 'MM-dd-yyyy' }}">
                   {{ status.date | date: 'MM/dd/yyyy' }}
                 </a>
               </td>

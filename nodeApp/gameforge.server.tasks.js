@@ -461,27 +461,12 @@ module.exports = function(grunt) {
   //Creates characterSheets json
   grunt.registerTask('create-players-cheatsheet', 'creates charactersSheet.json file', _createPlayersCheatSheet);
 
-  //Generates dates-files
-  grunt.registerTask('generate-dates-file' , _generateDatesFile);
-
   //Generates sitemap
   grunt.registerTask('generate-sitemap', 'generates sitemap for site', _generateSitemap);
 
   //Will generate dates file
   function _generateDatesFile() {
-    var folderDates = grunt.file.expand(baseFolder + 'Servers/*').where(function(folderName) {
-      return folderName.split('-').length == 3;
-    }).select(function(folderName){
-      return folderName.split('/')[2];
-    });
-
-    //Sort folders dates
-    folderDates.sort(function(a, b){
-      return (new Date(a)).getTime() - (new Date(b)).getTime();
-    });
-
-
-    grunt.file.write(appFolder + 'helpers/folders.dates.js', 'window.storedDates = ' + JSON.stringify(folderDates, null, ' ').replace(/"/g, '\'') + ';');
+    require('crawler').dates.generate();
   }
 
   //Will retrieve all servers data

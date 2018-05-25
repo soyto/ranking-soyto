@@ -5,9 +5,6 @@ module.exports = new (function() {
   var grunt = require('grunt');
 
 
-
-
-
   //Generate date files
   $this.generate = function() {
 

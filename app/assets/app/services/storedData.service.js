@@ -3,8 +3,6 @@
 
   var DEBUG = false;
 
-  var host = DEBUG ? '' : 'https://soyto.tk/';
-
   ng.module('mainApp').service('storedDataService',['$hs', _fn]);
 
   function _fn($hs) {
@@ -281,7 +279,7 @@
       }
 
       return $q.likeNormal($http({
-        'url': host + 'data/Servers/' + date + '/' + serverName + '.json',
+        'url': '/data/Servers/' + date + '/' + serverName + '.json',
         'method': 'GET'
       })).then(function($data) {
 
@@ -314,7 +312,7 @@
       }
 
       return $http({
-        'url': host + 'data/Servers/Characters/' + serverName + '/' + characterID + '.json',
+        'url': '/data/Characters/' + serverName + '/' + characterID + '.json',
         'method': 'GET'
       }).then(function(response){
 
@@ -335,21 +333,6 @@
           return $$character;
         });
       });
-
-      //TODO: Replaced cuz dont works on firefox ^^
-      /*return $q.likeNormal($http({
-        'url': host + 'data/Servers/Characters/' + serverName + '/' + characterID + '.json',
-        'method': 'GET'
-      }).then(function(arg1, arg2, arg3){
-        console.log(arg1);
-        console.log(arg2);
-        console.log(arg3);
-      })).then(function($data) {
-        return _processCharacterInfoData(serverName, $data).then(function($$character){
-          _cacheCharacterInfo.push($$character);
-          return $$character;
-        });
-      });*/
     };
 
     //Retrieves what is the last server data
@@ -409,7 +392,7 @@
         return $$q.promise;
       }
 
-      var _url = host + '/data/Servers/Characters/charactersSheet.json';
+      var _url = '/data/Characters/charactersSheet.json';
       return $q.likeNormal($http.get(_url)).then(function($wholeData){
         $wholeData.forEach(function($$entry){
           $$entry['characterClass'] = $this.getCharacterClass($$entry['characterClassID']);
@@ -487,6 +470,7 @@
       return collection;
     }
 
+    //Sort dates
     function _dateSortFn(propName, sort) {
       if(sort == 'asc') {
         return function(a, b) {
