@@ -1,10 +1,12 @@
-module.exports = {
+var $config =  module.exports = {
 
   'crawler': {
     'user-agent': 'soyto.github.io crawler',
   },
 
   'application': {
+    'servers-folder': 'data/Servers/',
+
     'base-folder': 'data/',
     'posts-folder': '_posts/',
     'app-folder': 'app/',
@@ -43,3 +45,15 @@ module.exports = {
     'uglify-dest': 'app/assets/dist/app.min.js'
   }
 };
+
+
+$config.folders = {
+  'servers': 'data/Servers/',
+  'characters': 'data/Characters/',
+  'appData': 'data/app/',
+};
+
+$config.files = {
+  'foldersDates': $config.folders.appData + 'data.folders.js'
+};
+

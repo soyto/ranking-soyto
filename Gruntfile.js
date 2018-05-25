@@ -1,10 +1,14 @@
 /* global require, module */
 module.exports = function(grunt) {
 
-  require('./grunt-tasks/version');
+  require('./grunt-tasks/');
+
   require('load-grunt-tasks')(grunt);
   require('./nodeApp/blog.tasks.js')(grunt);
   require('./nodeApp/gameforge.server.tasks')(grunt);
+
+
+  var $crawler = require('./nodeApp/crawler');
 
 
   var colors = require('colors');
@@ -82,17 +86,16 @@ module.exports = function(grunt) {
    */
 
   //Default task, just jshint , concat and iglify for the moment
-  grunt.registerTask('default', function(){
-    grunt.task.run('compile');
-  });
+  grunt.registerTask('default', ['compile']);
 
   //Compiles application
-  grunt.registerTask('compile', function(){
-    grunt.task.run('generate-blog-files');
-    grunt.task.run('jshint:app');
-    grunt.task.run('concat:app');
-    grunt.task.run('uglify:app');
-  });
+  grunt.registerTask('compile', [
+    'generate-folder-dates',
+    'generate-blog-files',
+    'jshint:app',
+    'concat:app',
+    'uglify:app'
+  ]);
 
   //Pulls from remote repo and compile em all
   grunt.registerTask('pull', [
