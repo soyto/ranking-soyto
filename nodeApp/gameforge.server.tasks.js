@@ -17,8 +17,8 @@ module.exports = function(grunt) {
   var postsFolder           = config.application['posts-folder'];
   var appFolder             = config.application['app-folder'];
   var USER_AGENT            = config.crawler['user-agent'];
-  var charactersBaseFolder  = baseFolder + 'Servers/Characters/';
-  var temporalBaseFolder    = baseFolder + 'tmp/';
+  var charactersBaseFolder  = baseFolder + 'Characters/';
+  var temporalBaseFolder    = 'tmp/';
 
   //Performs the full crawler
   grunt.registerTask('crawler', function() {
@@ -48,12 +48,6 @@ module.exports = function(grunt) {
       //just cutted off for limit
       return _retrieveServersData(cookie, gameForgeServer['servers'], USER_AGENT).then(function($$allServersData){
         _servers = $$allServersData;
-
-        //When is done, we store tmp file for each server, if something wents bad this data is stored atleast
-        _servers.forEach(function($$server) {
-          $log.debug('Storing [%s] server on tempFolder', colors.cyan($$server['serverName']));
-          grunt.file.write(temporalBaseFolder + $$server['serverName'] + '.json', JSON.stringify($$server));
-        });
       });
     });
 
@@ -226,6 +220,7 @@ module.exports = function(grunt) {
 
     //7th step, generate blog post
     sp = sp.then(function() {
+      grunt.log.ok('Generating blog posts');
       _generateBlogPost(_crawlerErrors, globalStats);
     });
 
@@ -466,7 +461,7 @@ module.exports = function(grunt) {
 
   //Will generate dates file
   function _generateDatesFile() {
-    require('crawler').dates.generate();
+    require('./crawler').dates.generate();
   }
 
   //Will retrieve all servers data
@@ -479,10 +474,12 @@ module.exports = function(grunt) {
       $$q = $$q.then(function(){
         return gameForgeServer.retrieveServer($$server['name'], $$server['id'], cookie, userAgent).then(function($$serverData) {
 
-        //Notify that all is succesfully
-        $log.debug('Retrieved [%s]', colors.cyan($$server['name']));
+          //Notify that all is succesfully
+          $log.debug('Retrieved [%s]', colors.cyan($$server['name']));
+          $log.debug('Storing [%s] server on tempFolder', colors.cyan($$serverData['serverName']));
+          grunt.file.write(temporalBaseFolder + $$serverData['serverName'] + '.json', JSON.stringify($$serverData));
 
-        //Push to the array
+          //Push to the array
           _serversFullData.push($$serverData);
         });
       });

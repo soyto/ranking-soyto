@@ -3,7 +3,7 @@ module.exports = new function() {
 
   'use strict';
 
-  var NUM_PAGES_PER_SERVER = 20;
+  var NUM_PAGES_PER_SERVER = 1;
 
   var $q        = require('q');
   var $log      = require('../nodeApp/log');
