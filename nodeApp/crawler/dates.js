@@ -1,5 +1,5 @@
 const $config = require('../config');
-let $fs = require('fs');
+let $fs = require('../helpers').fs;
 let $log = require('../helpers').log;
 
 /**
@@ -11,30 +11,21 @@ function Dates() {}
  * Generate method
  */
 Dates.prototype.generate = function() {
-  return new Promise((resolve, reject) => {
-
-    $fs.readdir($config.folders.servers, (err, files) => {
-     
-      //If there is an error
-      if(err) { 
-        return reject(err);
-      }
+  return new Promise(async (resolve, reject) => {
+    try {
+      let files = await $fs.readdir($config.folders.servers);
 
       //Sort files
       files.sort((a, b) => (new Date(a).getTime() - (new Date(b).getTime())));
 
       var _txt = 'window.storedDates = ' + JSON.stringify(files).replace(/"/g, '\'') + ';'
-      
-      $fs.writeFile($config.files.foldersDates, _txt, err => {
 
-        //If there is an error
-        if(err) {
-          return reject(err);
-        }
-        
-        resolve();
-      });
-    });
+      await $fs.write($config.files.foldersDates, _txt);
+      
+      resolve();
+    } catch(error) {
+      reject(error);
+    }
   });
 };
 
