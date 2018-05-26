@@ -1,3 +1,8 @@
+var $crawler = require('./nodeApp/crawler');
 var $gameForge = require('./nodeApp/gameForge');
 
-console.log($gameForge.servers);
+
+(async function() {
+  await $crawler.dates.generate();
+  console.log('all done');
+})();

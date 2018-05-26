@@ -1,28 +1,42 @@
-module.exports = new (function() {
-  var $this = this;
+const $config = require('../config');
+let $fs = require('fs');
+let $log = require('../helpers').log;
 
-  var $config = require('../config');
-  var grunt = require('grunt');
+/**
+ * Constructor
+ */
+function Dates() {}
 
+/**
+ * Generate method
+ */
+Dates.prototype.generate = function() {
+  return new Promise((resolve, reject) => {
 
-  //Generate date files
-  $this.generate = function() {
+    $fs.readdir($config.folders.servers, (err, files) => {
+     
+      //If there is an error
+      if(err) { 
+        return reject(err);
+      }
 
-    var _folderDates = grunt.file.expand($config.folders.servers + '*').filter(function(folderName) {
-      return folderName.split('-').length == 3;
-    }).map(function(folderName){
-      return folderName.split('/')[2];
+      //Sort files
+      files.sort((a, b) => (new Date(a).getTime() - (new Date(b).getTime())));
+
+      var _txt = 'window.storeDates = ' + JSON.stringify(files).replace(/"/g, '\'') + ';'
+      
+      $fs.writeFile($config.files.foldersDates, _txt, err => {
+
+        //If there is an error
+        if(err) {
+          return reject(err);
+        }
+        
+        resolve();
+      });
     });
-
-    //Sort folders dates
-    _folderDates.sort(function(a, b){
-      return (new Date(a)).getTime() - (new Date(b)).getTime();
-    });
-
-    var _txt = 'window.storedDates = ' + JSON.stringify(_folderDates).replace(/"/g, '\'') + ';';
-
-    grunt.file.write($config.files.foldersDates, _txt);
-  };
+  });
+};
 
 
-})();
+module.exports = new Dates();

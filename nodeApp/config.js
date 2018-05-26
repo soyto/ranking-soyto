@@ -46,6 +46,11 @@ var $config =  module.exports = {
   }
 };
 
+//NodeApp config
+$config.nodeApp = {
+  'debug_mode': true
+};
+
 
 $config.folders = {
   'servers': 'data/Servers/',

@@ -6,7 +6,7 @@ module.exports = new function() {
   var NUM_PAGES_PER_SERVER = 1;
 
   var $q        = require('q');
-  var $log      = require('../nodeApp/log');
+  var $log      = require('./helpers').log;
   var request   = require('request');
   var colors    = require('colors');
   var extend    = require('util')._extend;

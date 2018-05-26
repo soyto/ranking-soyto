@@ -1,13 +1,14 @@
 
-#Remove .idea files
+#Remove editor files
 .idea/
+.vscode/
 
 #Remove node_modules
-node_modules
+node_modules/
 
 #Dont store in git Data
-data
+data/
 
 #Bower And Dist
-app/assets/lib/bower
-app/assets/dist
+app/assets/lib/bower/
+app/assets/dist/
