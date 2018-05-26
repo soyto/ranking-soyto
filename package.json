@@ -1,6 +1,6 @@
 {
   "name": "ranking-soyto",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "load-grunt-tasks": "^1.0.0",
     "marked": "^0.3.5",
     "moment": "^2.10.6",
+    "node-cache": "^4.2.0",
     "npm": "^6.1.0",
     "object-to-xml": "^1.1.0",
     "q": "^1.4.1",

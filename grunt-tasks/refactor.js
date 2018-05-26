@@ -10,7 +10,7 @@ module.exports = (function() {
     let _done = this.async();
     switch(this.args[0]) {
       case 'servers':
-        $refactor.servers.setIdAndNames().then(_done);
+        $refactor.servers.update().then(_done);
         break;
 
         default:

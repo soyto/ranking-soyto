@@ -41,6 +41,12 @@ var $config  = {
   }
 };
 
+//Cache configuration
+$config.cache = {
+  'stdTTL': 5
+};
+
+//Crawler configuration
 $config.crawler = {
   'userAgent': 'soyto.github.io crawler',
   'timeout': 5000,
@@ -55,13 +61,14 @@ $config.nodeApp = {
   'debug_mode': true
 };
 
-
+//Folders configuration
 $config.folders = {
   'servers': 'data/Servers/',
   'characters': 'data/Characters/',
   'appData': 'data/app/',
 };
 
+//Files configuration
 $config.files = {
   'foldersDates': $config.folders.appData + 'dates.js'
 };

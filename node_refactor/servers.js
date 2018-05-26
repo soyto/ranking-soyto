@@ -2,6 +2,8 @@ let $fs = require('../nodeApp/helpers').fs;
 let $config = require('../nodeApp/config');
 let $log = require('../nodeApp/helpers').log;
 let $gameForge = require('../nodeApp/gameForge');
+let $fsData = require('../nodeApp/fsData');
+var $cache = require('../nodeApp/helpers').cache;
 let colors = require('colors');
 
 function Server() {}
@@ -9,51 +11,51 @@ function Server() {}
 /**
  * Refactor server files to set up serverId, serverName and date on em
  */
-Server.prototype.setIdAndNames = function() {
+Server.prototype.update = function() {
+  
+  $cache.disable();
   return new Promise(async (resolve, reject) => {
-    let _folderDates = await $fs.readdir($config.folders.servers);
-    let _lastPercent = 0;
-
-    _folderDates.sort((a, b) => (new Date(a).getTime() - (new Date(b).getTime())));
+    let _folderDates = await $fsData.server.getDates();
+    let _lastPercent = -1;
 
     for(let i = 0; i < _folderDates.length; i++) {
-      let $$dateFolder = _folderDates[i];
-      let _servers = await $fs.readdir($config.folders.servers + $$dateFolder);
+      let $$date = _folderDates[i];
       let _percent = Math.floor(i * 100 / _folderDates.length);
 
-      for(let $$serverFile of _servers) {
-        let _serverFileFullName = $config.folders.servers + $$dateFolder + '/' + $$serverFile;
-        let _serverName = $$serverFile.substr(0, $$serverFile.length - 5);
-        var _serverEntry = $gameForge.servers.filter(x => x.name == _serverName).shift();
-
-        if(!_serverEntry) { continue; }
-        let _serverId = _serverEntry.id;
-
-        let _server = null;
-
+      for(let $$server of $gameForge.servers) {
         try {
-          _server = await $fs.readJSON(_serverFileFullName);
-        } catch(error) {
-          $log.error('Coundn\'t read %s', _serverFileFullName);
-          continue;
-        }
+          let _serverData = await $fsData.server.get($$date, $$server.name);
 
-        _server.serverId = _serverId;
-        _server.serverName = _serverName;
-        _server.date = $$dateFolder;
+          _serverData.serverId = $$server.id;
+          _serverData.serverName = $$server.name;
+          _serverData.date = $$date;
+          _serverData.dates = {};
 
-        try {
-          await $fs.writeJSON(_serverFileFullName, _server);
+          if(i === 0) {
+            _serverData.dates.next = _folderDates[i + 1];
+          }
+          else if(i === _folderDates.length - 1) {
+            _serverData.dates.previous = _folderDates[i - 1];
+          }
+          else {
+            _serverData.dates.next = _folderDates[i + 1];
+            _serverData.dates.previous = _folderDates[i - 1];
+          }
+        
+          await $fsData.server.store($$date, $$server.name, _serverData);
         } catch(error) {
-          $log.error('Couldn\'t write on %s', _serverFileFullName);
+          $log.error('Error processing %s/%s', $$date, $$server.name);
         }
       }
 
-      if(_percent % 5 === 0 && _percent != _lastPercent) {
+      if(_percent != _lastPercent) {
         $log.debug('Completed %s%', colors.cyan(_percent));
         _lastPercent = _percent;
       }
     }
+
+    $cache.enable();
+    resolve();
   });
 }
 module.exports = new Server();
