@@ -23,7 +23,7 @@ Dates.prototype.generate = function() {
       //Sort files
       files.sort((a, b) => (new Date(a).getTime() - (new Date(b).getTime())));
 
-      var _txt = 'window.storeDates = ' + JSON.stringify(files).replace(/"/g, '\'') + ';'
+      var _txt = 'window.storedDates = ' + JSON.stringify(files).replace(/"/g, '\'') + ';'
       
       $fs.writeFile($config.files.foldersDates, _txt, err => {
 
