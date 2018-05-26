@@ -1,9 +1,4 @@
-var $config =  module.exports = {
-
-  'crawler': {
-    'user-agent': 'soyto.github.io crawler',
-  },
-
+var $config  = {
   'application': {
     'servers-folder': 'data/Servers/',
 
@@ -46,6 +41,15 @@ var $config =  module.exports = {
   }
 };
 
+$config.crawler = {
+  'userAgent': 'soyto.github.io crawler',
+  'timeout': 5000,
+  'url': {
+    'login': 'https://en.aion.gameforge.com/website',
+    'serverPage': 'https://en.aion.gameforge.com/website/resources/pubajax/ranking/honorpoints/paging/{page}/',
+  }
+};
+
 //NodeApp config
 $config.nodeApp = {
   'debug_mode': true
@@ -62,3 +66,5 @@ $config.files = {
   'foldersDates': $config.folders.appData + 'dates.js'
 };
 
+
+module.exports = $config;

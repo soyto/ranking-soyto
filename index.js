@@ -3,6 +3,16 @@ var $gameForge = require('./nodeApp/gameForge');
 
 
 (async function() {
-  await $crawler.dates.generate();
-  console.log('all done');
+  try {
+  let _cookie = await $crawler.server.login();
+  console.log('Cookies is %s', _cookie);  
+  
+  for(let server of $gameForge.servers) {
+    let _serverPage = await $crawler.server.retrieveServer(server.id, _cookie);
+  }
+  
+  
+  } catch(error) {
+    
+  }
 })();
