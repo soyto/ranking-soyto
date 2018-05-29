@@ -53,9 +53,10 @@ Fs.prototype.write = function(name, data) {
  * Write JSON data
  * @param {*} name 
  * @param {*} data 
+ * @param {*} prettyPrint
  */
-Fs.prototype.writeJSON = function(name, data) {
-  return this.write(name, JSON.stringify(data));
+Fs.prototype.writeJSON = function(name, data, prettyPrint) {
+  return prettyPrint ? this.write(name, JSON.stringify(data, null, ' ')) : this.write(name, JSON.stringify(data));
 };
 
 module.exports = new Fs();

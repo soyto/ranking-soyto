@@ -63,7 +63,7 @@ Server.prototype.store = function(date, serverName, data) {
   return new Promise(async (resolve, reject) => {
     try {
       //Invalidate cache and store it
-      return resolve($fs.writeJSON($config.folders.servers + '/' + date + '/' + serverName + '.json', data));
+      return resolve($fs.writeJSON($config.folders.servers + '/' + date + '/' + serverName + '.json', data, $config.fsData.prettyPrint));
     } catch(error) {
       return reject(error);
     }
@@ -94,7 +94,7 @@ Server.prototype.updateServerPreviousDate = function(serverData) {
 
       serverData.dates.previous = _oldDate;
 
-      return resolve();
+      return resolve(serverData);
     } catch(error) {
       return reject(error);
     }
@@ -125,7 +125,7 @@ Server.prototype.updateServerNextDate = function(serverData) {
 
       serverData.dates.next = _nextDate;
 
-      return resolve();
+      return resolve(serverData);
     } catch(error) {
       return reject(error);
     }
@@ -149,8 +149,9 @@ Server.prototype.updateServerEntries = function(serverData) {
 
       _updateServerEntries(serverData.elyos, _oldServerData.elyos);
       _updateServerEntries(serverData.asmodians, _oldServerData.asmodians);
+      return resolve(serverData);
     } catch(error) {
-      console.log(error);
+      return reject(error);
     }
   });
 
@@ -165,13 +166,89 @@ Server.prototype.updateServerEntries = function(serverData) {
         return;
       }
 
+      //Set up gloryPointChange
       $$serverEntry.gloryPointChange = $$serverEntry.gloryPoint -  _oldEntry.gloryPoint;
-      $$serverEntry.rankingPositionChange = $$serverEntry.position -  _oldEntry.position;
+
+      //Set up rankingPositionChange
+      $$serverEntry.rankingPositionChange = _oldEntry.position - $$serverEntry.position;
     });
   }
 };
 
+/**
+ * Update server stats
+ * @param {*} serverData 
+ */
+Server.prototype.updateServerStats = function(serverData) {
+  return new Promise((resolve, reject) => {
+    try {
+      serverData.stats = {
+        'elyos': _setUpStats(serverData.elyos),
+        'asmodians': _setUpStats(serverData.asmodians),
+      };
 
+      return resolve(serverData);
+    } catch(error) {
+      return reject(error);
+    }
+  
+  });
 
+  //Set up stats 
+  function _setUpStats(collection) {
+    let _topHP = null;
+    let _topPositionChange = null;
+    let _lowerPositionChange = null;
+
+    collection.forEach($$character => {
+
+      if($$character.gloryPointChange) {
+        if(!_topHP || _topHP.gloryPointChange < $$character.gloryPointChange) {
+          _topHP = {
+            'characterName': $$character.characterName,
+            'characterID': $$character.characterID,
+            'guildName': $$character.guildName,
+            'guildID': $$character.guildID,
+            'gloryPointChange': $$character.gloryPointChange
+          };
+        }
+      }
+
+      if($$character.rankingPositionChange) {
+
+        if(!_topPositionChange || _topPositionChange.rankingPositionChange < $$character.rankingPositionChange) {
+          _topPositionChange = {
+            'characterName': $$character.characterName,
+            'characterID': $$character.characterID,
+            'guildName': $$character.guildName,
+            'guildID': $$character.guildID,
+            'rankingPositionChange': $$character.rankingPositionChange
+          };
+        }
+
+        if(!_lowerPositionChange || _lowerPositionChange.rankingPositionChange > $$character.rankingPositionChange) {
+          _lowerPositionChange = {
+            'characterName': $$character.characterName,
+            'characterID': $$character.characterID,
+            'guildName': $$character.guildName,
+            'guildID': $$character.guildID,
+            'rankingPositionChange': $$character.rankingPositionChange
+          };
+        }
+      }
+    });
+
+    if(!_topHP && !_topPositionChange && !_lowerPositionChange) {
+      return null;
+    }
+    else {
+      return {
+        'topHP': _topHP,
+        'topPositionChange': _topPositionChange,
+        'lowerPositionChange': _lowerPositionChange
+      };
+    }
+  }
+};
 
 module.exports = new Server();

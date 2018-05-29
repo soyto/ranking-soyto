@@ -56,6 +56,13 @@ $config.crawler = {
   }
 };
 
+/**
+ * fileSystem configuration
+ */
+$config.fsData = {
+  'prettyPrint': true
+};
+
 //NodeApp config
 $config.nodeApp = {
   'debug_mode': true

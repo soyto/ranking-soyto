@@ -29,15 +29,15 @@ Server.prototype.update = function() {
           await $fsData.server.updateServerPreviousDate(_serverData);
           await $fsData.server.updateServerNextDate(_serverData);
           await $fsData.server.updateServerEntries(_serverData);
-          // await $fsData.server.store($$date, $$server.name, _serverData);
-
+          await $fsData.server.updateServerStats(_serverData);
+          await $fsData.server.store($$date, $$server.name, _serverData);
         } catch(error) {
           $log.error('Error processing %s/%s', $$date, $$server.name);
         }
       }
 
       if(_percent != _lastPercent) {
-        $log.debug('Completed %s%', colors.cyan(_percent));
+        $log.debug('Completed %s% [%s:%s]', colors.cyan(_percent), colors.magenta(i + 1), colors.green(_folderDates.length));
         _lastPercent = _percent;
       }
     }
