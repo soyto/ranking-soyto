@@ -1,7 +1,7 @@
 module.exports = (function() {
 
   let grunt = require('grunt');
-  let $refactor = require('../node_refactor');
+  let $refactor = require('../nodeApp/refactor');
 
   /**
    * Refactor task
