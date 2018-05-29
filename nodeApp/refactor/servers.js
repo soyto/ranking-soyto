@@ -28,7 +28,8 @@ Server.prototype.update = function() {
           _serverData.date = $$date;
           await $fsData.server.updateServerPreviousDate(_serverData);
           await $fsData.server.updateServerNextDate(_serverData);
-          await $fsData.server.store($$date, $$server.name, _serverData);
+          await $fsData.server.updateServerEntries(_serverData);
+          // await $fsData.server.store($$date, $$server.name, _serverData);
 
         } catch(error) {
           $log.error('Error processing %s/%s', $$date, $$server.name);

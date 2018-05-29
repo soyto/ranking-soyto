@@ -77,19 +77,27 @@ Server.prototype.store = function(date, serverName, data) {
  */
 Server.prototype.updateServerPreviousDate = function(serverData) {
   return new Promise(async (resolve, reject) => {
-    let _dates = await this.getDates();
-    let _idx = _dates.indexOf(serverData.date);
+    try {
+      let _dates = await this.getDates();
+      let _idx = _dates.indexOf(serverData.date);
 
-    //If we are trying to update first or non existent...
-    if(_idx <= 0) { return resolve();}
+      //If we are trying to update first or non existent...
+      if (_idx <= 0) {
+        return resolve();
+      }
 
-    let _oldDate = _dates[_idx - 1];
+      let _oldDate = _dates[_idx - 1];
 
-    if(!serverData.dates) { serverData.dates = {}; }
+      if (!serverData.dates) {
+        serverData.dates = {};
+      }
 
-    serverData.dates.previous = _oldDate;
+      serverData.dates.previous = _oldDate;
 
-    resolve();
+      return resolve();
+    } catch(error) {
+      return reject(error);
+    }
   });
 };
 
@@ -100,20 +108,70 @@ Server.prototype.updateServerPreviousDate = function(serverData) {
  */
 Server.prototype.updateServerNextDate = function(serverData) {
   return new Promise(async (resolve, reject) => {
+    try {
+      let _dates = await this.getDates();
+      let _idx = _dates.indexOf(serverData.date);
+
+      //If we are trying to update last or non existent...
+      if (_idx < 0 || _idx == _dates.length - 1) {
+        return resolve();
+      }
+
+      let _nextDate = _dates[_idx + 1];
+
+      if (!serverData.dates) {
+        serverData.dates = {};
+      }
+
+      serverData.dates.next = _nextDate;
+
+      return resolve();
+    } catch(error) {
+      return reject(error);
+    }
+  });
+};
+
+/**
+ * Update server entries
+ * @param serverData
+ */
+Server.prototype.updateServerEntries = function(serverData) {
+  return new Promise(async (resolve, reject) => {
     let _dates = await this.getDates();
     let _idx = _dates.indexOf(serverData.date);
 
     //If we are trying to update first or non existent...
-    if(_idx < 0 || _idx == _dates.length - 1) { return resolve(); }
+    if(_idx <= 0) { return resolve(); }
 
-    let _nextDate = _dates[_idx + 1];
+    try {
+      let _oldServerData = await this.get(_dates[_idx - 1], serverData.serverName);
 
-    if(!serverData.dates) { serverData.dates = {}; }
-
-    serverData.dates.next = _nextDate;
-
-    resolve();
+      _updateServerEntries(serverData.elyos, _oldServerData.elyos);
+      _updateServerEntries(serverData.asmodians, _oldServerData.asmodians);
+    } catch(error) {
+      console.log(error);
+    }
   });
+
+  //Update server entries
+  function _updateServerEntries(currentCollection, oldCollection) {
+    currentCollection.forEach($$serverEntry => {
+      let _oldEntry = oldCollection.filter(x => x.characterID == $$serverEntry.characterID).shift();
+
+      if(!_oldEntry) {
+        $$serverEntry.gloryPointChange = null;
+        $$serverEntry.rankingPositionChange = null;
+        return;
+      }
+
+      $$serverEntry.gloryPointChange = $$serverEntry.gloryPoint -  _oldEntry.gloryPoint;
+      $$serverEntry.rankingPositionChange = $$serverEntry.position -  _oldEntry.position;
+    });
+  }
 };
+
+
+
 
 module.exports = new Server();
