@@ -1,4 +1,5 @@
 let $fs = require('fs');
+let $path = require('path');
 
 function Fs() {}
 
@@ -14,7 +15,6 @@ Fs.prototype.readdir = function(name) {
     });
   });
 };
-
 
 /**
  * Read json File
@@ -57,6 +57,76 @@ Fs.prototype.write = function(name, data) {
  */
 Fs.prototype.writeJSON = function(name, data, prettyPrint) {
   return prettyPrint ? this.write(name, JSON.stringify(data, null, ' ')) : this.write(name, JSON.stringify(data));
+};
+
+/**
+ * Gets lsTats
+ * @param {*} path
+ */
+Fs.prototype.lstat = function(path) {
+  return new Promise((resolve, reject) => {
+    $fs.lstat(path, (error, stats) => {
+      if(error) {
+        return reject(error);
+      }
+      return resolve(stats);
+    });
+  });
+};
+
+/**
+ * Removes a file
+ * @param {*} path
+ */
+Fs.prototype.unlink = function(path) {
+  return new Promise((resolve, reject) => {
+    $fs.unlink(path, (error) => {
+      if(error) { return reject(error); }
+      else { return resolve(); }
+    });
+  });
+};
+
+/**
+ * Removes a directory
+ * @param {*} path
+ * @param {*} force
+ */
+Fs.prototype.rmdir = function(path, force) {
+
+  if(!force) {
+    return new Promise((resolve, reject) => {
+      $fs.rmdir(path, (error) => {
+        if(error) { return reject(error); }
+        else { return resolve(); }
+      });
+    });
+  }
+  else {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let _filesAndFolders = await this.readdir(path);
+
+        for (let $$file of _filesAndFolders) {
+          let _path = $path.join(path, $$file);
+          let _stats = await this.lstat(_path);
+
+          if (_stats.isDirectory()) {
+            await this.rmdir(_path, true);
+          }
+          else {
+            await this.unlink(_path);
+          }
+        }
+
+        return resolve(await this.rmdir(path));
+      } catch(error) {
+        return reject(error);
+      }
+
+    });
+  }
+
 };
 
 module.exports = new Fs();

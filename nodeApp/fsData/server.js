@@ -30,9 +30,10 @@ Server.prototype.getDates = function() {
 Server.prototype.get = function(date, serverName) {
   return new Promise(async (resolve, reject) => {
     try {
-      return resolve($fs.readJSON($config.folders.servers + '/' + date + '/' + serverName + '.json'));
+      return resolve(await $fs.readJSON($config.folders.servers + '/' + date + '/' + serverName + '.json'));
     } catch(error) {
-      return reject(error);
+      if(error && error.code == 'ENOENT') { return resolve(null); }
+      else { return reject(error); }
     }
   });
 };
@@ -63,7 +64,7 @@ Server.prototype.store = function(date, serverName, data) {
   return new Promise(async (resolve, reject) => {
     try {
       //Invalidate cache and store it
-      return resolve($fs.writeJSON($config.folders.servers + '/' + date + '/' + serverName + '.json', data, $config.fsData.prettyPrint));
+      return resolve(await $fs.writeJSON($config.folders.servers + '/' + date + '/' + serverName + '.json', data, $config.fsData.prettyPrint));
     } catch(error) {
       return reject(error);
     }
