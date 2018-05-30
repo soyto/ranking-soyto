@@ -88,6 +88,19 @@ Fs.prototype.unlink = function(path) {
 };
 
 /**
+ * Creates a folder
+ * @param {*} path 
+ */
+Fs.prototype.mkdir = function(path) {
+  return new Promise((resolve, reject) => {
+    $fs.mkdir(path, (error) => {
+      if(error) { return reject(error); }
+      else { return resolve(); }
+    });
+  });
+};
+
+/**
  * Removes a directory
  * @param {*} path
  * @param {*} force

@@ -35,9 +35,165 @@ Character.prototype.store = function(serverName, characterID, characterData) {
 
       return resolve(await $fs.writeJSON(_filePath, characterData, $config.fsData.prettyPrint));
     } catch(error) {
+
+      if(error.code == 'ENOENT') {
+        try {
+          await $fs.mkdir($path.join($config.folders.characters, serverName));
+          return resolve(this.store(serverName, characterID, characterData));
+        } catch(error) {
+          return reject(error);
+        }
+      }
       return reject(error);
     }
   });
 };
+
+/**
+ * Update a character (or create new) with a dataEntry
+ * @param {*} date 
+ * @param {*} serverName 
+ * @param {*} dataEntry 
+ */
+Character.prototype.update = function(date, serverName, characterID, dataEntry) {
+  return new Promise(async (resolve, reject) => {
+    try {
+
+      //Retrieve character
+      let _character = await this.get(serverName, characterID);
+
+      if(!_character) {
+        return resolve(_generateCharacter(date, serverName, characterID, dataEntry));
+      }
+      else {
+        return resolve(_updateCharacter(date, serverName, characterID, _character, dataEntry));
+      }
+
+    } catch(error) {
+      return reject(error);
+    }
+  });
+};
+
+/**
+ * Generates a character
+ * @param {*} date 
+ * @param {*} serverName 
+ * @param {*} characterID 
+ * @param {*} dataEntry 
+ */
+function _generateCharacter(date, serverName, characterID, dataEntry) {
+
+  let _character = {
+    'characterID': characterID,
+    'serverName': serverName,
+    'last_update': date,
+    'characterClassID': dataEntry.characterClassID,
+    'raceID': dataEntry.raceID,
+
+    'position': dataEntry.position,
+    'rankingPositionChange': dataEntry.rankingPositionChange,
+    'gloryPoint': dataEntry.gloryPoint,
+    'gloryPointChange': 0,
+    'soldierRankID': dataEntry.soldierRankID,
+
+    'characterName': dataEntry.characterName,
+    'guildName': dataEntry.guildName,
+    'guildID': dataEntry.guildID,
+
+    'status': [],
+    'names': [],
+    'guilds': []
+  };
+
+  _character.status.push({
+    'date': date,
+    'position': dataEntry.position,
+    'rankingPositionChange': dataEntry.rankingPositionChange,
+    'gloryPoint': dataEntry.gloryPoint,
+    'gloryPointChange': 0,
+    'soldierRankID': dataEntry.soldierRankID
+  });
+
+  _character.names.push({
+    'date': date,
+    'characterName': dataEntry.characterName,
+  });
+
+  _character.guilds.push({
+    'date': date,
+    'guildName': dataEntry.guildName,
+    'guildID': dataEntry.guildID
+  });
+
+  return _character;
+}
+
+/**
+ * Update character
+ * @param {*} date 
+ * @param {*} serverName 
+ * @param {*} characterID 
+ * @param {*} character 
+ * @param {*} dataEntry 
+ */
+function _updateCharacter(date, serverName, characterID, character, dataEntry) {
+  let _currentCharacterDate = (new Date(character.last_update)).getTime();
+  let _newDate = (new Date(date)).getTime();
+
+  //If new date is older or same than current date
+  if(_newDate <= _currentCharacterDate) { return character; }
+
+  //If is not an update
+  if(!dataEntry) {
+
+  }
+  else {
+    character.position = dataEntry.position;
+    character.rankingPositionChange = dataEntry.rankingPositionChange;
+    character.gloryPoint = dataEntry.gloryPoint;
+    character.gloryPointChange = dataEntry.gloryPointChange;
+    character.soldierRankID = dataEntry.soldierRankID;
+
+    character.characterName = dataEntry.characterName;
+
+    character.guildName = dataEntry.guildName;
+    character.guildID = dataEntry.guildID;
+
+    character.status.push({
+      'date': date,
+      'position': dataEntry.position,
+      'rankingPositionChange': dataEntry.rankingPositionChange,
+      'gloryPoint': dataEntry.gloryPoint,
+      'gloryPointChange': dataEntry.gloryPointChange,
+      'soldierRankID': dataEntry.soldierRankID
+    });
+
+    //If there are more than 100 status
+    if(character.status.length > 100) {
+      character.status.splice(100 - character.status.length);
+    }
+
+    let _lastName = character.names[character.names.length - 1];
+    let _lastGuild = character.guilds[character.guilds.length - 1];
+
+    if(_lastName.characterName != dataEntry.characterName) {
+      character.names.push({
+        'date': date,
+        'characterName': dataEntry.characterName,
+      });
+    }
+
+    if(_lastGuild.guildID != dataEntry.guildID) {
+      character.guilds.push({
+        'date': date,
+        'guildName': dataEntry.guildName,
+        'guildID': dataEntry.guildID
+      });
+    }
+
+    return character;
+  }
+}
 
 module.exports = new Character();
