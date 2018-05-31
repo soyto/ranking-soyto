@@ -5,11 +5,6 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
   require('./nodeApp/blog.tasks.js')(grunt);
-  require('./nodeApp/gameforge.server.tasks')(grunt);
-
-
-  var $crawler = require('./nodeApp/crawler');
-
 
   var colors = require('colors');
   var config = require('./nodeApp/config.js');

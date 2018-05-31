@@ -16,6 +16,10 @@ Character.prototype.get = function(serverName, characterID) {
       return resolve(await $fs.readJSON($path.join($config.folders.characters, serverName, characterID + '.json')));
     } catch (error) {
       if(error && error.code == 'ENOENT') { return resolve(null); }
+      else if(error && error.message == 'Unexpected end of JSON input') {
+        $log.warn('[%s] was malformed', $path.join($config.folders.characters, serverName, characterID + '.json'));
+        return resolve(null);
+      }
       else { return reject(error); }
     }
   });
@@ -146,9 +150,17 @@ function _updateCharacter(date, serverName, characterID, character, dataEntry) {
 
   //If is not an update
   if(!dataEntry) {
+    character.last_update = date;
+
+    character.position = -1;
+    character.rankingPositionChange = -1;
+    character.gloryPointChange = -1;
+    character.soldierRankID = 9;
 
   }
   else {
+    character.last_update = date;
+
     character.position = dataEntry.position;
     character.rankingPositionChange = dataEntry.rankingPositionChange;
     character.gloryPoint = dataEntry.gloryPoint;
@@ -191,9 +203,9 @@ function _updateCharacter(date, serverName, characterID, character, dataEntry) {
         'guildID': dataEntry.guildID
       });
     }
-
-    return character;
   }
+
+  return character;
 }
 
 module.exports = new Character();
