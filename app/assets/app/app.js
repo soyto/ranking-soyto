@@ -70,7 +70,7 @@
     $routeProvider.when('/ranking/:serverName', $$IS_MOBILE ? rankingRouteMobileData :  rankingRouteData);
 
     var rankingWithDateRouteData = {
-      'templateUrl': '/app/templates/ranking.html',
+      'templateUrl': '/assets/app/templates/ranking.html',
       'controller': 'mainApp.ranking.list.controller',
       'resolve': {
         'serverData': ['$hs', '$route', function($hs, $route) {
