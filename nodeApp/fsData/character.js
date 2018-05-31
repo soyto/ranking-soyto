@@ -169,9 +169,9 @@ function _updateCharacter(date, serverName, characterID, character, dataEntry) {
       'soldierRankID': dataEntry.soldierRankID
     });
 
-    //If there are more than 100 status
-    if(character.status.length > 100) {
-      character.status.splice(100 - character.status.length);
+    //If there are more than 50 status
+    if(character.status.length > 50) {
+      character.status.splice(0, character.status.length - 50);
     }
 
     let _lastName = character.names[character.names.length - 1];

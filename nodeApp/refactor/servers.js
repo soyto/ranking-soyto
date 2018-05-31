@@ -17,10 +17,10 @@ Server.prototype.update = function() {
 
     for(let i = 0; i < _folderDates.length; i++) {
       let $$date = _folderDates[i];
-      let _percent = Math.floor(i * 100 / _folderDates.length);
 
       for(let $$server of $gameForge.servers) {
         try {
+          let _t = (new Date()).getTime();
           let _serverData = await $fsData.server.get($$date, $$server.name);
 
           _serverData.serverId = $$server.id;
@@ -31,17 +31,23 @@ Server.prototype.update = function() {
           await $fsData.server.updateServerEntries(_serverData);
           await $fsData.server.updateServerStats(_serverData);
           await $fsData.server.store($$date, $$server.name, _serverData);
+
+          let _dotsLength = 15 - $$server.name.length;
+
+          $log.debug('Processed %s:%s  %s => %s [%s]',
+            colors.cyan($$date),
+            colors.green($$server.name),
+            Array.apply(null, {'length': _dotsLength}).map(x => '.').join(''),
+            colors.magenta( (new Date()).getTime() - _t + ' ms'),
+            colors.yellow((process.memoryUsage().rss / 1024 / 1024 ).toFixed(2) + ' MB')
+          );
         } catch(error) {
           $log.error('Error processing %s/%s', $$date, $$server.name);
         }
-      }
-
-      if(_percent != _lastPercent) {
-        $log.debug('Completed %s% [%s:%s]', colors.cyan(_percent), colors.magenta(i + 1), colors.green(_folderDates.length));
-        _lastPercent = _percent;
       }
     }
     resolve();
   });
 };
+
 module.exports = new Server();
