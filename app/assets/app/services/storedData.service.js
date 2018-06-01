@@ -392,7 +392,7 @@
         return $$q.promise;
       }
 
-      var _url = '/data/Characters/charactersSheet.json';
+      var _url = '/data/app/charactersSheet.json';
       return $q.likeNormal($http.get(_url)).then(function($wholeData){
         $wholeData.forEach(function($$entry){
           $$entry['characterClass'] = $this.getCharacterClass($$entry['characterClassID']);

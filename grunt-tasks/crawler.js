@@ -43,7 +43,8 @@ module.exports = function() {
     done();
   });
 
-  grunt.registerTask('create-players-cheatsheet', 'Create players character sheets', async function() {
+  //Create players cheatsheet
+  grunt.registerTask('create-characters-sheet', 'Create character sheets', async function() {
     let done = this.async();
 
     await $fsData.character.generateCharactersSheet();

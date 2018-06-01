@@ -129,8 +129,8 @@ Character.prototype.generateCharactersSheet = function() {
 
     let o2x = require('object-to-xml');
 
-    await $fs.writeJSON($path.join($config.folders.appData, 'characterSheets.json'), _wholeData);
-    await $fs.write($path.join($config.folders.appData, 'characterSheets.xml'), o2x({
+    await $fs.writeJSON($path.join($config.folders.appData, 'charactersSheet.json'), _wholeData);
+    await $fs.write($path.join($config.folders.appData, 'charactersSheet.xml'), o2x({
       '?xml version=\"1.0\" encoding=\"iso-8859-1\"?' : null,
       'characters': {
         'character': _wholeData
