@@ -36,6 +36,17 @@ module.exports = function() {
       await _updateCharactersThatAreNotListed($$serverData);
     }
 
+    //Generate character sheets
+    await $fsData.character.generateCharactersSheet();
+
+
+    done();
+  });
+
+  grunt.registerTask('create-players-cheatsheet', 'Create players character sheets', async function() {
+    let done = this.async();
+
+    await $fsData.character.generateCharactersSheet();
 
     done();
   });
@@ -80,7 +91,9 @@ module.exports = function() {
 
       for(let $$characterEntry of serverData.elyos.concat(serverData.asmodians)) {
         let _character = await $fsData.character.update(serverData.date, serverData.serverName, $$characterEntry.characterID, $$characterEntry);
-        await $fsData.character.store(serverData.serverName, _character.characterID, _character);
+        if(_character) {
+          await $fsData.character.store(serverData.serverName, _character.characterID, _character);
+        }
       }
 
       let _dotsLength = 15 - serverData.serverName.length;
@@ -109,7 +122,9 @@ module.exports = function() {
 
       for(let $$characterID of _idsNotStored) {
         let _character = await $fsData.character.update(serverData.date, serverData.serverName, $$characterID, null);
-        await $fsData.character.store(serverData.serverName, _character.characterID, _character);
+        if(_character) {
+          await $fsData.character.store(serverData.serverName, _character.characterID, _character);
+        }
       }
 
       let _dotsLength = 15 - serverData.serverName.length;

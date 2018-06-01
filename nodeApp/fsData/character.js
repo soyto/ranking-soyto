@@ -2,6 +2,7 @@ let $fs = require('../helpers').fs;
 let $config = require('../config');
 let $log = require('../helpers').log;
 let $path = require('path');
+let colors = require('colors');
 
 function Character() {}
 
@@ -66,16 +67,77 @@ Character.prototype.update = function(date, serverName, characterID, dataEntry) 
       //Retrieve character
       let _character = await this.get(serverName, characterID);
 
-      if(!_character) {
+      if(_character && dataEntry) {
+        return resolve(_updateCharacter(date, serverName, characterID, _character, dataEntry));
+      }
+      else if(!_character && dataEntry) {
         return resolve(_generateCharacter(date, serverName, characterID, dataEntry));
       }
       else {
-        return resolve(_updateCharacter(date, serverName, characterID, _character, dataEntry));
+        return resolve(null);
       }
 
     } catch(error) {
       return reject(error);
     }
+  });
+};
+
+/**
+ * Generates character sheets
+ */
+Character.prototype.generateCharactersSheet = function() {
+  return new Promise(async (resolve, reject) => {
+
+    let _wholeData = [];
+    let _folders = await $fs.readdir($config.folders.characters);
+
+
+    for(let _folder of _folders) {
+      let _t = (new Date()).getTime();
+      let _characters = await $fs.readdir($path.join($config.folders.characters, _folder));
+
+      for(let $$character of _characters) {
+        let _characterInfo = null;
+
+        try {
+          _characterInfo = await $fs.readJSON($path.join($config.folders.characters, _folder, $$character));
+        } catch(error) {
+          $log.error('Error processing %s/%s', _folder, $$character);
+          continue;
+        }
+
+        let _character = {
+          'id': _characterInfo.characterID,
+          'characterName': _characterInfo.characterName,
+          'characterClassID': _characterInfo.characterClassID,
+          'characterRaceID': _characterInfo.raceID,
+          'characterPosition': _characterInfo.position,
+          'characterSoldierRankID': _characterInfo.soldierRankID,
+          'serverName': _characterInfo.serverName,
+          'lastStatus': null
+        };
+
+        let _d = new Date(_characterInfo['status'][_characterInfo['status'].length -1]['date']);
+        _character.lastStatus =  parseInt(_d.getTime()) / 1000;
+
+        _wholeData.push(_character);
+      }
+
+      $log.debug('Reading all characters from [%s] completed in %sms', colors.cyan(_folder), colors.green((new Date()).getTime() - _t));
+    }
+
+    let o2x = require('object-to-xml');
+
+    await $fs.writeJSON($path.join($config.folders.appData, 'characterSheets.json'), _wholeData);
+    await $fs.write($path.join($config.folders.appData, 'characterSheets.xml'), o2x({
+      '?xml version=\"1.0\" encoding=\"iso-8859-1\"?' : null,
+      'characters': {
+        'character': _wholeData
+      }
+    }));
+
+    resolve(_wholeData);
   });
 };
 
