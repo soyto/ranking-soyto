@@ -12,3 +12,6 @@ data/
 #Bower And Dist
 app/assets/lib/bower/
 app/assets/dist/
+
+#Sitemaps
+app/*.xml

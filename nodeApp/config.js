@@ -73,6 +73,7 @@ $config.folders = {
   'servers': 'data/Servers/',
   'characters': 'data/Characters/',
   'appData': 'data/app/',
+  'www': 'app/'
 };
 
 //Files configuration

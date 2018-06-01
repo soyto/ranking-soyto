@@ -13,7 +13,7 @@ var $path = require('path');
 
 (async function() {
   try {
-    $refactor.characters.update();
+    $crawler.sitemap.generate();
   } catch(error) {
     console.error(error);
   }

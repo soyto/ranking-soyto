@@ -39,7 +39,13 @@ module.exports = function() {
     //Generate character sheets
     await $fsData.character.generateCharactersSheet();
 
+    //Generate sitemap
+    await $crawler.sitemap.generate();
+    grunt.log.ok('Generated sitemap correctly');
 
+    //Generate folder dates
+    await $crawler.dates.generate();
+    grunt.log.ok('Generated ' + $config.files.foldersDates.cyan + ' correctly');
     done();
   });
 
@@ -48,6 +54,15 @@ module.exports = function() {
     let done = this.async();
 
     await $fsData.character.generateCharactersSheet();
+
+    done();
+  });
+
+  //generate sitemap
+  grunt.registerTask('generate-sitemap', 'generates sitemap', async function() {
+    let done = this.async();
+
+    await $crawler.sitemap.generate();
 
     done();
   });
