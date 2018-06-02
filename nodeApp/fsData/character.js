@@ -248,7 +248,7 @@ function _updateCharacter(date, serverName, characterID, character, dataEntry) {
 
     //If there are more than 50 status
     if(character.status.length > 50) {
-      character.status.splice(0, character.status.length - 50);
+      character.status.splice(0, 50);
     }
 
     let _lastName = character.names[character.names.length - 1];
