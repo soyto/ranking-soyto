@@ -20,7 +20,6 @@ var $config  = {
       'www/assets/app/directives/ngScrollTo.directive.js',
       'www/assets/app/directives/twitchPanel.directive.js',
       'www/assets/app/directives/youtubePanel.directive.js',
-      'www/assets/app/services/blog.service.js',
       'www/assets/app/services/characterSocial.service.js',
       'www/assets/app/services/console.service.js',
       'www/assets/app/services/helper.service.js',
