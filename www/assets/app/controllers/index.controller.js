@@ -3,9 +3,9 @@
 
   var CONTROLLER_NAME = 'mainApp.index.controller';
 
-  ng.module('mainApp').controller(CONTROLLER_NAME, ['$scope', '$hs', 'posts', _fn]);
+  ng.module('mainApp').controller(CONTROLLER_NAME, ['$scope', '$hs', _fn]);
 
-  function _fn($sc, $hs, $posts) {
+  function _fn($sc, $hs) {
 
     var $q = $hs.$q;
     var $log = $hs.$instantiate('$log');
@@ -13,8 +13,6 @@
     var storedDataService = $hs.$instantiate('storedDataService');
     var $window = $hs.$instantiate('$window');
     var $location = $hs.$instantiate('$location');
-
-    var _wholePosts = null;
 
     //Search object
     var _search = {
@@ -134,12 +132,6 @@
       }
     };
 
-    //Shows more posts
-    $sc.showMorePosts = function(qty) {
-      var _startingIdx = $sc['posts'].length;
-      $sc['posts'] = $sc['posts'].concat(_wholePosts.slice(_startingIdx, _startingIdx + qty));
-    };
-
     /*--------------------------------------------  PRIVATE FUNCTIONS  -----------------------------------------------*/
 
     //Init Fn
@@ -148,15 +140,7 @@
 
       $sc['servers'] = storedDataService.serversList;
       $sc['lastServerUpdateData'] = storedDataService.getLastServerData();
-
-      _wholePosts = $posts;
-      _wholePosts.forEach(function($$post){
-        $$post['htmlContent'] = $marked($$post['content']);
-      });
-
-      $sc['posts'] = _wholePosts.slice(0, 1);
-      $sc['posts_count'] = _wholePosts.length;
-
+      
       $sc['search'] = _search;
 
       $hs.$scope.setTitle('Soyto.github.io');

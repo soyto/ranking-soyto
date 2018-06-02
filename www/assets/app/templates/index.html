@@ -149,22 +149,6 @@
       </div>
     </div><!-- /Change pic panel -->
 
-    <!-- Post panels -->
-    <div class="panel panel-post" ng-repeat="post in posts">
-      <div class="panel-heading">
-        <h4 class="text-center">{{post.title}}</h4>
-      </div>
-      <div class="panel-body panel-post">
-        <div class="post-date"><small class="pull-right">{{post.date | date: 'MM-dd-yyyy HH:mm'}}</small></div>
-        <div ng-bind-html="post.htmlContent"></div>
-      </div>
-    </div><!-- Post panels -->
-
-    <!-- Load more button -->
-    <div class="row" data-ng-show="posts.length < posts_count">
-      <button class="btn btn-info col-md-12 col-xs-12" data-ng-click="showMorePosts(5)">Load more</button>
-    </div><!-- /Load more button -->
-
   </div>
 
 </div><!-- /.row -->

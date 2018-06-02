@@ -35,10 +35,7 @@
     //Index route
     var _indexRouteData = {
       'templateUrl': '/assets/app/templates/index.html',
-      'controller': 'mainApp.index.controller',
-      'resolve': {
-        'posts': ['$hs', function($hs){ return $hs.$instantiate('blogService').getAll(); }]
-      }
+      'controller': 'mainApp.index.controller'
     };
     $routeProvider.when('/', _indexRouteData);
 
