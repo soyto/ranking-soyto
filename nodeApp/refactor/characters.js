@@ -54,8 +54,10 @@ Character.prototype.update = function() {
         //Now process unranked ones
         for(let $$characterID of _IDsNotStored) {
           let _character = await $fsData.character.update(_serverInfo.date, _serverInfo.serverName, $$characterID, null);
-          await $fsData.character.store(_serverInfo.serverName, _character.characterID, _character);
-          _num++;
+          if(_character) {
+            await $fsData.character.store(_serverInfo.serverName, _character.characterID, _character);
+            _num++;
+          }
         }
 
         let _dotsLength = 15 - _server.length;
