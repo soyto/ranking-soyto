@@ -53,7 +53,7 @@ $config.crawler = {
  * fileSystem configuration
  */
 $config.fsData = {
-  'prettyPrint': true
+  'prettyPrint': false
 };
 
 //NodeApp config
