@@ -427,7 +427,7 @@
         'rankingPositionChange': characterInfoData['rankingPositionChange'],
         'soldierRankID': characterInfoData['soldierRankID'],
         'soldierRank': $this.getCharacterRank(characterInfoData['soldierRankID']),
-        'status': characterInfoData['status'],
+        'status': characterInfoData['status'].slice(-50),
       };
 
       //Normalize and sort collection dates
