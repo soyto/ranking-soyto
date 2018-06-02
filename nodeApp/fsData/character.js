@@ -68,13 +68,16 @@ Character.prototype.update = function(date, serverName, characterID, dataEntry) 
       let _character = await this.get(serverName, characterID);
 
       if(_character && dataEntry) {
-        return resolve(_updateCharacter(date, serverName, characterID, _character, dataEntry));
+        return resolve(_updateCharacter(date, serverName, characterID, _character));
       }
       else if(!_character && dataEntry) {
         return resolve(_generateCharacter(date, serverName, characterID, dataEntry));
       }
-      else {
+      else if(!_character && !dataEntry) {
         return resolve(null);
+      }
+      else if(_character && !dataEntry) {
+        return resolve(_updateCharacter(date, serverName, characterID, _character));
       }
 
     } catch(error) {
