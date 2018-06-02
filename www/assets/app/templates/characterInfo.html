@@ -1,8 +1,8 @@
 <!-- Breadcrumb -->
 <ol class="breadcrumb">
-  <li><a href="/">Home</a></li>
-  <li><a ng-href="/ranking/{{serverName}}">{{serverName}}</a></li>
-  <li><a ng-href="/character/{{serverName}}/{{character.characterID}}">{{character.characterName}}</a></li>
+  <li><a href="/#!/">Home</a></li>
+  <li><a data-ng-href="/#!/ranking/{{serverName}}">{{serverName}}</a></li>
+  <li><a data-ng-href="/#!/character/{{serverName}}/{{character.characterID}}">{{character.characterName}}</a></li>
 </ol><!-- /Breadcrumb -->
 
 <div class="row">
@@ -113,7 +113,7 @@
            data-ng-scroll-to="search-result-{{$index}}"
            data-ng-scroll-to-offset="30"
            data-ng-scroll-to-element-margin="{'top': 40, 'bottom': 0}"
-           href="" data-ng-href="/character/{{searchItem.serverName}}/{{searchItem.id}}">
+           href="" data-ng-href="/#!/character/{{searchItem.serverName}}/{{searchItem.id}}">
 
           <div class="search-result-item-heading pull-left">
             <h4>{{searchItem.characterName}}-{{searchItem.serverName}}</h4>
@@ -204,7 +204,7 @@
             <tbody>
             <tr ng-repeat="status in pagination.current">
               <td>
-                <a ng-href="/ranking/{{serverName}}/{{ status.date | date: 'MM-dd-yyyy' }}">
+                <a data-ng-href="/#!/ranking/{{serverName}}/{{ status.date | date: 'MM-dd-yyyy' }}">
                   {{ status.date | date: 'MM/dd/yyyy' }}
                 </a>
               </td>

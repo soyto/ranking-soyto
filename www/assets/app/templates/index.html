@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li><a href="/">Home</a></li>
+  <li><a href="/#!/">Home</a></li>
 </ol>
 
 <div class="row">
@@ -58,7 +58,7 @@
            data-ng-scroll-to="search-result-{{$index}}"
            data-ng-scroll-to-offset="30"
            data-ng-scroll-to-element-margin="{'top': 40, 'bottom': 0}"
-           href="" data-ng-href="/character/{{searchItem.serverName}}/{{searchItem.id}}">
+           data-ng-href="/#!/character/{{searchItem.serverName}}/{{searchItem.id}}">
 
           <div class="search-result-item-heading pull-left">
             <h4>{{searchItem.characterName}}-{{searchItem.serverName}}</h4>
@@ -94,7 +94,7 @@
     <div class="panel panel-servers">
       <div class="panel-heading"><h4>Servers</h4></div>
       <div class="list-group">
-        <a ng-repeat="server in servers" class="list-group-item" ng-href="/ranking/{{server.name}}">{{server.name}}</a>
+        <a ng-repeat="server in servers" class="list-group-item" data-ng-href="/#!/ranking/{{server.name}}">{{server.name}}</a>
       </div>
     </div><!-- /Servers Panel -->
 

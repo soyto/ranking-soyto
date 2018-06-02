@@ -2,9 +2,7 @@
 module.exports = function(grunt) {
 
   require('./grunt-tasks/');
-
   require('load-grunt-tasks')(grunt);
-  require('./nodeApp/blog.tasks.js')(grunt);
 
   var colors = require('colors');
   var config = require('./nodeApp/config.js');
@@ -86,7 +84,6 @@ module.exports = function(grunt) {
   //Compiles application
   grunt.registerTask('compile', [
     'generate-folder-dates',
-    'generate-blog-files',
     'jshint:app',
     'concat:app',
     'uglify:app'
