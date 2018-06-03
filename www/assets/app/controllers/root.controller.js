@@ -43,10 +43,9 @@
           };
         }]
       }).result.then(function() {
-        $cookies.put('gdprPolicy', true)
-      }); 
+        $cookies.put('gdprPolicy', true);
+      });
     }
-    
   }
 
 })(angular);
