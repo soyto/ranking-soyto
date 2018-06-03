@@ -5,10 +5,10 @@
   ng.module('mainApp',[
     'ngRoute',
     'ngSanitize',
+    'ngCookies',
     'angular-loading-bar',
     'chart.js',
-    'mgcrea.ngStrap',
-    'ngAnimate',
+    'ui.bootstrap'
   ]);
 
   ng.module('mainApp')

@@ -170,17 +170,19 @@
   <script type="text/javascript" src="/assets/lib/bower/marked/marked.min.js"></script>
 
   <!-- Angular CDN dependencies -->
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.min.js"></script>
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-sanitize.min.js"></script>
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-animate.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-touch.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.min.js"></script>
   <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.min.js'></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.tpl.min.js"></script>
 
   <!-- Angular local dependencies -->
   <script type="text/javascript" src="/assets/lib/bower/angular-chart.js/dist/angular-chart.min.js"></script>
   <script type="text/javascript" src="/assets/lib/javascript.extensions.js"></script>
+  <script type="text/javascript" src="/assets/lib/bower/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script type="text/javascript" src="/assets/lib/bower/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
   <!-- Aditional data -->
   <script type='text/javascript' src="/data/app/dates.js"></script>
@@ -197,6 +199,38 @@
 
     ga('create', 'UA-65341862-1', 'auto');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/ng-template" id="gdprPolicy.modal.tpl.html">
+    <div class="modal-header">
+      <h4 class="modal-title">Let's talk about GDPR</div>
+    </div>
+    <div class="modal-body">
+        <p>On Soyto's we use cookies from <a href="http://google.com" target="_blank">Google</a> and <a href="http://facebook.com" target="_blank">Facebook</a>.</p>
+
+        <p>Google's cookie are used for data analytics from the site and all data is stored only for 3 months</p>
+        <p>Facebook one is added for the usage of like button and comment box and is related with your facebook account. If you want to comment on this site you must login across Facebook</p>
+
+        <p>
+          All data from this site is recorded from <a href="https://en.aion.gameforge.com/website/" target="_blank">Gameforge site</a> and is public.
+          <br />
+          If you have an issue about being your character name public you must go ahead and send a ticket to Gameforge.
+          <br />
+          The additional data like user characters, or media links are given by users that wanted to expose em.
+        </p>
+
+        <p>
+          <b>In any moment we collect personal info about our users.</b>
+        </p>
+
+        <p>After this, if you refuse to navigate over this site, please go outta here. Thanks.</p>
+
+        <img class="img center-block" src="/assets/img/enjoy.png" alt="Enjoy">
+    </div>
+    <div class="modal-footer">
+      <a href="http://www.google.es" class="btn btn-link">Please, take me outta here</a>
+      <button class="btn btn-primary" data-ng-click="onClick_confirm()">It's ok, i trust in you</buttok>
+    </div>
   </script>
   
 </body>

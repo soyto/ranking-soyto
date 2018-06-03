@@ -12,6 +12,9 @@
     var $window = $hs.$instantiate('$window');
     var $location = $hs.$instantiate('$location');
     var cfpLoadingBar = $hs.$instantiate('cfpLoadingBar');
+    var $uibModal = $hs.$instantiate('$uibModal');
+    var $templateCache = $hs.$instantiate('$templateCache');
+    var $cookies = $hs.$instantiate('$cookies');
 
     $rs['_name'] = CONTROLLER_NAME;
 
@@ -27,6 +30,23 @@
       $window.ga('send', 'pageview', {'page': $location.path() });
       $rs['$$currentPath'] = $location.path();
     });
+
+    if(!$cookies.get('gdprPolicy')) {
+      $uibModal.open({
+        'animation': false,
+        'template': $templateCache.get('gdprPolicy.modal.tpl.html'),
+        'size': 'lg',
+        'backdrop': 'static',
+        'controller': ['$uibModalInstance', '$scope', function($instance, $msc) {
+          $msc.onClick_confirm = function() {
+            $instance.close();
+          };
+        }]
+      }).result.then(function() {
+        $cookies.put('gdprPolicy', true)
+      }); 
+    }
+    
   }
 
 })(angular);

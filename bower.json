@@ -17,6 +17,7 @@
   "dependencies": {
     "angular-chart.js": "~1.1.0",
     "angular-motion": "~0.4.2",
-    "marked": "~0.3.5"
+    "marked": "~0.3.5",
+    "angular-bootstrap": "^2.5.0"
   }
 }
