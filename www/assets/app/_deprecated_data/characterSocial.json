@@ -306,5 +306,8 @@
   }},
   {"serverName": "Deyla", "characterID": 1556059 , "buttons": {
     "youtube": "https://www.youtube.com/channel/UCe--B-0P7M4K8Ifuil8ymiA"
+  }},
+  {"serverName": "Deyla", "characterID": 1640349 , "buttons": {
+    "twitch": "https://www.twitch.tv/fenken"
   }}
 ]
