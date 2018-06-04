@@ -15,8 +15,10 @@ fs.readdirSync(__dirname).forEach(file => {
   //If name is index, avoid
   if(_name == 'index') { return; }
 
+  //If recieve scaped fragment... remove it
   router.use((req, res, next) => {
-    req.url = decodeURI(req.url).replace('/?_escaped_fragment_=', '');
+    req.url = decodeURIComponent(req.url.replace('/?_escaped_fragment_=', ''));
+    next();
   });
 
   router.use('/' + _name, require($path.join(__dirname, file)));
