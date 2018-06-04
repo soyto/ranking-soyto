@@ -142,10 +142,8 @@
       $sc['_name'] = CONTROLLER_NAME;
 
       //Set page title
-      $hs.$scope.setTitle([
-        characterInfo['serverName'],
-        '->',
-        characterInfo['characterName']
+      $hs.$scope.setTitle(
+        'Soyto ranking tool | ' + [characterInfo['serverName'], '->', characterInfo['characterName']
       ].join(' '));
 
 

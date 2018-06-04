@@ -39,7 +39,7 @@
       $sc['_name'] = CONTROLLER_NAME;
       $sc['data'] = _data;
 
-      $hs.$scope.setTitle('Soyto.github.io | Twitch channels');
+      $hs.$scope.setTitle('Soyto ranking tool | Twitch channels');
       $hs.$scope.setNav('twitchChannels');
 
       characterSocialService.getGithubSocialData().then(function($$data) {

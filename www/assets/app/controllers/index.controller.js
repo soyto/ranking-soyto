@@ -143,7 +143,7 @@
       
       $sc['search'] = _search;
 
-      $hs.$scope.setTitle('Soyto.github.io');
+      $hs.$scope.setTitle('Soyto ranking tool');
       $hs.$scope.setNav('home');
     }
 

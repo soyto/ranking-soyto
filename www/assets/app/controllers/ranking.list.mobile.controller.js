@@ -116,7 +116,7 @@
 
     function _init() {
 
-      helperService.$scope.setTitle(serverData.serverName + ' -> ' + serverData.date);
+      helperService.$scope.setTitle('Soyto ranking tool | ' + serverData.serverName + ' -> ' + serverData.date);
       helperService.$scope.setNav('ranking.list');
 
       $scope.pagination = {

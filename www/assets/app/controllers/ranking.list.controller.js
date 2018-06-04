@@ -133,7 +133,7 @@
       $sc['_name'] = CONTROLLER_NAME;
 
       //Set title and navigation
-      $hs['$scope'].setTitle(serverData['serverName'] + ' -> ' + serverData['date']);
+      $hs['$scope'].setTitle('Soyto ranking tool | ' + serverData['serverName'] + ' -> ' + serverData['date']);
       $hs['$scope'].setNav('ranking.list');
 
       $sc['data'] = _data;
