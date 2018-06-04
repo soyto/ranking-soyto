@@ -3,6 +3,10 @@ const $config = require('./nodeApp/config');
 const express = require('express');
 const app = express();
 
+app.use((req, res, next) => {
+  console.log('Recived -> %s', req.uri);
+  next();
+});
 
 app.use('/seo/', require('./nodeApp/express-routes/seo'));
 
