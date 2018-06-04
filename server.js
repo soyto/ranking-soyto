@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 app.use((req, res, next) => {
-  console.log('Recived -> %s', req.uri);
+  console.log('Recived -> %s', req.urls);
   next();
 });
 
