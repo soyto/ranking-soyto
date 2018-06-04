@@ -118,12 +118,9 @@ Character.prototype.generateCharactersSheet = function() {
           'characterPosition': _characterInfo.position,
           'characterSoldierRankID': _characterInfo.soldierRankID,
           'serverName': _characterInfo.serverName,
-          'lastStatus': null
+          'lastStatus': _characterInfo['status'][_characterInfo['status'].length -1]['date']
         };
-
-        let _d = new Date(_characterInfo['status'][_characterInfo['status'].length -1]['date']);
-        _character.lastStatus = parseInt(_d.getTime()) / 1000;
-
+        
         _wholeData.push(_character);
       }
 
@@ -138,6 +135,10 @@ Character.prototype.generateCharactersSheet = function() {
     let o2x = require('object-to-xml');
 
     await $fs.writeJSON($path.join($config.folders.appData, 'charactersSheet.json'), _wholeData);
+
+    //XML date
+    _wholeData.forEach(x => x['lastStatus'] = parseInt(new Date().getTime()) / 1000);
+
     await $fs.write($path.join($config.folders.appData, 'charactersSheet.xml'), o2x({
       '?xml version=\"1.0\" encoding=\"iso-8859-1\"?' : null,
       'characters': {
