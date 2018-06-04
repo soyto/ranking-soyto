@@ -122,13 +122,18 @@ Character.prototype.generateCharactersSheet = function() {
         };
 
         let _d = new Date(_characterInfo['status'][_characterInfo['status'].length -1]['date']);
-        _character.lastStatus =  parseInt(_d.getTime()) / 1000;
+        _character.lastStatus = parseInt(_d.getTime()) / 1000;
 
         _wholeData.push(_character);
       }
 
       $log.debug('Reading all characters from [%s] completed in %sms', colors.cyan(_folder), colors.green((new Date()).getTime() - _t));
     }
+
+    //Sort em
+    _wholeData.sort(function(a, b){
+      return a['characterName'].localeCompare(b['characterName']);
+    });
 
     let o2x = require('object-to-xml');
 
