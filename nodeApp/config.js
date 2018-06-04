@@ -1,3 +1,5 @@
+var $path = require('path');
+
 var $config  = {
   'application': {
     'servers-folder': 'data/Servers/',
@@ -65,12 +67,22 @@ $config.folders = {
   'servers': 'data/Servers/',
   'characters': 'data/Characters/',
   'appData': 'data/app/',
-  'www': 'www/'
+  'www': 'www/',
+  'templates': 'nodeApp/templates',
 };
 
 //Files configuration
 $config.files = {
-  'foldersDates': $config.folders.appData + 'dates.js'
+  'foldersDates': $path.join($config.folders.appData ,'dates.js'),
+  'characterPics': $path.join($config.folders.www, 'assets', 'app', '_deprecated_data', 'characterPics.json'),
+  'characterSocial': $path.join($config.folders.www, 'assets', 'app', '_deprecated_data', 'characterSocial.json'),
+};
+
+/**
+ * Server configuration
+ */
+$config.server = {
+  'port': 8080
 };
 
 
