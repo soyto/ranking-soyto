@@ -51,6 +51,9 @@
   {"serverName": "Thor", "characterID": 1902771 , "buttons": {
     "twitch": "https://www.twitch.tv/zafr0"
   }},
+  {"serverName": "Deyla", "characterID": 1653235 , "buttons": {
+    "twitch": "https://www.twitch.tv/zafr0"
+  }},
   {"serverName": "Thor", "characterID": 886672 , "buttons": {
     "youtube": "https://www.youtube.com/channel/UCsUWtHjH-O2TTC_L83oY42A"
   }},
@@ -101,7 +104,7 @@
     "youtube": "https://www.youtube.com/user/TheDJNicOH"
   }},
   {"serverName": "Deyla", "characterID": 1645743 , "buttons": {
-    "twitch": "https://www.twitch.tv/hyprusen" 
+    "twitch": "https://www.twitch.tv/hyprusen"
   }},
   {"serverName": "Barus", "characterID": 87465 , "buttons": {
     "youtube": "https://www.youtube.com/VseoRyhmee",
@@ -158,7 +161,7 @@
   {"serverName": "Urtem", "characterID": 1844317 , "buttons": {
     "twitch": "https://www.twitch.tv/klaaaze"
   }},
-   {"serverName": "Fregion", "characterID": 2418 , "buttons": {
+  {"serverName": "Fregion", "characterID": 2418 , "buttons": {
     "facebook": "https://www.facebook.com/shiemysan.kromede"
   }},
   {"serverName": "Loki", "characterID": 1277666 , "buttons": {
@@ -297,5 +300,11 @@
     "facebook": "https://www.facebook.com/orhan.yumusak",
     "twitch": "https://www.twitch.tv/letaleantri",
     "youtube": "https://www.youtube.com/channel/UCDrmSwFQ7RT0-gB453uL33Q"
+  }},
+  {"serverName": "Loki", "characterID": 1190225 , "buttons": {
+    "facebook": "https://www.facebook.com/zhemo.vehal"
+  }},
+  {"serverName": "Deyla", "characterID": 1556059 , "buttons": {
+    "youtube": "https://www.youtube.com/channel/UCe--B-0P7M4K8Ifuil8ymiA"
   }}
 ]
