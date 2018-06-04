@@ -15,6 +15,7 @@
     var $uibModal = $hs.$instantiate('$uibModal');
     var $templateCache = $hs.$instantiate('$templateCache');
     var $cookies = $hs.$instantiate('$cookies');
+    var $moment = $hs.$instantiate('$moment');
 
     $rs['_name'] = CONTROLLER_NAME;
 
@@ -43,7 +44,7 @@
           };
         }]
       }).result.then(function() {
-        $cookies.put('gdprPolicy', true);
+        $cookies.put('gdprPolicy', true, {'expires': $moment().add('months', 3). toDate() });
       });
     }
   }
