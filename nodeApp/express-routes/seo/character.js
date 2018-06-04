@@ -71,7 +71,7 @@ function _getDescription(characterData) {
     default: _rankName = 'Soldier Rank 1'; break;
   }
 
-  return _raceName + ' ' + _rankName + ' ' + _className + '' + _guildName;
+  return _raceName + ' ' + _rankName + ' ' + _className + ' ' + _guildName;
 }
 
 
