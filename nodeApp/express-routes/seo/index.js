@@ -18,7 +18,6 @@ fs.readdirSync(__dirname).forEach(file => {
   //Middleware
   router.use((req, res, next) => {
     req.url = decodeURIComponent(req.url).replace(/\/\//g, '/');
-    console.log('New url -> %s', req.url);
     next();
   });
 
