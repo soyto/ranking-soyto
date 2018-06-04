@@ -1,6 +1,6 @@
 {
   "name": "ranking-soyto",
-  "version": "0.0.67",
+  "version": "0.0.68",
   "description": "",
   "main": "server.js",
   "scripts": {
