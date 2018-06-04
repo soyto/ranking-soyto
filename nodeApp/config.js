@@ -65,7 +65,8 @@ $config.folders = {
   'servers': 'data/Servers/',
   'characters': 'data/Characters/',
   'appData': 'data/app/',
-  'www': 'www/'
+  'www': 'www/',
+  'templates': 'nodeApp/templates',
 };
 
 //Files configuration

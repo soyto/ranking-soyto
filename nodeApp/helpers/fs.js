@@ -17,6 +17,20 @@ Fs.prototype.readdir = function(name) {
 };
 
 /**
+ * Read file
+ * @param name
+ * @return {Promise}
+ */
+Fs.prototype.read = function(name) {
+  return new Promise((resolve, reject) => {
+    $fs.readFile(name, 'utf8', (error, data) => {
+      if(error) { return reject(error); }
+      return resolve(data);
+    });
+  });
+};
+
+/**
  * Read json File
  * @param {*} name 
  */
