@@ -13,7 +13,7 @@ let router = express.Router();
  * Print handlebars template
  */
 router.get('/:serverName/:characterID', async (req, res) => {
-  let _characterData = await $fsData.character.get(req.params.serverName, req.params.characterId);
+  let _characterData = await $fsData.character.get(req.params.serverName, req.params.characterID);
   let _characterPic = (await $fs.readJSON($config.files.characterPics)).filter(x => x.characterID == req.params.characterID && x.serverName == req.params.serverName).shift();
   let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'characterInfo_share.hbs')));
   
