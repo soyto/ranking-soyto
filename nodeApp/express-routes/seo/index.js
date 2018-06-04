@@ -15,12 +15,6 @@ fs.readdirSync(__dirname).forEach(file => {
   //If name is index, avoid
   if(_name == 'index') { return; }
 
-  //Middleware
-  router.use((req, res, next) => {
-    req.url = decodeURIComponent(req.url).replace(/\/\//g, '/');
-    next();
-  });
-
   router.use('/' + _name, require($path.join(__dirname, file)));
 });
 
