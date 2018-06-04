@@ -23,10 +23,10 @@ router.get('/:serverName/:characterID', async (req, res) => {
     _picture = _characterPic.pic;
   }
   else if(_characterData) {
-    _picture = 'https://placehold.it/450X300/DD66DD/EE77EE/?text=' + encodeURI(_characterData.characterName);
+    _picture = '//placehold.it/450X300/DD66DD/EE77EE/?text=' + encodeURI(_characterData.characterName);
   }
   else {
-    _picture = 'https://placehold.it/450X300/DD66DD/EE77EE/?text=NotFound';
+    _picture = '//placehold.it/450X300/DD66DD/EE77EE/?text=NotFound';
   }
 
   let _result = _template({

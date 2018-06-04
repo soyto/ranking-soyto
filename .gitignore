@@ -14,4 +14,4 @@ www/assets/lib/bower/
 www/assets/dist/
 
 #Sitemaps
-app/*.xml
+www/*.xml
