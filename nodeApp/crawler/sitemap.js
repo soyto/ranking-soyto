@@ -43,7 +43,7 @@ function _generateServersSitemap() {
     for(let $$date of (await $fs.readdir($config.folders.servers))) {
       for(let $$serverFile of (await $fs.readdir($path.join($config.folders.servers, $$date)))) {
         let _serverName = $$serverFile.split('.')[0];
-        _txt += '<url><loc>http://soyto.org/#!/ranking/' +  _serverName + '/' + $$date + '</loc></url>\n';
+        _txt += '<url><loc>http://soyto.org/ranking/' +  _serverName + '/' + $$date + '</loc></url>\n';
       }
     }
 
@@ -71,7 +71,7 @@ function _generateCharactersSitemap() {
       for(let $$characterFile of (await $fs.readdir($path.join($config.folders.characters, $$serverFolder)))) {
         let _characterId = $$characterFile.split('.')[0];
 
-        _txt += '<url><loc>http://soyto.org/#!/character/' +  $$serverFolder + '/' + _characterId + '</loc></url>\n';
+        _txt += '<url><loc>http://soyto.org/character/' +  $$serverFolder + '/' + _characterId + '</loc></url>\n';
       }
 
       _txt += '</urlset>';
