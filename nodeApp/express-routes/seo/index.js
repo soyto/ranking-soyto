@@ -1,9 +1,22 @@
 /* global require, module, __dirname */
 const fs = require('fs');
+const $fs = require('../../helpers').fs;
+const $log = require('../../helpers').log;
+const $config = require('../../config');
 const express = require('express');
 const $path = require('path');
 
 let router = express.Router();
+
+//Main route
+router.get('/', async (req, res) => {
+  try {
+    res.send(await $fs.read($path.join($config.folders.www, 'index.html')));
+  } catch(error) {
+    $log.error('Error -> %o', error);
+    return res.status(500);
+  }
+});
 
 fs.readdirSync(__dirname).forEach(file => {
 
@@ -23,6 +36,8 @@ fs.readdirSync(__dirname).forEach(file => {
 
   router.use('/' + _name, require($path.join(__dirname, file)));
 });
+
+
 
 module.exports = router;
 

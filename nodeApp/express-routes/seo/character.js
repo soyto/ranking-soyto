@@ -13,17 +13,28 @@ let router = express.Router();
  * Print handlebars template
  */
 router.get('/:serverName/:characterID', async (req, res) => {
-  let _characterData = await $fsData.character.get(req.params.serverName, req.params.characterID);
-  let _characterPic = (await $fs.readJSON($config.files.characterPics)).filter(x => x.characterID == req.params.characterID && x.serverName == req.params.serverName).shift();
-  let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'characterInfo_share.hbs')));
+  try {
+    let _characterData = await $fsData.character.get(req.params.serverName, req.params.characterID);
 
-  let _result = _template({
-    'character': _characterData,
-    'picture': _getPicture(_characterPic, _characterData),
-    'description': _getDescription(_characterData)
-  });
+    if(!_characterData) {
+      return res.status(404);
+    }
 
-  res.send(_result);
+    let _characterPic = (await $fs.readJSON($config.files.characterPics)).filter(x => x.characterID == req.params.characterID && x.serverName == req.params.serverName).shift();
+    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'characterInfo_share.hbs')));
+
+    let _result = _template({
+      'character': _characterData,
+      'picture': _getPicture(_characterPic, _characterData),
+      'description': _getDescription(_characterData)
+    });
+
+    res.send(_result);
+
+  } catch(error) {
+    $log.error('Error > %o', error);
+    return res.status(500);
+  }
 });
 
 function _getPicture(characterPic, characterData) {
