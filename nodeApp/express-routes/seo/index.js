@@ -8,16 +8,6 @@ const $path = require('path');
 
 let router = express.Router();
 
-//Main route
-router.get('/', async (req, res) => {
-  try {
-    res.send(await $fs.read($path.join($config.folders.www, 'index.html')));
-  } catch(error) {
-    $log.error('Error -> %o', error);
-    return res.status(500);
-  }
-});
-
 fs.readdirSync(__dirname).forEach(file => {
 
   //We only want .js files
