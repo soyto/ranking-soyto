@@ -14,7 +14,7 @@ let router = express.Router();
 router.get(['/:serverName/', '/:serverName/:date/'], async (req, res) => {
   try {
 
-    let _serverData = req.params.date ? await $fsData.server.get(req.params.serverName, req.params.date) : await $fsData.server.getLast(req.params.serverName);
+    let _serverData = req.params.date ? await $fsData.server.get(req.params.date, req.params.serverName) : await $fsData.server.getLast(req.params.serverName);
 
     if(!_serverData) {
       return res.status(404);
