@@ -28,6 +28,7 @@ fs.readdirSync(__dirname).forEach(file => {
 });
 
 
+router.use('/', express.static('www'));
 
 module.exports = router;
 
