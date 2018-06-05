@@ -11,7 +11,7 @@ let router = express.Router();
 /**
  * Print handlebars template
  */
-router.get(['/:serverName/', '/:serverName/:date'], async (req, res) => {
+router.get(['/:serverName/', '/:serverName/:date/'], async (req, res) => {
   try {
 
     let _serverData = req.params.date ? await $fsData.server.get(req.params.serverName, req.params.date) : await $fsData.server.getLast(req.params.serverName);
