@@ -106,6 +106,7 @@
       {'serverName': 'Deyla', 'characterID': 1639627}, //Hugmetight
       {'serverName': 'Barus', 'characterID': 1189738}, //Rnesme
       {'serverName': 'Loki', 'characterID': 1190225}, //Phynn
+      {'serverName': 'Deyla', 'characterID': 1614165}, //Vid 
     ];
 
     //Who asked to remove his old guild names
@@ -181,6 +182,7 @@
       {'serverName': 'Loki', 'characterID': 1213346}, //Deqx old legion name hide
       {'serverName': 'Deyla', 'characterID': 1639627}, //Hugmetight
       {'serverName': 'Barus', 'characterID': 1189738}, //Rnesme
+      {'serverName': 'Deyla', 'characterID': 1614165}, //Vid 
     ];
 
     //Wich servers
