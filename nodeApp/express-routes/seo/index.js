@@ -30,7 +30,7 @@ fs.readdirSync(__dirname).forEach(file => {
 
 router.get('/', async (req, res) =>  {
   try {
-    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'serverInfo_share.hbs')));
+    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'index_share.hbs')));
 
     let _result = _template();
 
