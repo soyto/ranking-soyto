@@ -106,7 +106,8 @@
       {'serverName': 'Deyla', 'characterID': 1639627}, //Hugmetight
       {'serverName': 'Barus', 'characterID': 1189738}, //Rnesme
       {'serverName': 'Loki', 'characterID': 1190225}, //Phynn
-      {'serverName': 'Deyla', 'characterID': 1614165}, //Vid 
+      {'serverName': 'Deyla', 'characterID': 1614165}, //Vid
+      {'serverName': 'Deyla', 'characterID': 1639554}, //Jack 
     ];
 
     //Who asked to remove his old guild names
@@ -183,6 +184,7 @@
       {'serverName': 'Deyla', 'characterID': 1639627}, //Hugmetight
       {'serverName': 'Barus', 'characterID': 1189738}, //Rnesme
       {'serverName': 'Deyla', 'characterID': 1614165}, //Vid 
+      {'serverName': 'Deyla', 'characterID': 1639554}, //Jack 
     ];
 
     //Wich servers
