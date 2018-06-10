@@ -271,18 +271,20 @@
             </thead>
             <tbody>
               {{#each character.status}}
-              <td><a href="/ranking/{{../character.serverName}}/{{this.date}}">{{formatDate this.date}}</a></td>
-              <td>{{getCharacterRankName this.soldierRankID}}</td>
-              <td>{{this.position}}</td>
-              <td>
-                <i class="fa {{#if (gt this.rankingPositionChange 0)}}fa-arrow-up text-success{{/if}}{{#if (lt this.rankingPositionChange 0)}}fa-arrow-down text-danger{{/if}}"></i>
-                {{this.rankingPositionChange}}
-              </td>
-              <td>{{this.gloryPoint}}</td>
-              <td>
-                <i class="fa {{#if (gt this.gloryPointChange 0)}}fa-arrow-up text-success{{/if}}{{#if (lt this.gloryPointChange 0)}}fa-arrow-down text-danger{{/if}}"></i>
-                {{this.gloryPointChange}}
-              </td>              
+              <tr>
+                <td><a href="/ranking/{{../character.serverName}}/{{this.date}}">{{formatDate this.date}}</a></td>
+                <td>{{getCharacterRankName this.soldierRankID}}</td>
+                <td>{{this.position}}</td>
+                <td>
+                  <i class="fa {{#if (gt this.rankingPositionChange 0)}}fa-arrow-up text-success{{/if}}{{#if (lt this.rankingPositionChange 0)}}fa-arrow-down text-danger{{/if}}"></i>
+                  {{this.rankingPositionChange}}
+                </td>
+                <td>{{this.gloryPoint}}</td>
+                <td>
+                  <i class="fa {{#if (gt this.gloryPointChange 0)}}fa-arrow-up text-success{{/if}}{{#if (lt this.gloryPointChange 0)}}fa-arrow-down text-danger{{/if}}"></i>
+                  {{this.gloryPointChange}}
+                </td>        
+              </tr>      
               {{/each}}
             </tbody>
             </table>
