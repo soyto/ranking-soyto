@@ -6,7 +6,6 @@ const $config = require('../../config');
 const express = require('express');
 const $path = require('path');
 const Handlebars = require('handlebars');
-const $fsData = require('../../fsData');
 
 let router = express.Router();
 
@@ -23,42 +22,16 @@ fs.readdirSync(__dirname).forEach(file => {
   router.use('/' + _name, require($path.join(__dirname, file)));
 });
 
-/**
- * Index route
- */
 router.get('/', async (req, res) =>  {
   try {
-    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'index.hbs')));
-    let _dates = await $fsData.server.getDates();
+    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'scrapper', 'index.hbs')));
 
-    let _result = _template({
-      'lastUpdate': _dates[_dates.length - 1]
-    });
+    let _result = _template();
 
     return res.send(_result);
   } catch(error) {
     $log.error('Error > %o', error);
-    return res.status(500).end();
-  }
-});
-
-/**
- * Twitch channels route
- */
-router.get('/twitchChannels', async (req, res) => {
-  try {
-
-    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'twitchChannels.hbs')));
-
-    let _result = _template({
-
-    });
-
-    
-    return res.send(_result);
-  } catch(error) {
-    $log.error('Error -> %o', error);
-    return res.status(500).end();
+    return res.status(500);
   }
 });
 

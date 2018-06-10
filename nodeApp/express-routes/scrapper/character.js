@@ -5,7 +5,6 @@ const $fsData = require('../../fsData');
 const $log = require('../../helpers').log;
 const express = require('express');
 const Handlebars = require('handlebars');
-require('../../handlebars_helpers');
 
 let router = express.Router();
 
@@ -22,14 +21,12 @@ router.get('/:serverName/:characterID', async (req, res) => {
     }
 
     let _characterPic = (await $fs.readJSON($config.files.characterPics)).filter(x => x.characterID == req.params.characterID && x.serverName == req.params.serverName).shift();
-    let _characterSocial = (await $fs.readJSON($config.files.characterSocial)).filter(x => x.characterID == req.params.characterID && x.serverName == req.params.serverName).shift();
-    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'characterInfo.hbs')));
+    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'scrapper', 'characterInfo.hbs')));
 
     let _result = _template({
       'character': _characterData,
       'picture': _getPicture(_characterPic, _characterData),
-      'description': _getDescription(_characterData),
-      'social': _characterSocial
+      'description': _getDescription(_characterData)
     });
 
     res.send(_result);

@@ -5,7 +5,6 @@ const $fsData = require('../../fsData');
 const $log = require('../../helpers').log;
 const express = require('express');
 const Handlebars = require('handlebars');
-require('../../handlebars_helpers');
 
 let router = express.Router();
 
@@ -15,18 +14,16 @@ let router = express.Router();
 router.get(['/:serverName/', '/:serverName/:date/'], async (req, res) => {
   try {
 
-    let _dates = await $fsData.server.getDates();
     let _serverData = req.params.date ? await $fsData.server.get(req.params.date, req.params.serverName) : await $fsData.server.getLast(req.params.serverName);
 
     if(!_serverData) {
       return res.status(404).end();
     }
 
-    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'serverInfo.hbs')));
+    let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'scrapper', 'serverInfo.hbs')));
 
     let _result = _template({
-      'server': _serverData,
-      'dates': _dates
+      'server': _serverData
     });
 
     return res.send(_result);
