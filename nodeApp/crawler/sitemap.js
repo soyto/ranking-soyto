@@ -19,7 +19,7 @@ Sitemap.prototype.generate = function() {
     _txt += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
     for(let $$sitemapFile of _sitemapFiles) {
-      _txt += '<sitemap><loc>http://soyto.org/' + $$sitemapFile +  '</loc></sitemap>\n';
+      _txt += '<sitemap><loc>https://soyto.org/' + $$sitemapFile +  '</loc></sitemap>\n';
     }
     _txt += '</sitemapindex>';
 
@@ -38,7 +38,7 @@ function _generateServersSitemap() {
   return new Promise(async (resolve, reject) => {
     let _txt = '<?xml version="1.0" encoding="UTF-8"?>\n';
     _txt += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-    _txt += '<url><loc>http://soyto.org/</loc></url>\n';
+    _txt += '<url><loc>https://soyto.org/</loc></url>\n';
 
     for(let $$date of (await $fs.readdir($config.folders.servers))) {
       for(let $$serverFile of (await $fs.readdir($path.join($config.folders.servers, $$date)))) {
@@ -71,7 +71,7 @@ function _generateCharactersSitemap() {
       for(let $$characterFile of (await $fs.readdir($path.join($config.folders.characters, $$serverFolder)))) {
         let _characterId = $$characterFile.split('.')[0];
 
-        _txt += '<url><loc>http://soyto.org/character/' +  $$serverFolder + '/' + _characterId + '</loc></url>\n';
+        _txt += '<url><loc>https://soyto.org/character/' +  $$serverFolder + '/' + _characterId + '</loc></url>\n';
       }
 
       _txt += '</urlset>';
