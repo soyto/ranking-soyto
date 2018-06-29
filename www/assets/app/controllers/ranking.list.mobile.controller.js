@@ -7,7 +7,7 @@
     '$scope', '$window', '$location', 'storedDataService', 'helperService', 'serverData', index_controller
   ]);
 
-  function index_controller($scope, $window, $location, storedDataService, helperService, serverData) {
+  function index_controller($scope, $window, $location, storedDataService, $hs, serverData) {
     $scope._name = CONTROLLER_NAME;
 
     $scope.filteredData = false;
@@ -116,8 +116,22 @@
 
     function _init() {
 
-      helperService.$scope.setTitle('Soyto ranking tool | ' + serverData.serverName + ' -> ' + serverData.date);
-      helperService.$scope.setNav('ranking.list');
+      var _elyosGovernorName = serverData.data.elyos[0].characterName;
+      var _asmodianGovernorName = serverData.data.asmodians[0].characterName;
+      var _elyosGovernorClassName = storedDataService.getCharacterClass(serverData.data.elyos[0].characterClassID);
+      var _asmodianGovernorClassName = storedDataService.getCharacterClass(serverData.data.asmodians[0].characterClassID);
+
+      _elyosGovernorClassName = _elyosGovernorClassName == null ? '' : _elyosGovernorClassName.name;
+      _asmodianGovernorClassName = _asmodianGovernorClassName == null ? '' : _asmodianGovernorClassName.name;
+
+      //Set title and navigation
+      $hs.$scope.setTitle(serverData.serverName + ' -> ' +  serverData.date + ' | Soyto\'s ranking tool')
+        .setDescription(serverData.serverName + ' at \'' + serverData.date + '\' Governors: ' +
+          _elyosGovernorName + ' (' + _elyosGovernorClassName + ') and ' +
+          _asmodianGovernorName + ' (' + _asmodianGovernorClassName + ')'
+        )
+        .setKeywords('soyto aion ranking pvp characters ' + [_elyosGovernorName, _asmodianGovernorName, _elyosGovernorClassName, _asmodianGovernorClassName].join(' '))
+        .setNav('ranking.list');
 
       $scope.pagination = {
         elyos: {

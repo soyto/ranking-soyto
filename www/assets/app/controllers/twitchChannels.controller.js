@@ -39,8 +39,11 @@
       $sc['_name'] = CONTROLLER_NAME;
       $sc['data'] = _data;
 
-      $hs.$scope.setTitle('Soyto ranking tool | Twitch channels');
-      $hs.$scope.setNav('twitchChannels');
+      $hs.$scope
+        .setTitle('Twitch Channels | Soyto\'s ranking tool')
+        .setDescription('Twitch channels associated with each character on Soyto\'s character ranking')
+        .setKeywords('soyto aion ranking pvp characters')
+        .setNav('twitchChannels');
 
       characterSocialService.getGithubSocialData().then(function($$data) {
 

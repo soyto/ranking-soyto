@@ -3,6 +3,7 @@ const $path = require('path');
 const $config = require('../../config');
 const $fsData = require('../../fsData');
 const $log = require('../../helpers').log;
+const $seo = require('../../helpers').seo;
 const express = require('express');
 const Handlebars = require('handlebars');
 require('../../handlebars_helpers');
@@ -25,6 +26,9 @@ router.get(['/:serverName/', '/:serverName/:date/'], async (req, res) => {
     let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'serverInfo.hbs')));
 
     let _result = _template({
+      'title': $seo.ranking.title(_serverData),
+      'description': $seo.ranking.description(_serverData),
+      'keywords': $seo.ranking.keywords(_serverData),
       'server': _serverData,
       'dates': _dates
     });

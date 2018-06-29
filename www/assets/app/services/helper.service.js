@@ -60,8 +60,10 @@
     };
 
     $this.$scope = {
-      'setTitle': function(value){ $rs.title = value; },
-      'setNav': function(menu){ $rs.navMenu = menu; },
+      'setTitle': function(value){ $rs.title = value; return $this.$scope; },
+      'setDescription': function(value) { $rs.description = value; return $this.$scope; },
+      'setKeywords': function(value) { $rs.keywords = value; return $this.$scope;  },
+      'setNav': function(menu){ $rs.navMenu = menu; return $this.$scope; },
       'setOggs': function(oggs) { $rs['oggs'] = oggs; }
     };
 

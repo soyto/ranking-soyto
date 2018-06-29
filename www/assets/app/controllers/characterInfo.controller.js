@@ -142,19 +142,11 @@
       $sc['_name'] = CONTROLLER_NAME;
 
       //Set page title
-      $hs.$scope.setTitle(
-        'Soyto ranking tool | ' + [characterInfo['serverName'], '->', characterInfo['characterName']
-      ].join(' '));
+      $hs.$scope
+        .setTitle(_getTitle())
+        .setDescription(_getDescription())
+        .setKeywords(_getKeywords());
 
-
-      $hs['$scope'].setOggs([
-        {'property': 'og:type', 'content': 'profile'},
-        {'property': 'og:first_name', 'content': characterInfo['serverName'] + '->' + characterInfo['characterName']},
-        {'property': 'og:title', 'content': characterInfo['serverName'] + '->' + characterInfo['characterName']},
-        {'property': 'og:image', 'content': characterInfo['pictureURL']},
-        {'property': 'og:image:type', 'content': 'image/jpeg'},
-        {'property': 'og:image:alt', 'content': characterInfo['characterName']},
-      ]);
 
       //Set up character and server names and stats
       $sc['serverName'] = characterInfo['serverName'];
@@ -254,6 +246,37 @@
       }
 
       return _result;
+    }
+
+    //Gets page title
+    function _getTitle(){
+      return  characterInfo.characterName + ' (' + characterInfo.serverName + ') | Soyto\' ranking tool';
+    }
+
+    function _getDescription() {
+
+      //If character haven't guild
+      if(!characterInfo.guildID) {
+        return characterInfo.characterName + ', an ' + characterInfo.raceName + ' ' +
+          characterInfo.soldierRank.name + ' ' + characterInfo.characterClass.name + ' without guild from server ' +
+          characterInfo.serverName;
+      }
+      else {
+        return characterInfo.characterName + ', an ' + characterInfo.raceName + ' ' +
+          characterInfo.soldierRank.name + ' ' + characterInfo.characterClass.name + ' from ' +
+          characterInfo.guildName + ' in server ' + characterInfo.serverName;
+      }
+    }
+
+    function _getKeywords() {
+      return 'soyto aion ranking pvp characters ' + [
+        characterInfo.characterName,
+        characterInfo.serverName,
+        characterInfo.guildName,
+        characterInfo.raceName,
+        characterInfo.soldierRank.name,
+        characterInfo.characterClass.name,
+      ].join(' ');
     }
   }
 

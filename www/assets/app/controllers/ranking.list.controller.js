@@ -132,9 +132,25 @@
       //Set name on scope
       $sc['_name'] = CONTROLLER_NAME;
 
+
+
+      var _elyosGovernorName = serverData.data.elyos[0].characterName;
+      var _asmodianGovernorName = serverData.data.asmodians[0].characterName;
+      var _elyosGovernorClassName = storedDataService.getCharacterClass(serverData.data.elyos[0].characterClassID);
+      var _asmodianGovernorClassName = storedDataService.getCharacterClass(serverData.data.asmodians[0].characterClassID);
+
+      _elyosGovernorClassName = _elyosGovernorClassName == null ? '' : _elyosGovernorClassName.name;
+      _asmodianGovernorClassName = _asmodianGovernorClassName == null ? '' : _asmodianGovernorClassName.name;
+
       //Set title and navigation
-      $hs['$scope'].setTitle('Soyto ranking tool | ' + serverData['serverName'] + ' -> ' + serverData['date']);
-      $hs['$scope'].setNav('ranking.list');
+      $hs.$scope
+        .setTitle(serverData.serverName + ' -> ' +  serverData.date + ' | Soyto\'s ranking tool')
+        .setDescription(serverData.serverName + ' at \'' + serverData.date + '\' Governors: ' +
+          _elyosGovernorName + ' (' + _elyosGovernorClassName + ') and ' +
+          _asmodianGovernorName + ' (' + _asmodianGovernorClassName + ')'
+        )
+        .setKeywords('soyto aion ranking pvp characters ' + [_elyosGovernorName, _asmodianGovernorName, _elyosGovernorClassName, _asmodianGovernorClassName].join(' '))
+        .setNav('ranking.list');
 
       $sc['data'] = _data;
 

@@ -2,6 +2,7 @@
 const fs = require('fs');
 const $fs = require('../../helpers').fs;
 const $log = require('../../helpers').log;
+const $seo = require('../../helpers').seo;
 const $config = require('../../config');
 const express = require('express');
 const $path = require('path');
@@ -26,7 +27,11 @@ router.get('/', async (req, res) =>  {
   try {
     let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'scrapper', 'index.hbs')));
 
-    let _result = _template();
+    let _result = _template({
+      'title': $seo.index.title(),
+      'description': $seo.index.description(),
+      'keywords': $seo.keywords(),
+    });
 
     return res.send(_result);
   } catch(error) {
