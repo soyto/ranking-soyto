@@ -321,5 +321,10 @@
   {"serverName": "Hyperion", "characterID": 180262 , "buttons": {
     "facebook": "https://www.facebook.com/thomas.chancel.1",
     "youtube": "https://www.youtube.com/channel/UCCy8NNTsceojXQKgut3fNvg"
+  }},
+  {"serverName": "Hyperion", "characterID": 11600 , "buttons": {
+    "facebook": "https://www.facebook.com/QRaynee/",
+    "youtube": "https://www.youtube.com/channel/UC_m4S2K3DHuKlvKUbN8APfw",
+    "twitch": "https://www.twitch.tv/qraynee"
   }}
 ]
