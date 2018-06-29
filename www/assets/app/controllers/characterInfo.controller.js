@@ -250,7 +250,7 @@
 
     //Gets page title
     function _getTitle(){
-      return  characterInfo.characterName + ' (' + characterInfo.serverName + ') | Soyto\' ranking tool';
+      return  characterInfo.characterName + ' (' + characterInfo.serverName + ') | Soyto\' Aion ranking tool';
     }
 
     function _getDescription() {

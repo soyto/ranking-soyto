@@ -144,7 +144,7 @@
       $sc['search'] = _search;
 
       $hs.$scope
-        .setTitle('Soyto\'s ranking tool')
+        .setTitle('Soyto\'s Aion ranking tool')
         .setDescription('Soyto\'s tool for Aion PvP ranking on EU servers. \nLook for a character and see a lot of info related about it!')
         .setKeywords('soyto aion ranking pvp characters')
         .setNav('home');

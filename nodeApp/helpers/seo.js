@@ -21,7 +21,7 @@ SEO.prototype.keywords = function() {
  * @return {string}
  */
 SEO.prototype.index.title = function() {
-  return 'Soyto\'s ranking tool';
+  return 'Soyto\'s Aion ranking tool';
 };
 
 /**
@@ -38,7 +38,7 @@ SEO.prototype.index.description = function() {
  * @return {string}
  */
 SEO.prototype.twitch.title = function() {
-  return 'Twitch Channels | Soyto\'s ranking tool';
+  return 'Twitch Channels | Soyto\'s Aion ranking tool';
 };
 
 /**
@@ -54,7 +54,7 @@ SEO.prototype.twitch.description = function() {
  * @return {string}
  */
 SEO.prototype.ranking.title = function(serverData) {
-  return util.format('%s -> %s | Soyto\'s ranking tool', serverData.serverName, serverData.date);
+  return util.format('%s -> %s | Soyto\'s Aion ranking tool', serverData.serverName, serverData.date);
 };
 
 /**
@@ -90,7 +90,7 @@ SEO.prototype.ranking.keywords = function(serverData) {
  * @return {string}
  */
 SEO.prototype.character.title = function(characterData) {
-  return util.format('%s (%s) | Soyto\'s ranking tool', characterData.characterName, characterData.serverName);
+  return util.format('%s (%s) | Soyto\'s Aion ranking tool', characterData.characterName, characterData.serverName);
 };
 
 /**

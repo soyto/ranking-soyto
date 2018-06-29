@@ -144,7 +144,7 @@
 
       //Set title and navigation
       $hs.$scope
-        .setTitle(serverData.serverName + ' -> ' +  serverData.date + ' | Soyto\'s ranking tool')
+        .setTitle(serverData.serverName + ' -> ' +  serverData.date + ' | Soyto\'s Aion ranking tool')
         .setDescription(serverData.serverName + ' at \'' + serverData.date + '\' Governors: ' +
           _elyosGovernorName + ' (' + _elyosGovernorClassName + ') and ' +
           _asmodianGovernorName + ' (' + _asmodianGovernorClassName + ')'
