@@ -109,6 +109,7 @@
       {'serverName': 'Deyla', 'characterID': 1614165}, //Vid
       {'serverName': 'Deyla', 'characterID': 1639554}, //Jack 
       {'serverName': 'Thor', 'characterID': 2219122}, //Kurayamix 
+      {'serverName': 'Hellion', 'characterID': 355161}, //Gijia 
     ];
 
     //Who asked to remove his old guild names
