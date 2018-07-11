@@ -111,6 +111,7 @@
       {'serverName': 'Thor', 'characterID': 2219122}, //Kurayamix 
       {'serverName': 'Hellion', 'characterID': 355161}, //Gijia 
       {'serverName': 'Thor', 'characterID': 1757308}, //Upperclass 
+      {'serverName': 'Deyla', 'characterID': 1315265}, //Holyfield	    
     ];
 
     //Who asked to remove his old guild names
@@ -190,6 +191,7 @@
       {'serverName': 'Deyla', 'characterID': 1639554}, //Jack 
       {'serverName': 'Thor', 'characterID': 2219122}, //Kurayamix	    
       {'serverName': 'Thor', 'characterID': 1757308}, //Upperclass
+      {'serverName': 'Deyla', 'characterID': 1315265}, //Holyfield
     ];
 
     //Wich servers
