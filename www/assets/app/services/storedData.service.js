@@ -113,7 +113,8 @@
       {'serverName': 'Thor', 'characterID': 1757308}, //Upperclass 
       {'serverName': 'Deyla', 'characterID': 1315265}, //Holyfield	     
       {'serverName': 'Antriksha', 'characterID': 950831}, //Seris
-      {'serverName': 'Deyla', 'characterID': 1603045}, //Plushee	    
+      {'serverName': 'Deyla', 'characterID': 1603045}, //Plushee	
+      {'serverName': 'Loki', 'characterID': 572221}, //Punschii	    
     ];
 
     //Who asked to remove his old guild names
@@ -196,6 +197,7 @@
       {'serverName': 'Deyla', 'characterID': 1315265}, //Holyfield
       {'serverName': 'Antriksha', 'characterID': 950831}, //Seris
       {'serverName': 'Deyla', 'characterID': 1603045}, //Plushee
+      {'serverName': 'Loki', 'characterID': 572221}, //Punschii	  
     ];
 
     //Wich servers
