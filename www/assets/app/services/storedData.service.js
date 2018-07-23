@@ -115,7 +115,8 @@
       {'serverName': 'Antriksha', 'characterID': 950831}, //Seris
       {'serverName': 'Deyla', 'characterID': 1603045}, //Plushee	
       {'serverName': 'Loki', 'characterID': 572221}, //Punschii	   
-      {'serverName': 'Loki', 'characterID': 806283}, //Yonigga	   	    
+      {'serverName': 'Loki', 'characterID': 806283}, //Yonigga
+      {'serverName': 'Hellion', 'characterID': 1457578}, //Modsognir	    
     ];
 
     //Who asked to remove his old guild names
