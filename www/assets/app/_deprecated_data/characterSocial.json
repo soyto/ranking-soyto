@@ -326,5 +326,8 @@
   }},
   {"serverName": "Hyperion", "characterID": 585122 , "buttons": {
     "twitch": "https://www.twitch.tv/resariel"
+  }},
+  {"serverName": "Hyperion", "characterID": 764900 , "buttons": {
+    "youtube": "https://www.youtube.com/channel/UC3pN5ctuMjmgIHiGMfrqvGQ"
   }}
 ]
