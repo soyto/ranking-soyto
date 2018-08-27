@@ -120,7 +120,8 @@
       {'serverName': 'Barus', 'characterID': 796858}, //Sayna
       {'serverName': 'Hellion', 'characterID': 607215}, //Alattariel	    
       {'serverName': 'Hellion', 'characterID': 505890}, //Seductive	
-      {'serverName': 'Hyperion', 'characterID': 724510}, //Uchiwasasuke
+      {'serverName': 'Hyperion', 'characterID': 724510}, //Uchiwasasuke 
+      {'serverName': 'Barus', 'characterID': 1226706}, //Emelii
     ];
 
     //Who asked to remove his old guild names
