@@ -322,5 +322,8 @@
   {"serverName": "Deyla", "characterID": 337196 , "buttons": {
     "facebook": "https://www.facebook.com/marcus.guarriera",
     "youtube": "https://www.youtube.com/channel/UCr3A0oJeTyg0Q0TjFxLbagQ"
+  }},
+  {"serverName": "Hyperion", "characterID": 585122 , "buttons": {
+    "twitch": "https://www.twitch.tv/resariel"
   }}
 ]
