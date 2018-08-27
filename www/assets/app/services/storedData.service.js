@@ -208,6 +208,7 @@
       {'serverName': 'Antriksha', 'characterID': 750539}, //Veel
       {'serverName': 'Thor', 'characterID': 1743783}, //Nekarunerk
       {'serverName': 'Hellion', 'characterID': 607215}, //Alattariel
+      {'serverName': 'Barus', 'characterID': 1226706}, //Emelii
     ];
 
     //Wich servers
