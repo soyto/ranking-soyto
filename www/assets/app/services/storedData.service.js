@@ -119,6 +119,7 @@
       {'serverName': 'Thor', 'characterID': 1743783}, //Nekarunerk
       {'serverName': 'Barus', 'characterID': 796858}, //Sayna
       {'serverName': 'Hellion', 'characterID': 607215}, //Alattariel	    
+      {'serverName': 'Hellion', 'characterID': 505890}, //Seductive	
     ];
 
     //Who asked to remove his old guild names
