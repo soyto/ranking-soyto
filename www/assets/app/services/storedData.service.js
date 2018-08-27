@@ -109,7 +109,6 @@
       {'serverName': 'Deyla', 'characterID': 1614165}, //Vid
       {'serverName': 'Deyla', 'characterID': 1639554}, //Jack 
       {'serverName': 'Thor', 'characterID': 2219122}, //Kurayamix 
-      {'serverName': 'Hellion', 'characterID': 355161}, //Gijia 
       {'serverName': 'Thor', 'characterID': 1757308}, //Upperclass 
       {'serverName': 'Deyla', 'characterID': 1315265}, //Holyfield	     
       {'serverName': 'Antriksha', 'characterID': 950831}, //Seris
