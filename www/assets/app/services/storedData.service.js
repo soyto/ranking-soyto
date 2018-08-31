@@ -123,6 +123,7 @@
       {'serverName': 'Hyperion', 'characterID': 724510}, //Uchiwasasuke 
       {'serverName': 'Barus', 'characterID': 1226706}, //Emelii
       {'serverName': 'Barus', 'characterID': 834040}, //Nettie
+      {'serverName': 'Loki', 'characterID': 871507}, //Later
     ];
 
     //Who asked to remove his old guild names
@@ -211,6 +212,7 @@
       {'serverName': 'Hellion', 'characterID': 607215}, //Alattariel
       {'serverName': 'Barus', 'characterID': 1226706}, //Emelii
       {'serverName': 'Barus', 'characterID': 834040}, //Nettie
+      {'serverName': 'Loki', 'characterID': 871507}, //Later
     ];
 
     //Wich servers
