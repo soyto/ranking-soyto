@@ -213,6 +213,7 @@
       {'serverName': 'Barus', 'characterID': 1226706}, //Emelii
       {'serverName': 'Barus', 'characterID': 834040}, //Nettie
       {'serverName': 'Loki', 'characterID': 871507}, //Later
+      {'serverName': 'Hellion', 'characterID': 1457578}, //Modsognir
     ];
 
     //Wich servers
