@@ -329,5 +329,8 @@
   }},
   {"serverName": "Hyperion", "characterID": 764900 , "buttons": {
     "youtube": "https://www.youtube.com/channel/UC3pN5ctuMjmgIHiGMfrqvGQ"
+  }},
+  {"serverName": "Deyla", "characterID": 1652853 , "buttons": {
+    "facebook": "https://www.facebook.com/yoari.thor"
   }}
 ]
