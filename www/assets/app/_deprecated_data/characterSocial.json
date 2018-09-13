@@ -329,5 +329,8 @@
   }},
   {"serverName": "Deyla", "characterID": 1652853 , "buttons": {
     "facebook": "https://www.facebook.com/yoari.thor"
+  }},
+   {"serverName": "Loki", "characterID": 107501 , "buttons": {
+    "twitch": "https://www.twitch.tv/nasthja"
   }}
 ]
