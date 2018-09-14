@@ -127,6 +127,7 @@
       {'serverName': 'Antriksha', 'characterID': 1037521}, //Duiwel
       {'serverName': 'Loki', 'characterID': 16747}, //Kyzane 
       {'serverName': 'Barus', 'characterID': 1270154}, //Daarina 
+      {'serverName': 'Loki', 'characterID': 127387}, //Zzzauberin 
     ];
 
     //Who asked to remove his old guild names
@@ -220,6 +221,7 @@
       {'serverName': 'Antriksha', 'characterID': 1037521}, //Duiwel
       {'serverName': 'Loki', 'characterID': 16747}, //Kyzane 
       {'serverName': 'Barus', 'characterID': 1270154}, //Daarina 
+      {'serverName': 'Loki', 'characterID': 127387}, //Zzzauberin 
     ];
 
     //Wich servers
