@@ -128,6 +128,7 @@
       {'serverName': 'Loki', 'characterID': 16747}, //Kyzane 
       {'serverName': 'Barus', 'characterID': 1270154}, //Daarina 
       {'serverName': 'Loki', 'characterID': 127387}, //Zzzauberin 
+      {'serverName': 'Hyperion', 'characterID': 375208}, //Soralyn 
     ];
 
     //Who asked to remove his old guild names
@@ -222,7 +223,8 @@
       {'serverName': 'Loki', 'characterID': 16747}, //Kyzane 
       {'serverName': 'Barus', 'characterID': 1270154}, //Daarina 
       {'serverName': 'Loki', 'characterID': 127387}, //Zzzauberin
-      {'serverName': 'Hyperion', 'characterID': 823861}, //Kaynes 	    
+      {'serverName': 'Hyperion', 'characterID': 823861}, //Kaynes 	
+      {'serverName': 'Hyperion', 'characterID': 375208}, //Soralyn 
     ];
 
     //Wich servers
