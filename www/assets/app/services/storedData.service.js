@@ -130,6 +130,7 @@
       {'serverName': 'Loki', 'characterID': 127387}, //Zzzauberin 
       {'serverName': 'Hyperion', 'characterID': 375208}, //Soralyn  
       {'serverName': 'Thor', 'characterID': 1269323}, //Weavile
+      {'serverName': 'Deyla', 'characterID': 1642714}, //Timjongun	    
     ];
 
     //Who asked to remove his old guild names
