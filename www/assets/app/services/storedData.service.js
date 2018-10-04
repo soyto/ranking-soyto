@@ -132,6 +132,7 @@
       {'serverName': 'Thor', 'characterID': 1269323}, //Weavile
       {'serverName': 'Deyla', 'characterID': 1642714}, //Timjongun
       {'serverName': 'Barus', 'characterID': 272141}, //Mlem
+      {'serverName': 'Hyperion', 'characterID': 395120}, //Dardok
     ];
 
     //Who asked to remove his old guild names
@@ -229,6 +230,7 @@
       {'serverName': 'Hyperion', 'characterID': 823861}, //Kaynes 	
       {'serverName': 'Hyperion', 'characterID': 375208}, //Soralyn 
       {'serverName': 'Barus', 'characterID': 272141}, //Mlem
+      {'serverName': 'Hyperion', 'characterID': 395120}, //Dardok
     ];
 
     //Wich servers
