@@ -130,7 +130,7 @@
     function _init() {
 
       //Set name on scope
-      $sc['_name'] = CONTROLLER_NAME
+      $sc['_name'] = CONTROLLER_NAME;
 
       var _elyosGovernorName = null;
       var _asmodianGovernorName = null;
