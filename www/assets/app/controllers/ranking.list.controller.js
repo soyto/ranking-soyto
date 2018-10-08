@@ -130,17 +130,25 @@
     function _init() {
 
       //Set name on scope
-      $sc['_name'] = CONTROLLER_NAME;
+      $sc['_name'] = CONTROLLER_NAME
 
+      var _elyosGovernorName = null;
+      var _asmodianGovernorName = null;
+      var _elyosGovernorClassName = null;
+      var _asmodianGovernorClassName = null;
 
+      //If there are elyos
+      if(serverData.data.elyos.length > 0) {
+        _elyosGovernorName = serverData.data.elyos[0].characterName;
+        _elyosGovernorClassName = storedDataService.getCharacterClass(serverData.data.elyos[0].characterClassID);
+        _elyosGovernorClassName = _elyosGovernorClassName == null ? '' : _elyosGovernorClassName.name;
+      }
 
-      var _elyosGovernorName = serverData.data.elyos[0].characterName;
-      var _asmodianGovernorName = serverData.data.asmodians[0].characterName;
-      var _elyosGovernorClassName = storedDataService.getCharacterClass(serverData.data.elyos[0].characterClassID);
-      var _asmodianGovernorClassName = storedDataService.getCharacterClass(serverData.data.asmodians[0].characterClassID);
-
-      _elyosGovernorClassName = _elyosGovernorClassName == null ? '' : _elyosGovernorClassName.name;
-      _asmodianGovernorClassName = _asmodianGovernorClassName == null ? '' : _asmodianGovernorClassName.name;
+      if(serverData.data.asmodians.length > 0) {
+        _asmodianGovernorName = serverData.data.asmodians[0].characterName;
+        _asmodianGovernorClassName = storedDataService.getCharacterClass(serverData.data.asmodians[0].characterClassID);
+        _asmodianGovernorClassName = _asmodianGovernorClassName == null ? '' : _asmodianGovernorClassName.name;
+      }
 
       //Set title and navigation
       $hs.$scope
