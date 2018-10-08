@@ -110,6 +110,9 @@ Server.prototype.updateServerPreviousDate = function(serverData) {
 Server.prototype.updateServerNextDate = function(serverData) {
   return new Promise(async (resolve, reject) => {
     try {
+
+      if(!serverData) { return resolve(); }
+
       let _dates = await this.getDates();
       let _idx = _dates.indexOf(serverData.date);
 
@@ -147,6 +150,9 @@ Server.prototype.updateServerEntries = function(serverData) {
 
     try {
       let _oldServerData = await this.get(_dates[_idx - 1], serverData.serverName);
+
+      //If it's a new server, oldServerData will be null
+      if(!_oldServerData) { return resolve(serverData); }
 
       _updateServerEntries(serverData.elyos, _oldServerData.elyos);
       _updateServerEntries(serverData.asmodians, _oldServerData.asmodians);
