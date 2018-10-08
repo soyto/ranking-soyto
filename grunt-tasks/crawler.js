@@ -129,31 +129,35 @@ module.exports = function() {
   //Update characters that are not listed
   function _updateCharactersThatAreNotListed(serverData) {
     return new Promise(async (resolve, reject) => {
-      let _t = (new Date()).getTime();
+      try {
+        let _t = (new Date()).getTime();
 
-      let _serverCharacters = serverData.elyos.concat(serverData.asmodians);
-      let _serverCharacterIDs = _serverCharacters.map(x => x.characterID);
-      let _characterIDs = (await $fs.readdir($path.join($config.folders.characters, serverData.serverName))).map(x => parseInt(x.split('.')[0]));
-      let _idsNotStored = _characterIDs.filter(x => _serverCharacterIDs.indexOf(x) < 0);
+        let _serverCharacters = serverData.elyos.concat(serverData.asmodians);
+        let _serverCharacterIDs = _serverCharacters.map(x => x.characterID);
+        let _characterIDs = (await $fs.readdir($path.join($config.folders.characters, serverData.serverName))).map(x => parseInt(x.split('.')[0]));
+        let _idsNotStored = _characterIDs.filter(x => _serverCharacterIDs.indexOf(x) < 0);
 
-      for(let $$characterID of _idsNotStored) {
-        let _character = await $fsData.character.update(serverData.date, serverData.serverName, $$characterID, null);
-        if(_character) {
-          await $fsData.character.store(serverData.serverName, _character.characterID, _character);
+        for (let $$characterID of _idsNotStored) {
+          let _character = await $fsData.character.update(serverData.date, serverData.serverName, $$characterID, null);
+          if (_character) {
+            await $fsData.character.store(serverData.serverName, _character.characterID, _character);
+          }
         }
+
+        let _dotsLength = 15 - serverData.serverName.length;
+
+        $log.debug('Processed unranked characters %s:%s %s => %s [%s]',
+          colors.cyan(serverData.date),
+          colors.green(serverData.serverName),
+          Array.apply(null, {'length': _dotsLength}).map(x => '.').join(''),
+          colors.magenta((new Date()).getTime() - _t + ' ms'),
+          colors.yellow((process.memoryUsage().rss / 1024 / 1024 ).toFixed(2) + ' MB')
+        );
+
+        resolve();
+      } catch(error) {
+        resolve();
       }
-
-      let _dotsLength = 15 - serverData.serverName.length;
-
-      $log.debug('Processed unranked characters %s:%s %s => %s [%s]',
-        colors.cyan(serverData.date),
-        colors.green(serverData.serverName),
-        Array.apply(null, {'length': _dotsLength}).map(x => '.').join(''),
-        colors.magenta( (new Date()).getTime() - _t + ' ms'),
-        colors.yellow((process.memoryUsage().rss / 1024 / 1024 ).toFixed(2) + ' MB')
-      );
-
-      resolve();
     });
   }
 
