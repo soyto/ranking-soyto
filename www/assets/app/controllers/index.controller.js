@@ -23,11 +23,10 @@
       'selectedIndex': null,
     };
 
-    var _data = {
+    /*var _data = {
       'enchant_simulator': {
         'currentLevel': 0,
         'type': 'ancient',
-
 
         'usages': {
           'ancient': 0,
@@ -41,6 +40,32 @@
         }
 
       }
+    };*/
+
+    var _data = {
+      'enchant_simulator': {
+        'actual': 0,
+        'geartype': 'a',
+        'stones': [0,0,0],
+        'rate': {
+          'a': {
+            'a': [88,88,88,68,68,68,48,48,48,28,28,28,28,28,28],
+            'l': [100,100,100,88,88,88,68,68,68,48,48,48,48,48,48],
+            'u': [100,100,100,98,98,98,78,78,78,58,58,58,58,58,58]
+          },
+          'l': {
+            'a': [55,55,55,35,35,35,15,15,15,5,5,5,5,5,5],
+            'l': [100,100,100,85,85,85,65,65,65,45,45,45,45,45,45],
+            'u': [100,100,100,95,95,95,75,75,75,55,55,55,55,55,55]
+          },
+          'u': {
+            'a': [52,52,52,32,32,32,12,12,12,5,5,5,5,5,5],
+            'l': [100,100,100,82,82,82,62,62,62,42,42,42,42,42,42],
+            'u': [100,100,100,92,92,92,72,72,72,52,52,52,52,52,52]
+          }
+        }
+      }
+      
     };
 
     _init();
@@ -152,22 +177,156 @@
       }
     };
 
-    $sc.onClick_enchant_ancient = function() {
+    $sc.onClick_enchant = function(a) {
       _data.enchant_simulator.currentLevel ++;
-    };
 
-    $sc.onClick_enchant_legendary = function() {
-      _data.enchant_simulator.currentLevel ++;
-    };
+      var rate,res1,res2;
 
-    $sc.onClick_enchant_ultimate = function() {
-      _data.enchant_simulator.currentLevel ++;
+      if (a == 'a'){
+      	_data.enchant_simulator.stones[0]++;
+      	rate = _data.enchant_simulator.rate[_data.enchant_simulator.geartype].a;
+        
+        res1 = Math.floor((Math.random() * 100) + 1);
+        res2 = rate[_data.enchant_simulator.actual];
+        
+        $('#result1').html(res1);
+        $('#result2').html(res2);
+        
+        if ( res1 <= res2){
+        	//entra la piedra
+        	if (Math.floor((Math.random() * 100) + 1) > 90){
+          	//entra con crítico
+          	_data.enchant_simulator.actual = Math.min(15,_data.enchant_simulator.actual+2);
+            $('#resultado').css('background','gold');
+          } else {
+          	//entra sin crítico
+            $('#resultado').css('background','limegreen');
+          	_data.enchant_simulator.actual = Math.min(15,_data.enchant_simulator.actual+1);
+          }
+        } else {
+        	//no entra la piedra
+          $('#resultado').css('background','tomato');
+          if (_data.enchant_simulator.actual >= 10) {
+          	_data.enchant_simulator.actual = 10;
+          } else {
+          	_data.enchant_simulator.actual = Math.max(0,_data.enchant_simulator.actual-1);
+          }
+
+        }
+      }
+      if (a == 'l'){
+      	_data.enchant_simulator.stones[1]++;
+      	rate = _data.enchant_simulator.rate[_data.enchant_simulator.geartype].l;
+        
+        res1 = Math.floor((Math.random() * 100) + 1);
+        res2 = rate[_data.enchant_simulator.actual];
+        
+        $('#result1').html(res1);
+        $('#result2').html(res2);
+        
+        if ( res1 <= res2){
+        	//entra la piedra
+        	if (Math.floor((Math.random() * 100) + 1) > 90){
+          	//entra con crítico
+          	_data.enchant_simulator.actual = Math.min(15,_data.enchant_simulator.actual+2);
+            $('#resultado').css('background','gold');
+          } else {
+          	//entra sin crítico
+            $('#resultado').css('background','limegreen');
+          	_data.enchant_simulator.actual = Math.min(15,_data.enchant_simulator.actual+1);
+          }
+        } else {
+        	//no entra la piedra
+          $('#resultado').css('background','tomato');
+          if (_data.enchant_simulator.actual >= 10) {
+          	_data.enchant_simulator.actual = 10;
+          } else {
+          	_data.enchant_simulator.actual = Math.max(0,_data.enchant_simulator.actual-1);
+          }
+
+        }
+      }
+      
+      if (a == 'u'){
+      	_data.enchant_simulator.stones[2]++;
+      	rate = _data.enchant_simulator.rate[_data.enchant_simulator.geartype].u;
+        
+        res1 = Math.floor((Math.random() * 100) + 1);
+        res2 = rate[_data.enchant_simulator.actual];
+        
+        $('#result1').html(res1);
+        $('#result2').html(res2);
+        
+        if ( res1 <= res2){
+        	//entra la piedra
+        	if (Math.floor((Math.random() * 100) + 1) > 90){
+          	//entra con crítico
+          	_data.enchant_simulator.actual = Math.min(15,_data.enchant_simulator.actual+2);
+            $('#resultado').css('background','gold');
+          } else {
+          	//entra sin crítico
+            $('#resultado').css('background','limegreen');
+          	_data.enchant_simulator.actual = Math.min(15,_data.enchant_simulator.actual+1);
+          }
+        } else {
+        	//no entra la piedra
+          $('#resultado').css('background','tomato');
+          /*if (_data.enchant_simulator.actual >= 10) {
+          	_data.enchant_simulator.actual = 10;
+          } else {
+          	_data.enchant_simulator.actual = Math.max(1,_data.enchant_simulator.actual-1)
+          }*/
+
+        }
+      }
+      
+      $('#as').html(_data.enchant_simulator.stones[0]);
+      $('#ls').html(_data.enchant_simulator.stones[1]);
+      $('#us').html(_data.enchant_simulator.stones[2]);
+      $('#bpa').html(_data.enchant_simulator.rate[_data.enchant_simulator.geartype].a[_data.enchant_simulator.actual]);
+      $('#bpl').html(_data.enchant_simulator.rate[_data.enchant_simulator.geartype].l[_data.enchant_simulator.actual]);
+      $('#bpu').html(_data.enchant_simulator.rate[_data.enchant_simulator.geartype].u[_data.enchant_simulator.actual]);
+   
     };
 
     /**
      * On click on enchant reset
      */
-    $sc.onClick_enchant_reset = function() { };
+    $sc.onClick_enchant_reset = function() {
+      _data.enchant_simulator.actual = 0;
+      _data.enchant_simulator.stones = [0,0,0];
+      $('#levels').removeClass('a').removeClass('l').removeClass('u');
+      if (_data.enchant_simulator.geartype == 'a'){
+      	$('#levels').addClass('a');
+      }
+      if (_data.enchant_simulator.geartype == 'l'){
+      	$('#levels').addClass('l');
+      }
+      if (_data.enchant_simulator.geartype == 'u'){
+      	$('#levels').addClass('u');
+      }
+      $('#bpa').html(_data.enchant_simulator.rate[_data.enchant_simulator.geartype].a[_data.enchant_simulator.actual]);
+      $('#bpl').html(_data.enchant_simulator.rate[_data.enchant_simulator.geartype].l[_data.enchant_simulator.actual]);
+      $('#bpu').html(_data.enchant_simulator.rate[_data.enchant_simulator.geartype].u[_data.enchant_simulator.actual]);
+    };
+
+
+    $sc.onClick_enchant_changetype = function() {
+      _data.enchant_simulator.actual = 0;
+      $('#levels').removeClass('a').removeClass('l').removeClass('u');
+      if (_data.enchant_simulator.geartype == 'a'){
+      	$('#levels').addClass('a');
+      }
+      if (_data.enchant_simulator.geartype == 'l'){
+      	$('#levels').addClass('l');
+      }
+      if (_data.enchant_simulator.geartype == 'u'){
+      	$('#levels').addClass('u');
+      }
+      $('#bpa').html(_data.enchant_simulator.rate[_data.enchant_simulator.geartype].a[_data.enchant_simulator.actual]);
+      $('#bpl').html(_data.enchant_simulator.rate[_data.enchant_simulator.geartype].l[_data.enchant_simulator.actual]);
+      $('#bpu').html(_data.enchant_simulator.rate[_data.enchant_simulator.geartype].u[_data.enchant_simulator.actual]);
+    };
 
     /*--------------------------------------------  PRIVATE FUNCTIONS  -----------------------------------------------*/
 
