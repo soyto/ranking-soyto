@@ -23,6 +23,26 @@
       'selectedIndex': null,
     };
 
+    var _data = {
+      'enchant_simulator': {
+        'currentLevel': 0,
+        'type': 'ancient',
+
+
+        'usages': {
+          'ancient': 0,
+          'legendary': 0,
+          'ultimate': 0
+        },
+        'chances': {
+          'anceint': 0,
+          'legendary': 0,
+          'ultimate': 0
+        }
+
+      }
+    };
+
     _init();
 
     /*--------------------------------------------  SCOPE FUNCTIONS  -------------------------------------------------*/
@@ -132,6 +152,23 @@
       }
     };
 
+    $sc.onClick_enchant_ancient = function() {
+      _data.enchant_simulator.currentLevel ++;
+    };
+
+    $sc.onClick_enchant_legendary = function() {
+      _data.enchant_simulator.currentLevel ++;
+    };
+
+    $sc.onClick_enchant_ultimate = function() {
+      _data.enchant_simulator.currentLevel ++;
+    };
+
+    /**
+     * On click on enchant reset
+     */
+    $sc.onClick_enchant_reset = function() { };
+
     /*--------------------------------------------  PRIVATE FUNCTIONS  -----------------------------------------------*/
 
     //Init Fn
@@ -142,6 +179,8 @@
       $sc['lastServerUpdateData'] = storedDataService.getLastServerData();
       
       $sc['search'] = _search;
+
+      $sc.data = _data;
 
       $hs.$scope
         .setTitle('Soyto\'s Aion ranking tool')
