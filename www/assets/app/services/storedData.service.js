@@ -231,6 +231,7 @@
       {'serverName': 'Hyperion', 'characterID': 375208}, //Soralyn 
       {'serverName': 'Barus', 'characterID': 272141}, //Mlem
       {'serverName': 'Hyperion', 'characterID': 395120}, //Dardok
+      {'serverName': 'Hellion', 'characterID': 462735}, //Korshita
     ];
 
     //Wich servers
