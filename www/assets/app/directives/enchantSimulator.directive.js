@@ -19,7 +19,9 @@
           'ultimate': 0
         },
         '$$state': {
-          'completed': false
+          'completed': false,
+          'animating': false,
+          'enchantResult': null
         }
       };
 
@@ -49,6 +51,10 @@
         _reset();
       };
 
+      $sc.onAnimationEnd = function() {
+        _data.$$state.animating = false;
+      };
+
       /* --------------------------------- PRIVATE FUNCTIONS ---------------------------------------------------------*/
 
       /**
@@ -65,7 +71,22 @@
        * @private
        */
       function _enchant(stoneType) {
+        if(_data.$$state.animating) { return; }
+
         var _enchantResult = enchantService.enchant(_data.gearType, stoneType, _data.currentLevel);
+
+        _data.$$state.animating = true;
+
+        if(_enchantResult == _data.currentLevel + 1) {
+          _data.$$state.enchantResult = 'success';
+        }
+        else if(_enchantResult == _data.currentLevel + 2){
+          _data.$$state.enchantResult = 'critical';
+        }
+        else {
+          _data.$$state.enchantResult = 'failure';
+        }
+
 
         if(_enchantResult != null) {
           _data.currentLevel = _enchantResult;

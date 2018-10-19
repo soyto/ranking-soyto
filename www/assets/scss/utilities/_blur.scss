@@ -1,0 +1,6 @@
+
+@for $i from 1 through 4 {
+  .blur-#{$i} {
+    filter: blur(#{$i}px);
+  }
+}

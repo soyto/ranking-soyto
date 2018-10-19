@@ -12,45 +12,110 @@
     color: $panel-enchant-simulator-header-fg;
   }
 
-  >.form-group {
-    margin-top: -1px;
+  >.panel-body {
+    padding: 0;
+
+    >.form-group {
+      margin-top: -1px;
+    }
+
+    >.panel-number {
+      text-align: center;
+      font-size: 4em;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: -1px;
+      &:before {
+        content: "+";
+        position: relative;
+        top: -6px;
+      }
+    }
+
+    >.enchant-stones {
+
+      .btn.btn-ancient {
+        background-color: $ancient-stone-color;
+        border-color: lighten($ancient-stone-color, 5%);
+        color: #fff;
+
+        &:focus {
+          outline-color: lighten($ancient-stone-color, 10%);
+        }
+        &:hover {
+          background-color: lighten($ancient-stone-color, 5%);
+        }
+        &:active {
+          background-color: lighten($ancient-stone-color, 10%);
+        }
+      }
+      .btn.btn-legendary {
+        background-color: $legendary-stone-color;
+        border-color: lighten($legendary-stone-color, 5%);
+        color: #fff;
+
+        &:focus {
+          outline-color: lighten($legendary-stone-color, 10%);
+        }
+        &:hover {
+          background-color: lighten($legendary-stone-color, 5%);
+        }
+        &:active {
+          background-color: lighten($legendary-stone-color, 10%);
+        }
+      }
+      .btn.btn-ultimate {
+        background: $ultimate-stone-color;
+        border-color: lighten($ultimate-stone-color, 5%);
+        color: #fff;
+
+        &:focus {
+          outline-color: lighten($ultimate-stone-color, 10%);
+        }
+        &:hover {
+          background-color: lighten($ultimate-stone-color, 5%);
+        }
+        &:active {
+          background-color: lighten($ultimate-stone-color, 10%);
+        }
+      }
+    }
   }
 
-  >.panel-number {
-    text-align: center;
-    font-size: 4em;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: -1px;
-    &:before {
-      content: "+";
-      position: relative;
-      top: -6px;
-    }
-  }
-
-  >.enchant-stones {
-
-    .btn.btn-ancient {
-      background-color: $ancient-stone-color;
-      border-color: lighten($ancient-stone-color, 5%);
-      color: #fff;
-    }
-    .btn.btn-legendary {
-      background-color: $legendary-stone-color;
-      border-color: lighten($legendary-stone-color, 5%);
-      color: #fff;
-    }
-    .btn.btn-ultimate {
-      background: $ultimate-stone-color;
-      border-color: lighten($ultimate-stone-color, 5%);
-      color: #fff;
-    }
-  }
 
   >.panel-success-overlay {
     position: absolute;
     top: 0;
     bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    text-align: center;
+
+    border: 1px solid;
+    border-color: #000 lighten(#000, 2%) lighten(#000, 4%);
+    border-radius: 0;
+
+    .success-title {
+      color: #fff;
+      font-size: 4em;
+      filter: drop-shadow(2px 2px 4px #000);
+    }
+
+    .stone-list {
+      color: #fff;
+      filter: drop-shadow(2px 2px 4px #000);
+      list-style-type: none;
+
+      li {
+        font-size: 1.5em;
+      }
+    }
+    .btn-reset {
+      i {
+        color: #fff;
+        filter: drop-shadow(2px 2px 4px #000);
+      }
+    }
   }
 }
