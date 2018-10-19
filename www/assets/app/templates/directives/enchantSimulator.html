@@ -1,0 +1,59 @@
+<div class="panel panel-enchant-simulator">
+
+  <div class="panel-heading" data-ng-class="{'blur-1': data.$$state.completed}">
+    <h4 class="text-center">Enchant simulator</h4>
+  </div>
+
+  <div class="panel-body" data-ng-class="{'blur-1': data.$$state.completed}">
+
+    <div class="form-group">
+      <select class="form-control" data-ng-model="data.gearType" data-ng-change="onChange_gearType()">
+        <option value="ancient">Ancient Gear</option>
+        <option value="legendary">Legendary Gear</option>
+        <option value="ultimate">Ultimate Gear</option>
+      </select>
+    </div>
+
+    <div class="panel-number animated faster"
+         data-ng-class="{
+            'pulse': data.$$state.animating && data.$$state.enchantResult == 'success',
+            'tada': data.$$state.animating && data.$$state.enchantResult == 'failure',
+            'flash': data.$$state.animating && data.$$state.enchantResult == 'critical',
+            }"
+         data-ng-animationend="onAnimationEnd()">{{ data.currentLevel }}</div>
+
+    <div class="btn-group btn-group-justified enchant-stones" role="group">
+      <div class="btn-group" role="group">
+        <button type="button"
+                class="btn btn-ancient"
+                data-ng-click="onClick_enchant('ancient')">Ancient <br /> Stone</button>
+      </div>
+      <div class="btn-group" role="group">
+        <button type="button"
+                class="btn btn-legendary"
+                data-ng-click="onClick_enchant('legendary')">Legendary <br /> Stone</button>
+      </div>
+      <div class="btn-group" role="group">
+        <button type="button"
+                class="btn btn-ultimate"
+                data-ng-click="onClick_enchant('ultimate')">Ultimate <br /> Stone</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Success panel -->
+  <div class="panel-success-overlay" data-ng-if="data.$$state.completed">
+    <h1 class="swing success-title animated">Congratulations</h1>
+    <ul class="stone-list animated bounceIn delay-1s">
+      <li class="">Ancient stones: {{ data.usage.ancient }}</li>
+      <li>Legendary stones: {{ data.usage.legendary }}</li>
+      <li>Ultimate stones: {{ data.usage.ultimate }}</li>
+    </ul>
+    <button class="btn btn-link btn-reset animated zoomInDown delay-2s" data-ng-click="onClick_reset()">
+      <i class="fa fa-repeat fa-3x fa-rotate-90"></i>
+    </button>
+  </div>
+  <!-- /Success panel -->
+
+</div>

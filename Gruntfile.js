@@ -25,6 +25,19 @@ module.exports = function(grunt) {
   //PACKAGE
   gruntConfig.pkg = grunt.file.readJSON('package.json');
 
+  //SASS
+  gruntConfig.sass = {
+    'options': {
+      'implementation': require('node-sass'),
+      'sourceMap': true
+    },
+    'dist': {
+      'files': {
+        'www/assets/dist/site.css': 'www/assets/scss/site.scss',
+      }
+    }
+  };
+
   //JSHINT
   gruntConfig.jshint = {
     options : {jshintrc: '.jshintrc', 'force': true},
@@ -68,6 +81,12 @@ module.exports = function(grunt) {
         'concat:app',
         'uglify:app'
       ]
+    },
+    'sass': {
+      'files': ['www/assets/scss/**/*.scss'],
+      'tasks': [
+        'sass'
+      ]
     }
   };
 
@@ -86,7 +105,8 @@ module.exports = function(grunt) {
     'generate-folder-dates',
     'jshint:app',
     'concat:app',
-    'uglify:app'
+    'uglify:app',
+    'sass'
   ]);
 
   //Pulls from remote repo and compile em all

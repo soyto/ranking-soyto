@@ -3,6 +3,14 @@
 
   var CONTROLLER_NAME = 'mainApp.index.controller';
 
+  var ENCHANT_RATES = {
+    'ancient_gear': {
+      'ancient_stone':[88,88,88,68,68,68,48,48,48,28,28,28,28,28,28]
+    },
+    'legendary_gear': [100,100,100,88,88,88,68,68,68,48,48,48,48,48,48],
+    'ultimate_gear': [100,100,100,98,98,98,78,78,78,58,58,58,58,58,58]
+  };
+
   ng.module('mainApp').controller(CONTROLLER_NAME, ['$scope', '$hs', _fn]);
 
   function _fn($sc, $hs) {
@@ -13,6 +21,7 @@
     var storedDataService = $hs.$instantiate('storedDataService');
     var $window = $hs.$instantiate('$window');
     var $location = $hs.$instantiate('$location');
+    var enchantService = $hs.$instantiate('enchantService');
 
     //Search object
     var _search = {
