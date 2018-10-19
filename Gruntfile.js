@@ -83,7 +83,7 @@ module.exports = function(grunt) {
       ]
     },
     'sass': {
-      'files': ['www/assets/scss/site.scss'],
+      'files': ['www/assets/scss/**/*.scss'],
       'tasks': [
         'sass'
       ]

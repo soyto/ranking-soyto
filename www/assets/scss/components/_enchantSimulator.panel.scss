@@ -1,0 +1,56 @@
+.panel.panel-enchant-simulator {
+
+  position: relative;
+
+
+  &.completed {
+    filter: blur(2px);
+  }
+
+  >.panel-heading {
+    background-color: $panel-enchant-simulator-header-bg;
+    color: $panel-enchant-simulator-header-fg;
+  }
+
+  >.form-group {
+    margin-top: -1px;
+  }
+
+  >.panel-number {
+    text-align: center;
+    font-size: 4em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: -1px;
+    &:before {
+      content: "+";
+      position: relative;
+      top: -6px;
+    }
+  }
+
+  >.enchant-stones {
+
+    .btn.btn-ancient {
+      background-color: $ancient-stone-color;
+      border-color: lighten($ancient-stone-color, 5%);
+      color: #fff;
+    }
+    .btn.btn-legendary {
+      background-color: $legendary-stone-color;
+      border-color: lighten($legendary-stone-color, 5%);
+      color: #fff;
+    }
+    .btn.btn-ultimate {
+      background: $ultimate-stone-color;
+      border-color: lighten($ultimate-stone-color, 5%);
+      color: #fff;
+    }
+  }
+
+  >.panel-success-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+}
