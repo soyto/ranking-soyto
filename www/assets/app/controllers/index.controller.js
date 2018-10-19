@@ -32,37 +32,6 @@
       'selectedIndex': null,
     };
 
-    /*var _data = {
-      'enchant_simulator': {
-        'currentLevel': 0,
-        'type': 'ancient',
-
-        'usages': {
-          'ancient': 0,
-          'legendary': 0,
-          'ultimate': 0
-        },
-        'chances': {
-          'anceint': 0,
-          'legendary': 0,
-          'ultimate': 0
-        }
-
-      }
-    };*/
-
-    var _data = {
-      'enchant_simulator': {
-        'currentLvl': 0,
-        'geartype': 'ancient',
-        'usage': {
-          'ancient': 0,
-          'legendary': 0,
-          'ultimate': 0
-        }
-      }
-    };
-
     _init();
 
     /*--------------------------------------------  SCOPE FUNCTIONS  -------------------------------------------------*/
@@ -172,37 +141,6 @@
       }
     };
 
-    /**
-     * On click on enchant
-     * @param stone
-     */
-    $sc.onClick_enchant = function(stone) {
-      var _result = enchantService.enchant(_data.enchant_simulator.geartype, stone, _data.enchant_simulator.currentLvl);
-
-      _data.enchant_simulator.usage[stone]++;
-      _data.enchant_simulator.currentLvl = _result;
-    };
-
-    /**
-     * On click on enchant reset
-     */
-    $sc.onClick_enchant_reset = function() {
-      _data.enchant_simulator.actual = 0;
-      _data.enchant_simulator.usage.ancient = 0;
-      _data.enchant_simulator.usage.legendary = 0;
-      _data.enchant_simulator.usage.ultimate = 0;
-    };
-
-    /**
-     * On change gear type
-     */
-    $sc.onChange_geartype = function() {
-      _data.enchant_simulator.currentLvl = 0;
-      _data.enchant_simulator.usage.ancient = 0;
-      _data.enchant_simulator.usage.legendary = 0;
-      _data.enchant_simulator.usage.ultimate = 0;
-    };
-
     /*--------------------------------------------  PRIVATE FUNCTIONS  -----------------------------------------------*/
 
     //Init Fn
@@ -213,8 +151,6 @@
       $sc['lastServerUpdateData'] = storedDataService.getLastServerData();
       
       $sc['search'] = _search;
-
-      $sc.data = _data;
 
       $hs.$scope
         .setTitle('Soyto\'s Aion ranking tool')

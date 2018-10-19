@@ -17,6 +17,7 @@ var $config  = {
       'www/assets/app/controllers/merge.mobile.list.controller.js',
       'www/assets/app/controllers/root.controller.js',
       'www/assets/app/controllers/twitchChannels.controller.js',
+      'www/assets/app/directives/enchantSimulator.directive.js',
       'www/assets/app/directives/facebookCommentBox.directive.js',
       'www/assets/app/directives/facebookLike.directive.js',
       'www/assets/app/directives/ngScrollTo.directive.js',

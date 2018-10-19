@@ -101,40 +101,9 @@
   </div>
 
   <div class="col-md-6 col-xs-12">
-    <div class="panel">
-      <div class="panel-heading"><h4 class="text-center">Enchant simulator!</h4></div>
-      <div class="panel-body">
 
-        <div class="form-group">
-          <select data-ng-model="data.enchant_simulator.geartype" data-ng-change="onChange_geartype()">
-            <option value="ancient">Ancient</option>
-            <option value="legendary">Legendary</option>
-            <option value="ultimate">Ultimate</option>
-          </select>
-        </div>
-
-        <h2>+ {{ data.enchant_simulator.currentLvl }}</h2>
-
-        <div>
-          <span>Ancient {{ data.enchant_simulator.usage.ancient }}</span>
-          <span>legendary {{ data.enchant_simulator.usage.legendary }}</span>
-          <span>ultimate {{ data.enchant_simulator.usage.ultimate }}</span>
-        </div>
-
-        <div data-ng-if="data.enchant_simulator.currentLvl < 15">
-          <button class="btn btn-default" data-ng-click="onClick_enchant('ancient')">
-            <img class="img img-responsive" src="https://aionpowerbook.com/item/icon/icon_item_enchant_pve_a01.png">
-          </button>
-          <button class="btn btn-default" data-ng-click="onClick_enchant('legendary')">
-            <img class="img img-responsive" src="https://aionpowerbook.com/item/icon/icon_item_enchant_pve_r01.png">
-          </button>
-          <button class="btn btn-default" data-ng-click="onClick_enchant('ultimate')">
-            <img class="img img-responsive" src="https://aionpowerbook.com/item/icon/icon_item_enchant_pve_f01.png">
-          </button>
-        </div>
-
-      </div>
-    </div>
+    <!-- Enchant Panel -->
+    <enchant-simulator></enchant-simulator>
 
 
     <!-- Advert panel -->
