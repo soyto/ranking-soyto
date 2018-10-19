@@ -101,95 +101,36 @@
   </div>
 
   <div class="col-md-6 col-xs-12">
-    <style>
-      .selected {
-        font-size: 29px;
-        padding: 7px;
-      }
-
-      .a .selected {
-        background-color:gold
-      }
-
-      .l .selected {
-        background-color:violet
-      }
-
-      .u .selected {
-        background-color:tomato
-      }
-
-      #resultado {
-        padding: 10px;
-        margin: 10px 0px;
-        display: inline-block;
-      }
-    </style>
     <div class="panel">
       <div class="panel-heading"><h4 class="text-center">Enchant simulator!</h4></div>
       <div class="panel-body">
 
         <div class="form-group">
-          <select data-ng-model="data.enchant_simulator.geartype" data-ng-change="onClick_enchant_changetype()">
-            <option value="a">Ancient</option>
-            <option value="l">Legendary</option>
-            <option value="u">Ultimate</option>
+          <select data-ng-model="data.enchant_simulator.geartype" data-ng-change="onChange_geartype()">
+            <option value="ancient">Ancient</option>
+            <option value="legendary">Legendary</option>
+            <option value="ultimate">Ultimate</option>
           </select>
         </div>
 
-        <h2 id="levels" class="a">
-          <span ng-class="{selected: data.enchant_simulator.actual==0}">None</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==1}">+1</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==2}">+2</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==3}">+3</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==4}">+4</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==5}">+5</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==6}">+6</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==7}">+7</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==8}">+8</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==9}">+9</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==10}">+10</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==11}">+11</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==12}">+12</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==13}">+13</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==14}">+14</span>
-          <span ng-class="{selected: data.enchant_simulator.actual==15}">+15</span>
-        </h2>
-
-        <div id="resultado">
-          Chances: you roll <strong id="result1">-</strong> and you need below or equal <strong id="result2">-</strong>
-        </div>
-       
-        <div ng-if="data.enchant_simulator.actual == 15">
-          <h2>
-            Hurray!! level +15 =)
-          </h2>
-        </div>
-
-        <div ng-if="data.enchant_simulator.actual < 15" >
-
-          <button class="btn btn-default" data-ng-click="onClick_enchant('a')">
-            <img class="img img-responsive" src="https://aionpowerbook.com/item/icon/icon_item_enchant_pve_a01.png">
-            <span id="bpa">{{ data.enchant_simulator.rate[data.enchant_simulator.geartype].a[data.enchant_simulator.actual] }}</span>%
-          </button>
-          <button class="btn btn-default" data-ng-click="onClick_enchant('l')">
-            <img class="img img-responsive" src="https://aionpowerbook.com/item/icon/icon_item_enchant_pve_r01.png">
-            <span id="bpa">{{ data.enchant_simulator.rate[data.enchant_simulator.geartype].l[data.enchant_simulator.actual] }}</span>%
-          </button>
-          <button class="btn btn-default" data-ng-click="onClick_enchant('u')">
-            <img class="img img-responsive" src="https://aionpowerbook.com/item/icon/icon_item_enchant_pve_f01.png">
-            <span id="bpa">{{ data.enchant_simulator.rate[data.enchant_simulator.geartype].u[data.enchant_simulator.actual] }}</span>%
-          </button>
-          
-        </div>
+        <h2>+ {{ data.enchant_simulator.currentLvl }}</h2>
 
         <div>
-          Used Stones: 
-            Ancient x<span id="as">0</span> | 
-            Legend x<span id="ls">0</span> | 
-            Ultimate x<span id="us">0</span>
-            <br/>
-          <button data-ng-click="onClick_enchant_reset()">Reset counter y and lvl</button>
+          <span>Ancient {{ data.enchant_simulator.usage.ancient }}</span>
+          <span>legendary {{ data.enchant_simulator.usage.legendary }}</span>
+          <span>ultimate {{ data.enchant_simulator.usage.ultimate }}</span>
+        </div>
+
+        <div data-ng-if="data.enchant_simulator.currentLvl < 15">
+          <button class="btn btn-default" data-ng-click="onClick_enchant('ancient')">
+            <img class="img img-responsive" src="https://aionpowerbook.com/item/icon/icon_item_enchant_pve_a01.png">
+          </button>
+          <button class="btn btn-default" data-ng-click="onClick_enchant('legendary')">
+            <img class="img img-responsive" src="https://aionpowerbook.com/item/icon/icon_item_enchant_pve_r01.png">
+          </button>
+          <button class="btn btn-default" data-ng-click="onClick_enchant('ultimate')">
+            <img class="img img-responsive" src="https://aionpowerbook.com/item/icon/icon_item_enchant_pve_f01.png">
+          </button>
         </div>
 
       </div>

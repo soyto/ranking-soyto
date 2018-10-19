@@ -24,6 +24,7 @@ var $config  = {
       'www/assets/app/directives/youtubePanel.directive.js',
       'www/assets/app/services/characterSocial.service.js',
       'www/assets/app/services/console.service.js',
+      'www/assets/app/services/enchant.service.js',
       'www/assets/app/services/helper.service.js',
       'www/assets/app/services/storedData.service.js',
       'www/assets/app/services/twitch.service.js',
