@@ -88,7 +88,8 @@
       }
       //FAILURE
       else {
-        if(enchantLevel >= 10) { return 10; }
+        if(stoneType == 'ultimate') { return enchantLevel; }
+        else if(enchantLevel >= 10) { return 10; }
         else { return Math.max(0, enchantLevel - 1); }
       }
 
