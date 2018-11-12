@@ -62,14 +62,36 @@ SEO.prototype.ranking.title = function(serverData) {
  * @return {string}
  */
 SEO.prototype.ranking.description = function(serverData) {
-  return util.format('%s at \'%s\' Governors: %s (%s) and %s (%s)',
-    serverData.serverName,
-    serverData.date,
-    serverData.elyos[0].characterName,
-    $gameforge.classes.get(serverData.elyos[0].characterClassID),
-    serverData.asmodians[0].characterName,
-    $gameforge.classes.get(serverData.asmodians[0].characterClassID),
+
+  if(serverData.elyos.length === 0 && serverData.asmodians.length === 0) {
+    return util.format('%s at \'%s\'', serverData.serverData, serverData.date);
+  }
+  else if(serverData.elyos.length === 0) {
+    return util.format('%s at \'%s\' Asmodian governor %s (%s)',
+      serverData.serverData,
+      serverData.date,
+      serverData.asmodians[0].characterName,
+      $gameforge.classes.get(serverData.asmodians[0].characterClassID)
     );
+  }
+  else if(serverData.asmodians.length === 0) {
+    return util.format('%s at \'%s\' Elyos governor %s (%s)',
+      serverData.serverData,
+      serverData.date,
+      serverData.elyos[0].characterName,
+      $gameforge.classes.get(serverData.elyos[0].characterClassID)
+    );
+  }
+  else {
+    return util.format('%s at \'%s\' Governors: %s (%s) and %s (%s)',
+      serverData.serverName,
+      serverData.date,
+      serverData.elyos[0].characterName,
+      $gameforge.classes.get(serverData.elyos[0].characterClassID),
+      serverData.asmodians[0].characterName,
+      $gameforge.classes.get(serverData.asmodians[0].characterClassID),
+    );
+  }
 };
 
 /**
@@ -78,10 +100,10 @@ SEO.prototype.ranking.description = function(serverData) {
  */
 SEO.prototype.ranking.keywords = function(serverData) {
   return util.format('soyto aion ranking pvp characters %s %s %s %s',
-    serverData.elyos[0].characterName,
-    $gameforge.classes.get(serverData.elyos[0].characterClassID),
-    serverData.asmodians[0].characterName,
-    $gameforge.classes.get(serverData.asmodians[0].characterClassID),
+    serverData.elyos.length > 0 ? serverData.elyos[0].characterName: '',
+    serverData.elyos.length > 0 ? $gameforge.classes.get(serverData.elyos[0].characterClassID): '',
+    serverData.asmodians.length > 0 ? serverData.asmodians[0].characterName : '',
+    serverData.asmodians.length > 0 ? $gameforge.classes.get(serverData.asmodians[0].characterClassID) : '',
   );
 };
 
