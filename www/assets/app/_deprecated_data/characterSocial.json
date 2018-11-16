@@ -336,5 +336,9 @@
   {"serverName": "Thor", "characterID": 2158724 , "buttons": {
     "twitch": "https://www.twitch.tv/xisatorii",
     "youtube": "https://www.youtube.com/channel/UCfrtolYuqvmDCO2E5tcCXbQ"
+  }},
+  {"serverName": "Thor", "characterID": 1423248 , "buttons": {
+    "twitch": "https://www.twitch.tv/flurryaion",
+    "youtube": "https://www.youtube.com/channel/UCBKi-2QBcMPyQqMIZm9C7JQ"
   }}
 ]
