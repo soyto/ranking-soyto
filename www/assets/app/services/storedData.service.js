@@ -134,6 +134,7 @@
       {'serverName': 'Barus', 'characterID': 272141}, //Mlem
       {'serverName': 'Hyperion', 'characterID': 395120}, //Dardok
       {'serverName': 'Thor', 'characterID': 2041541}, //Aisook
+      {'serverName': 'Heyla', 'characterID': 1652678}, //HeavyPanda
     ];
 
     //Who asked to remove his old guild names
@@ -234,6 +235,7 @@
       {'serverName': 'Hyperion', 'characterID': 395120}, //Dardok
       {'serverName': 'Hellion', 'characterID': 462735}, //Korshita
       {'serverName': 'Thor', 'characterID': 2041541}, //Aisook
+      {'serverName': 'Heyla', 'characterID': 1652678}, //HeavyPanda
     ];
 
     //Wich servers
