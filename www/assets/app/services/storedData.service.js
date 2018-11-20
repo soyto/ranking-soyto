@@ -382,7 +382,7 @@
       var _url = '/assets/app/_deprecated_data/oldLegionRemoval.json';
 
       return $q.likeNormal($http.get(_url)).then(function($$data) {
-        _cacheOldNameRemoval = $$data;
+        _cacheOldLegionRemoval = $$data;
         return $$data;
       });
     }
