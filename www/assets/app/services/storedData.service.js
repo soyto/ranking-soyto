@@ -19,224 +19,14 @@
     var _cacheCharacterInfo = [];
     var _cacheCharacterCheatSheet = null;
 
+    var _cacheOldNameRemoval = null;
+    var _cacheOldLegionRemoval = null;
+
 	  $window.$cacheServerData = _cacheServerData;
 	  $window.$cacheCharacterInfo = _cacheCharacterInfo;
 
     var $this = this;
 
-    //who asked to remove his name
-    $this.removeOldNames_requests = [
-      {'serverName': 'Hellion', 'characterID': 430586}, //Daxking
-      {'serverName': 'Deyla', 'characterID': 825556}, //Nyle
-      {'serverName': 'Urtem', 'characterID': 1508483}, //Nacka
-      {'serverName': 'Hellion', 'characterID': 495423}, //Chetitos
-      {'serverName': 'Hyperion', 'characterID': 11600}, //Raynee
-      {'serverName': 'Antriksha', 'characterID': 863503}, //Nukey
-      {'serverName': 'Antriksha', 'characterID': 642109}, //Yost
-      {'serverName': 'Hyperion', 'characterID': 783863}, //Siith
-      {'serverName': 'Hellion', 'characterID': 428540}, //Kerberos
-      {'serverName': 'Barus', 'characterID': 396287}, //Seyune
-      {'serverName': 'Barus', 'characterID': 916298}, //CiuCiuu,
-      {'serverName': 'Hyperion', 'characterID': 377330}, //Balonna,
-      {'serverName': 'Urtem', 'characterID': 1125512}, //Mipha
-      {'serverName': 'Hyperion', 'characterID': 57501},
-      {'serverName': 'Loki', 'characterID': 70525}, //Gshee
-      {'serverName': 'Deyla', 'characterID': 953168}, //Sylrel
-      {'serverName': 'Thor', 'characterID': 1369119}, //Necarunerk
-      {'serverName': 'Thor', 'characterID': 1225673}, //Gvnr
-      {'serverName': 'Hellion', 'characterID': 612759}, //OjV
-      {'serverName': 'Thor', 'characterID': 1369978}, //Sprtmster
-      {'serverName': 'Barus', 'characterID': 87465}, //Naki
-      {'serverName': 'Loki', 'characterID': 1187322}, //Psyxc
-      {'serverName': 'Hellion', 'characterID': 442918}, // Kenae
-      {'serverName': 'Thor', 'characterID': 1273074}, //Kumuky
-      {'serverName': 'Thor', 'characterID': 1273074}, //Kumuky
-      {'serverName': 'Antriksha', 'characterID': 723417}, //Riyuko
-      {'serverName': 'Deyla', 'characterID': 1161433}, //Pyirra
-      {'serverName': 'Hyperion', 'characterID': 525356}, //Akirawoofametsu
-      {'serverName': 'Hellion', 'characterID': 305832}, //Yukasuna
-      {'serverName': 'Thor', 'characterID': 1946026}, //Instantflashulti
-      {'serverName': 'Thor', 'characterID': 1391505}, //Kiyumah
-      {'serverName': 'Deyla', 'characterID': 98839}, //Pupper
-      {'serverName': 'Hyperion', 'characterID': 375208}, //Nllll
-      {'serverName': 'Barus', 'characterID': 1097587}, //Szarienka 
-      {'serverName': 'Loki', 'characterID': 877197}, //Iethal
-      {'serverName': 'Antriksha', 'characterID': 920308}, //Myllle
-      {'serverName': 'Thor', 'characterID': 2113411}, //Topu
-      {'serverName': 'Barus', 'characterID': 9880}, //Flaami
-      {'serverName': 'Loki', 'characterID': 1187322}, //Flaami
-      {'serverName': 'Hyperion', 'characterID': 857011}, //Nyraaa
-      {'serverName': 'Hellion', 'characterID': 457520}, //Xamphu
-      {'serverName': 'Loki', 'characterID': 1065721}, //Liinxx
-      {'serverName': 'Barus', 'characterID': 822324}, //Dissney
-      {'serverName': 'Barus', 'characterID': 1182084}, //Sachma
-      {'serverName': 'Antriksha', 'characterID': 696706}, //Nahiki
-      {'serverName': 'Loki', 'characterID': 560318}, //Zoai
-      {'serverName': 'Barus', 'characterID': 1135327}, //Yorru
-      {'serverName': 'Hellion', 'characterID': 584003}, //Guindillera
-      {'serverName': 'Loki', 'characterID': 896961}, //Akyraan
-      {'serverName': 'Thor', 'characterID': 1135085}, //Auyo
-      {'serverName': 'Thor', 'characterID': 1133502}, //Danawhite
-      {'serverName': 'Loki', 'characterID': 1065721}, //Futanari
-      {'serverName': 'Loki', 'characterID': 536681}, //Nuarihyon
-      {'serverName': 'Grendal', 'characterID': 1028}, //Sorcerer
-      {'serverName': 'Thor', 'characterID': 2163276}, //Majolie
-      {'serverName': 'Thor', 'characterID': 1946026}, //Cremathorio
-      {'serverName': 'Hyperion', 'characterID': 392962}, //Upset
-      {'serverName': 'Hellion', 'characterID': 1478289}, //Charioce
-      {'serverName': 'Deyla', 'characterID': 1163409}, //Gunzblazing
-      {'serverName': 'Barus', 'characterID': 332731}, //Akonen
-      {'serverName': 'Hyperion', 'characterID': 693206}, //Sistinefibel
-      {'serverName': 'Hellion', 'characterID': 427449}, //Qmg
-      {'serverName': 'Antriksha', 'characterID': 607628}, //Yukaii
-      {'serverName': 'Barus', 'characterID': 58925}, //Yoruchichan
-      {'serverName': 'Barus', 'characterID': 710123}, //Minasii
-      {'serverName': 'Loki', 'characterID': 713632}, //Zenoya
-      {'serverName': 'Thor', 'characterID': 1998102}, //KMI
-      {'serverName': 'Barus', 'characterID': 1115780}, //Acidheal
-      {'serverName': 'Loki', 'characterID': 567177}, //Hardstylelife
-      {'serverName': 'Miren', 'characterID': 40582}, //Heavypanda
-      {'serverName': 'Grendal', 'characterID': 70897}, //Qtp
-      {'serverName': 'Miren', 'characterID': 3390}, //Pikachu
-      {'serverName': 'Hyperion', 'characterID': 672128}, //Eishu
-      {'serverName': 'Deyla', 'characterID': 1639577}, //Chntr
-      {'serverName': 'Barus', 'characterID': 1157147}, //Meoooow
-      {'serverName': 'Barus', 'characterID': 515694}, //Litleshevo 
-      {'serverName': 'Loki', 'characterID': 1213346}, //Deqx old name hide
-      {'serverName': 'Deyla', 'characterID': 1639627}, //Hugmetight
-      {'serverName': 'Barus', 'characterID': 1189738}, //Rnesme
-      {'serverName': 'Loki', 'characterID': 1190225}, //Phynn
-      {'serverName': 'Deyla', 'characterID': 1614165}, //Vid
-      {'serverName': 'Deyla', 'characterID': 1639554}, //Jack 
-      {'serverName': 'Thor', 'characterID': 2219122}, //Kurayamix 
-      {'serverName': 'Thor', 'characterID': 1757308}, //Upperclass 
-      {'serverName': 'Deyla', 'characterID': 1315265}, //Holyfield	     
-      {'serverName': 'Antriksha', 'characterID': 950831}, //Seris
-      {'serverName': 'Deyla', 'characterID': 1603045}, //Plushee	
-      {'serverName': 'Loki', 'characterID': 572221}, //Punschii	   
-      {'serverName': 'Hellion', 'characterID': 1457578}, //Modsognir	    
-      {'serverName': 'Antriksha', 'characterID': 750539}, //Veel
-      {'serverName': 'Thor', 'characterID': 1743783}, //Nekarunerk
-      {'serverName': 'Barus', 'characterID': 796858}, //Sayna
-      {'serverName': 'Hellion', 'characterID': 607215}, //Alattariel	    
-      {'serverName': 'Hellion', 'characterID': 505890}, //Seductive	
-      {'serverName': 'Hyperion', 'characterID': 724510}, //Uchiwasasuke 
-      {'serverName': 'Barus', 'characterID': 1226706}, //Emelii
-      {'serverName': 'Barus', 'characterID': 834040}, //Nettie
-      {'serverName': 'Loki', 'characterID': 871507}, //Later
-      {'serverName': 'Antriksha', 'characterID': 1037521}, //Duiwel
-      {'serverName': 'Loki', 'characterID': 16747}, //Kyzane 
-      {'serverName': 'Barus', 'characterID': 1270154}, //Daarina 
-      {'serverName': 'Loki', 'characterID': 127387}, //Zzzauberin 
-      {'serverName': 'Hyperion', 'characterID': 375208}, //Soralyn  
-      {'serverName': 'Thor', 'characterID': 1269323}, //Weavile
-      {'serverName': 'Deyla', 'characterID': 1642714}, //Timjongun
-      {'serverName': 'Barus', 'characterID': 272141}, //Mlem
-      {'serverName': 'Hyperion', 'characterID': 395120}, //Dardok
-      {'serverName': 'Thor', 'characterID': 2041541}, //Aisook
-      {'serverName': 'Deyla', 'characterID': 1652678}, //HeavyPanda
-    ];
-
-    //Who asked to remove his old guild names
-    $this.removeOldGuildNames_requests = [
-      {'serverName': 'Hellion', 'characterID': 495423}, //Chetitos
-      {'serverName': 'Deyla', 'characterID': 1266763}, //Kaijur
-      {'serverName': 'Hyperion', 'characterID': 11600}, //Raynee
-      {'serverName': 'Antriksha', 'characterID': 863503}, //Nukey
-      {'serverName': 'Hyperion', 'characterID': 783863}, //Siith,
-      {'serverName': 'Hellion', 'characterID': 428540}, //Kerberos
-      {'serverName': 'Barus', 'characterID': 396287}, //Seyune
-      {'serverName': 'Barus', 'characterID': 916298}, //CiuCiuu
-      {'serverName': 'Hellion', 'characterID': 612759}, //Turbonugget
-      {'serverName': 'Hellion', 'characterID': 499099}, //Pepatheinquin
-      {'serverName': 'Urtem', 'characterID': 1125512}, //Mipha
-      {'serverName': 'Hyperion', 'characterID': 57501},
-      {'serverName': 'Loki', 'characterID': 70525}, //Gshee
-      {'serverName': 'Thor', 'characterID': 1369119}, //Necarunerk
-      {'serverName': 'Hellion', 'characterID': 612759}, //OjV
-      {'serverName': 'Thor', 'characterID': 1225673}, //Gvnr
-      {'serverName': 'Thor', 'characterID': 1369978}, //Sprtmster
-      {'serverName': 'Barus', 'characterID': 87465}, //Naki
-      {'serverName': 'Hellion', 'characterID': 442918}, // Kenae
-      {'serverName': 'Thor', 'characterID': 1273074}, //Kumuky
-      {'serverName': 'Antriksha', 'characterID': 723417}, //Riyuko
-      {'serverName': 'Deyla', 'characterID': 1161433}, //Pyirra
-      {'serverName': 'Hyperion', 'characterID': 525356}, //Akirawoofametsu
-      {'serverName': 'Hellion', 'characterID': 305832}, //Yukasuna
-      {'serverName': 'Thor', 'characterID': 1946026}, //Instantflashulti
-      {'serverName': 'Deyla', 'characterID': 953168}, //Sylrel
-      {'serverName': 'Hyperion', 'characterID': 375208}, //Nllll
-      {'serverName': 'Loki', 'characterID': 877197}, //Iethal
-      {'serverName': 'Antriksha', 'characterID': 920308}, //Myllle
-      {'serverName': 'Thor', 'characterID': 2113411}, //Topu
-      {'serverName': 'Loki', 'characterID': 1187322}, //Justmoe
-      {'serverName': 'Hyperion', 'characterID': 857011}, //Nyraaa
-      {'serverName': 'Hellion', 'characterID': 457520}, //Xamphu
-      {'serverName': 'Grendal', 'characterID': 1028}, //Sorcerer
-      {'serverName': 'Loki', 'characterID': 1065721}, //Liinxx
-      {'serverName': 'Barus', 'characterID': 822324}, //Dissney
-      {'serverName': 'Barus', 'characterID': 1182084}, //Sachma
-      {'serverName': 'Loki', 'characterID': 560318}, //Zoai
-      {'serverName': 'Barus', 'characterID': 1135327}, //Yorru
-      {'serverName': 'Hellion', 'characterID': 584003}, //Guindillera
-      {'serverName': 'Loki', 'characterID': 896961}, //Akyraan
-      {'serverName': 'Loki', 'characterID': 896961}, //Akyraan
-      {'serverName': 'Thor', 'characterID': 1135085}, //Auyo
-      {'serverName': 'Thor', 'characterID': 1133502}, //Danawhite
-      {'serverName': 'Loki', 'characterID': 1065721}, //Futanari
-      {'serverName': 'Loki', 'characterID': 536681}, //Nuarihyon
-      {'serverName': 'Hyperion', 'characterID': 392962}, //Upset
-      {'serverName': 'Barus', 'characterID': 56391}, //Sicarius
-      {'serverName': 'Hellion', 'characterID': 1478289}, //Charioce
-      {'serverName': 'Barus', 'characterID': 332731}, //Akonen
-      {'serverName': 'Hellion', 'characterID': 427449}, //Qmg
-      {'serverName': 'Barus', 'characterID': 58925}, //Yoruchichan
-      {'serverName': 'Barus', 'characterID': 710123}, //Minasii
-      {'serverName': 'Loki', 'characterID': 713632}, //Zenoya
-      {'serverName': 'Thor', 'characterID': 1998102}, //KMI
-      {'serverName': 'Thor', 'characterID': 1712628}, //Itsami
-      {'serverName': 'Barus', 'characterID': 1115780}, //Acidheal
-      {'serverName': 'Loki', 'characterID': 567177}, //Hardstylelife
-      {'serverName': 'Miren', 'characterID': 40582}, //Heavypanda
-      {'serverName': 'Grendal', 'characterID': 70897}, //Qtp
-      {'serverName': 'Miren', 'characterID': 3390}, //Pikachu
-      {'serverName': 'Hyperion', 'characterID': 724510}, //Uchiwasasuke
-      {'serverName': 'Deyla', 'characterID': 1640322}, //Danawhite
-      {'serverName': 'Hyperion', 'characterID': 672128}, //Eishu 
-      {'serverName': 'Deyla', 'characterID': 1639577}, //Chntr
-      {'serverName': 'Barus', 'characterID': 1157147}, //Meoooow
-      {'serverName': 'Barus', 'characterID': 515694}, //Litleshevo 
-      {'serverName': 'Hyperion', 'characterID': 724296}, //Rezus
-      {'serverName': 'Loki', 'characterID': 1213346}, //Deqx old legion name hide
-      {'serverName': 'Deyla', 'characterID': 1639627}, //Hugmetight
-      {'serverName': 'Barus', 'characterID': 1189738}, //Rnesme
-      {'serverName': 'Deyla', 'characterID': 1614165}, //Vid 
-      {'serverName': 'Deyla', 'characterID': 1639554}, //Jack 
-      {'serverName': 'Thor', 'characterID': 2219122}, //Kurayamix	    
-      {'serverName': 'Thor', 'characterID': 1757308}, //Upperclass
-      {'serverName': 'Deyla', 'characterID': 1315265}, //Holyfield
-      {'serverName': 'Antriksha', 'characterID': 950831}, //Seris
-      {'serverName': 'Deyla', 'characterID': 1603045}, //Plushee
-      {'serverName': 'Loki', 'characterID': 572221}, //Punschii	  
-      {'serverName': 'Antriksha', 'characterID': 750539}, //Veel
-      {'serverName': 'Thor', 'characterID': 1743783}, //Nekarunerk
-      {'serverName': 'Hellion', 'characterID': 607215}, //Alattariel
-      {'serverName': 'Barus', 'characterID': 1226706}, //Emelii
-      {'serverName': 'Barus', 'characterID': 834040}, //Nettie
-      {'serverName': 'Loki', 'characterID': 871507}, //Later
-      {'serverName': 'Hellion', 'characterID': 1457578}, //Modsognir
-      {'serverName': 'Antriksha', 'characterID': 1037521}, //Duiwel
-      {'serverName': 'Loki', 'characterID': 16747}, //Kyzane 
-      {'serverName': 'Barus', 'characterID': 1270154}, //Daarina 
-      {'serverName': 'Loki', 'characterID': 127387}, //Zzzauberin
-      {'serverName': 'Hyperion', 'characterID': 823861}, //Kaynes 	
-      {'serverName': 'Hyperion', 'characterID': 375208}, //Soralyn 
-      {'serverName': 'Barus', 'characterID': 272141}, //Mlem
-      {'serverName': 'Hyperion', 'characterID': 395120}, //Dardok
-      {'serverName': 'Hellion', 'characterID': 462735}, //Korshita
-      {'serverName': 'Thor', 'characterID': 2041541}, //Aisook
-      {'serverName': 'Deyla', 'characterID': 1652678}, //HeavyPanda
-    ];
 
     //Wich servers
     $this.serversList = [
@@ -500,26 +290,32 @@
         $$status['soldierRank'] = $this.getCharacterRank($$status['soldierRankID']);
       });
 
-      //If user request to remove old names
-      $this.removeOldNames_requests.every(function($$request){
-        if($$request['serverName'] == _result['serverName'] && $$request['characterID'] == _result['characterID']) {
-          _result['names'].splice(1, _result['names'].length - 1);
-          return false;
-        }
-        return true;
-      });
+      return $q.resolve().then(function() {
+        return _getOldNameRemoval().then(function($$data) {
 
-      //If user requested to remove old guild names
-      $this.removeOldGuildNames_requests.every(function($$request){
-        if($$request['serverName'] == _result['serverName'] && $$request['characterID'] == _result['characterID']) {
-          _result['guilds'].splice(1, _result['guilds'].length - 1);
-          return false;
-        }
-        return true;
-      });
+          var _removeOldNames = $$data.filter(function(x) {
+            return x.serverName == _result.serverName && x.characterID == _result.characterID;
+          }).length > 0;
 
-      //Set social data to the character
-      return characterSocialService.setCharacterSocialData(_result);
+          if(_removeOldNames) {
+            _result.names.splice(1, _result.names.length - 1);
+          }
+        });
+      }).then(function() {
+        return _getOldLegionRemoval().then(function($$data) {
+
+          var _removeOldLegions = $$data.filter(function(x) {
+            return x.serverName == _result.serverName && x.characterID == _result.characterID;
+          }).length > 0;
+
+          if(_removeOldLegions) {
+            _result.guilds.splice(1, _result.guilds.length - 1);
+          }
+
+        });
+      }).then(function() {
+        return characterSocialService.setCharacterSocialData(_result);
+      });
     }
 
     //Normalize a collection specified on first param on date stored on second param
@@ -555,6 +351,40 @@
       var _splitDate = dateString.split('-');
 
       return new Date(parseInt(_splitDate[2]), parseInt(_splitDate[0]) - 1, parseInt(_splitDate[1]));
+    }
+
+    /**
+     * Get old name removal
+     * @private
+     */
+    function _getOldNameRemoval() {
+      if(_cacheOldNameRemoval != null) {
+        return $q.resolve(_cacheOldNameRemoval);
+      }
+
+      var _url = '/assets/app/_deprecated_data/oldNameRemoval.json';
+
+      return $q.likeNormal($http.get(_url)).then(function($$data) {
+        _cacheOldNameRemoval = $$data;
+        return $$data;
+      });
+    }
+
+    /**
+     * Get old name removal
+     * @private
+     */
+    function _getOldLegionRemoval() {
+      if(_cacheOldLegionRemoval != null) {
+        return $q.resolve(_cacheOldLegionRemoval);
+      }
+
+      var _url = '/assets/app/_deprecated_data/oldLegionRemoval.json';
+
+      return $q.likeNormal($http.get(_url)).then(function($$data) {
+        _cacheOldNameRemoval = $$data;
+        return $$data;
+      });
     }
 
   }
