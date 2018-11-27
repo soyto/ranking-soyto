@@ -215,16 +215,17 @@
 
       var _step = Math.floor(1000 / _chart['num_elements']);
 
+      let _elyosFilter = function(position) { return _data.elyos.filter(x => x.position == position).shift(); };
+      let _asmodianFilter = function(position) { return _data.asmodians.filter(x => x.position == position).shift(); };
+
       for(var i = 0; i <= _chart['num_elements']; i++) {
-        var _position = 1000 - i * _step;
+        let _position = 1000 - i * _step;
 
         if(_position === 0) { _position = 1; }
         if(i === 0) { _position = 999; }
 
-        /* jshint-W083 */
-        var _elyosCharacter = _data['elyos'].first(function(x){ return x['position'] == _position; });
-        var _asmodianCharacter = _data['asmodians'].first(function(x){ return x['position'] == _position; });
-        /* jshint+W083 */
+        var _elyosCharacter = _elyosFilter(_position);
+        var _asmodianCharacter = _asmodianFilter(_position);
 
         _chart['labels'].push(_position);
         _chart['data'][0].push(_elyosCharacter ? _elyosCharacter['gloryPoint']: 0);

@@ -79,7 +79,7 @@
 
         //If user press enter go to first result
         if($event.keyCode == 13) {
-          var _searchItem = _search['results'][0];
+          let _searchItem = _search['results'][0];
           $location.url('/character/' + _searchItem['serverName'] + '/' + _searchItem['id']);
         }
       }
@@ -119,9 +119,7 @@
 
         //If user press enter fo to the result
         else if($event.keyCode == 13) {
-          /* jshint-W004 */
-          var _searchItem = _search['results'][_search['selectedIndex']];
-          /* jshint+W004 */
+          let _searchItem = _search['results'][_search['selectedIndex']];
           $location.url('/character/' + _searchItem['serverName'] + '/' + _searchItem['id']);
         }
 

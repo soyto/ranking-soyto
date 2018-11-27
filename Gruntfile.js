@@ -89,8 +89,8 @@ module.exports = function(grunt) {
       files: config.application['app_files'],
       tasks: [
         'jshint:app',
-        'babel:app',
         'concat:app',
+        'babel:app',
         'uglify:app'
       ]
     },
