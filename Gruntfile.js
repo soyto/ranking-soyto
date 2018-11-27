@@ -41,8 +41,8 @@ module.exports = function(grunt) {
   //JSHINT
   gruntConfig.jshint = {
     options : {jshintrc: '.jshintrc', 'force': true},
-    app: config.application['app-files'],
-    'node-app': config.application['node-app-files']
+    app: config.application['app_files'],
+    'node-app': config.application['node-app_files']
   };
 
   //CONCAT
@@ -50,18 +50,29 @@ module.exports = function(grunt) {
     options: { banner: license },
     app: {
       options: {separator: '\n\n' },
-      src: config.application['app-files'],
-      dest: config.application['concat-dest'],
+      src: config.application['app_files'],
+      dest: config.application['concat_dest'],
       nonull: true
     }
   };
+
+  //BABEL
+  gruntConfig.babel = {
+    'options': {'sourceMap': true, 'presets': ['@babel/preset-env']},
+    'app': {
+      'files': {}
+    }
+  };
+
+  //Set up babel destination file
+  gruntConfig.babel.app.files[config.application.concat_dest] = config.application.concat_dest;
 
   //UGLIFY
   gruntConfig.uglify = {
     options: { banner: license },
     app: {
-      src: [config.application['concat-dest']],
-      dest: config.application['uglify-dest'],
+      src: [config.application.concat_dest],
+      dest: config.application.uglify_dest,
     }
   };
 
@@ -75,9 +86,10 @@ module.exports = function(grunt) {
       }
     },
     app: {
-      files: config.application['app-files'],
+      files: config.application['app_files'],
       tasks: [
         'jshint:app',
+        'babel:app',
         'concat:app',
         'uglify:app'
       ]
@@ -105,6 +117,7 @@ module.exports = function(grunt) {
     'generate-folder-dates',
     'jshint:app',
     'concat:app',
+    'babel:app',
     'uglify:app',
     'sass'
   ]);

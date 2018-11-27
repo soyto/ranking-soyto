@@ -19,7 +19,7 @@
 
     //Sets character Social data on a character
     $this.setCharacterSocialData = function(character) {
-      return _retrieveGithubServerData().then(function($$characterSocials){
+      return _retrieveGithubServerData().then($$characterSocials => {
         character['social'] = {};
 
         //Set pic

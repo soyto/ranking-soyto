@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/soyto/ranking-soyto#readme",
   "dependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
     "colors": "^1.1.2",
     "express": "^4.16.3",
     "grunt": "^1.0.3",
