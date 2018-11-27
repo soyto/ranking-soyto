@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
   var gameForgeServer   = require('../nodeApp/gameforge.server');
   var blog              = require('../nodeApp/blog');
-  var config            = require('../nodeApp/config.js');
+  var config            = require('../config');
   var moment            = require('moment');
   var $log              = require('./helpers').log;
   var $q                = require('q');

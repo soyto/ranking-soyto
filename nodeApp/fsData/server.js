@@ -1,6 +1,6 @@
 let $fs = require('../helpers').fs;
 let $log = require('../helpers').log;
-let $config = require('../config');
+let $config = require('../../config');
 
 function Server() {}
 

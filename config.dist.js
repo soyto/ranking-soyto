@@ -5,9 +5,28 @@
 
   let $config = {};
 
+  /*
+   * SERVER CONFIGURATION
+   * -------------------------------------------------------------------
+   */
+
+  /**
+   * Server configuration
+   */
+  $config.server = {
+    'port': 8080
+  };
+
+  //Cache configuration
+  $config.cache = {
+    'stdTTL': 5
+  };
+
+
+
+
   $config.application = {
     'servers-folder': 'data/Servers/',
-
     'base-folder': 'data/',
     'posts-folder': '_posts/',
     'app-folder': 'app/',
@@ -15,7 +34,6 @@
 
   /**
    * Concat destination
-   * @type {string}
    */
   $config.application.concat_dest = 'www/assets/dist/app.js';
   /**
@@ -31,10 +49,6 @@
   $config.application.app_files = grunt.file.expand('www/assets/app/**/**.js');
 
 
-  //Cache configuration
-  $config.cache = {
-    'stdTTL': 5
-  };
 
   //Crawler configuration
   $config.crawler = {
@@ -74,14 +88,6 @@
     'characterSocial': $path.join($config.folders.www, 'assets', 'app', '_deprecated_data', 'characterSocial.json'),
   };
 
-  /**
-   * Server configuration
-   */
-  $config.server = {
-    'port': 8080
-  };
-
 
   module.exports = $config;
-
 })();

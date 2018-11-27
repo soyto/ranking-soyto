@@ -1,6 +1,6 @@
 const $fs = require('../../helpers').fs;
 const $path = require('path');
-const $config = require('../../config');
+const $config = require('../../../config');
 const $fsData = require('../../fsData');
 const $log = require('../../helpers').log;
 const $seo = require('../../helpers').seo;

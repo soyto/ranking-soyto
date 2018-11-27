@@ -3,20 +3,40 @@
   const fs = require('fs');
   const express = require('express');
   const $path = require('path');
+  const passport = require('passport');
+  const bodyParser = require('body-parser');
+  const session = require('express-session');
+
+  const jwt = require('jsonwebtoken');
+
+  const JwtStrategy = require('passport-jwt').Strategy;
+  const ExtractJwt = require('passport-jwt').ExtractJwt;
 
   let router = express.Router();
 
-  fs.readdirSync(__dirname).forEach(file => {
+  router.use(bodyParser.json());
 
-    //We only want .js files
-    if(!file.endsWith('.js')) { return; }
+  router.use(passport.initialize());
 
-    let _name = file.substr(0, file.length - 3);
+  let opts = {
+    'jwtFromRequest': ExtractJwt.fromAuthHeaderWithScheme('jwt'),
+    'secretOrKey': 'mySecret'
+  };
 
-    //If name is index, avoid
-    if(_name == 'index') { return; }
+  passport.use('jwt', new JwtStrategy(opts, (jwt_payload, done) => {
+    return done(null, jwt_payload.user);
+  }));
 
-    router.use('/' + _name, require($path.join(__dirname, file)));
+  router.post('/login', async (req, res) => {
+    res.json({
+      'token': jwt.sign({
+        'user': 'admin'
+      }, 'mySecret')
+    });
+  });
+
+  router.get('/test', passport.authenticate('jwt', { session: false}), (req, res) => {
+    res.json({'done': true});
   });
 
 

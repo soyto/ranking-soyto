@@ -2,6 +2,7 @@ const util = require('util');
 const $gameforge = require('../gameForge');
 
 function SEO() {}
+
 SEO.prototype.index = {};
 SEO.prototype.twitch = {};
 SEO.prototype.ranking = {};

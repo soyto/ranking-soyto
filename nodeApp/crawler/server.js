@@ -3,7 +3,7 @@ let $gameforge = require('../gameForge');
 let $log = require('../helpers').log;
 let request = require('request');
 let moment = require('moment');
-const $config = require('../config');
+const $config = require('../../config');
 
 function Server() {}
 

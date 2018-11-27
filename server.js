@@ -1,5 +1,5 @@
 const $log = require('./nodeApp/helpers').log;
-const $config = require('./nodeApp/config');
+const $config = require('./config');
 const express = require('express');
 const app = express();
 

@@ -1,4 +1,4 @@
-const $config = require('../config');
+const $config = require('../../config');
 let $fs = require('../helpers').fs;
 let $log = require('../helpers').log;
 

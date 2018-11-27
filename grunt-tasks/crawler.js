@@ -3,7 +3,7 @@ module.exports = function() {
 
   let grunt = require('grunt');
   let $fsData = require('../nodeApp/fsData');
-  let $config = require('../nodeApp/config');
+  let $config = require('../config');
   let $crawler = require('../nodeApp/crawler');
   let $gameForge = require('../nodeApp/gameForge');
   let $fs = require('../nodeApp/helpers').fs;

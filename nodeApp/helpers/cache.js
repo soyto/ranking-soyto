@@ -1,6 +1,6 @@
 const $nodeCache = require('node-cache');
 const $log = require('./log');
-const $config = require('../config');
+const $config = require('../../config');
 
 
 const _$cache = new $nodeCache({

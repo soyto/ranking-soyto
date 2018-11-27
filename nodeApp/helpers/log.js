@@ -1,5 +1,5 @@
 let colors = require('colors');
-let $config = require('../config');
+let $config = require('../../config');
 
 function Log() {};
 

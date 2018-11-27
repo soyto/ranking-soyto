@@ -1,5 +1,5 @@
 let $fs = require('../helpers').fs;
-let $config = require('../config');
+let $config = require('../../config');
 let $log = require('../helpers').log;
 let $gameForge = require('../gameForge');
 let $fsData = require('../fsData');

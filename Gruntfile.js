@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   var colors = require('colors');
-  var config = require('./nodeApp/config.js');
+  var config = require('./config');
 
   var licenseTxt = grunt.file.read('LICENSE');
 
