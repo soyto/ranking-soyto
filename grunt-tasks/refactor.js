@@ -19,7 +19,7 @@ module.exports = (function() {
         break;
 
         default:
-        grunt.log.warn('usage: refactor:servers')
+        grunt.log.warn('usage: refactor:servers');
     }
   });
 

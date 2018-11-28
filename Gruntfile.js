@@ -4,12 +4,14 @@ module.exports = function(grunt) {
   require('./grunt-tasks/');
   require('load-grunt-tasks')(grunt);
 
-  var colors = require('colors');
-  var config = require('./config');
+  grunt.loadNpmTasks("gruntify-eslint");
 
-  var licenseTxt = grunt.file.read('LICENSE');
+  const colors = require('colors');
+  const $config = require('./config');
+  const $path = require('path');
+  const licenseTxt = grunt.file.read('LICENSE');
 
-  var license = '/*\n * Soyto.github.io (<%= pkg.version %>)\n';
+  let license = '/*\n * Soyto.github.io (<%= pkg.version %>)\n';
   licenseTxt.split('\n').forEach(function(line){
     license += ' * ' + line + '\n';
   });
@@ -32,17 +34,23 @@ module.exports = function(grunt) {
       'sourceMap': true
     },
     'dist': {
-      'files': {
-        'www/assets/dist/site.css': 'www/assets/scss/site.scss',
-      }
+      'files': {}
     }
   };
 
-  //JSHINT
-  gruntConfig.jshint = {
-    options : {jshintrc: '.jshintrc', 'force': true},
-    app: config.application['app_files'],
-    'node-app': config.application['node-app_files']
+  gruntConfig.sass.dist.files[$config.files.app_css_dist] = $path.join($config.folders.app_sass, 'site.scss');
+
+  //Eslint
+  gruntConfig.eslint = {
+    'app': {
+      'src': $config.files.app_files
+    },
+    'node_app': {
+      'src': $config.files.nodeApp_files
+    },
+    'grunt_tasks': {
+      'src': $config.files.gruntTasks_files
+    },
   };
 
   //CONCAT
@@ -50,8 +58,8 @@ module.exports = function(grunt) {
     options: { banner: license },
     app: {
       options: {separator: '\n\n' },
-      src: config.application['app_files'],
-      dest: config.application['concat_dest'],
+      src: $config.files.app_files,
+      dest: $config.files['concat_dest'],
       nonull: true
     }
   };
@@ -65,14 +73,14 @@ module.exports = function(grunt) {
   };
 
   //Set up babel destination file
-  gruntConfig.babel.app.files[config.application.concat_dest] = config.application.concat_dest;
+  gruntConfig.babel.app.files[$config.files.concat_dest] = $config.files.concat_dest;
 
   //UGLIFY
   gruntConfig.uglify = {
     options: { banner: license },
     app: {
-      src: [config.application.concat_dest],
-      dest: config.application.uglify_dest,
+      src: [$config.files.concat_dest],
+      dest: $config.files.uglify_dest,
     }
   };
 
@@ -86,7 +94,7 @@ module.exports = function(grunt) {
       }
     },
     app: {
-      files: config.application['app_files'],
+      files: $config.files.app_files,
       tasks: [
         'jshint:app',
         'concat:app',

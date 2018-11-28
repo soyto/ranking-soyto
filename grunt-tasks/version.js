@@ -1,5 +1,5 @@
 /* global require, module */
-module.exports = function() {
+module.exports = (function() {
 
   var sh = require('shelljs');
   var grunt = require('grunt');
@@ -156,4 +156,4 @@ module.exports = function() {
     grunt.log.ok('Version set to ' + newVersion.cyan);
   }
 
-}();
+})();

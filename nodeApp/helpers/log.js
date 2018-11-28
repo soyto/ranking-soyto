@@ -40,6 +40,6 @@ Log.prototype.warn = function(msg) {
   }
 
   console.warn.apply(console.log, ['>>'.yellow + ' ' + msg].concat(args));
-}
+};
 
 module.exports = new Log();
