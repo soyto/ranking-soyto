@@ -10,18 +10,25 @@
    * -------------------------------------------------------------------
    */
 
+  $config.sever = {};
+  $config.cache = {};
+  $config.authorization = {};
+
   /**
-   * Server configuration
+   * Server port
    */
-  $config.server = {
-    'port': 8080
-  };
+  $config.server.port = 8080;
 
-  //Cache configuration
-  $config.cache = {
-    'stdTTL': 5
-  };
+  /**
+   * Cache configuration
+   */
+  $config.cache.stdTTL = 5;
 
+  /**
+   * Your Secret goes here
+   * @type {string}
+   */
+  $config.authorization.secret = 'YOUR_SECRET_HERE';
 
 
 
