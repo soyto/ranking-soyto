@@ -8,7 +8,6 @@
 
   const jwt = require('jsonwebtoken');
 
-
   class Passport {
 
     constructor() {
@@ -62,8 +61,33 @@
      * Authorize method
      * @return {Function}
      */
-    authorize () {
-      return this.passport.authenticate('jwt', {'session': false});
+    authorize (role) {
+
+      //If there are no role, it's easy
+      if(!role) {
+        return this.passport.authenticate('jwt', {'session': false});
+      }
+      else {
+        //Generate specialized middleware
+        return (req, res, next) => {
+
+          //Call to passport middleware
+          this.passport.authenticate('jwt', {'session': false}, (error, user, info) => {
+
+            if(user && user.role == role) {
+              req.user = user;
+              next();
+            }
+            else {
+             res.status(401);
+             res.end();
+            }
+
+          })(req, res, next);
+        };
+      }
+
+
     }
   }
 

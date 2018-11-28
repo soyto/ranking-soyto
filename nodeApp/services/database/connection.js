@@ -4,8 +4,8 @@
   const $config = require('../../../config');
   const $fs = require('../../helpers').fs;
   const $log = require('../../helpers').log;
+
   const sqlite3 = require('sqlite3').verbose();
-  const bcrypt = require('bcrypt');
 
   /**
    * SQL Error class
@@ -167,21 +167,15 @@
 
     $log.warn('Generating admin user');
 
-    let _adminUser = {
-      'uuid': $config.server.admin.uuid,
-      'username': $config.server.admin.username,
-      'password': $config.server.admin.password,
-      'email': $config.server.admin.email,
-    };
+    let userService = require('../../services').user;
 
-    _adminUser.password = await bcrypt.hash(_adminUser.password, $config.server.security.bcryptSaltRounds);
-
-    await this.run(`INSERT INTO USERS(UUID, EMAIL, USERNAME, PASSWORD) VALUES(?, ?, ?, ?)`, [
-      _adminUser.uuid,
-      _adminUser.email,
-      _adminUser.username,
-      _adminUser.password
-    ]);
+    await userService.add(
+      $config.server.admin.username,
+      $config.server.admin.password,
+      $config.server.admin.email,
+      'ADMIN',
+      $config.server.admin.uuid
+    );
   }
 
   /**

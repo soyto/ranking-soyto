@@ -7,6 +7,7 @@
       this.username = null;
       this.password = null;
       this.uuid = null;
+      this.role = null;
     }
 
     /**

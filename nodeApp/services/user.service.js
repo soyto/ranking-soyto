@@ -1,12 +1,14 @@
 (() => {
 
+  const $config = require('../../config');
   const User = require('../models').User;
   const $dbConnection = require('./index').database.connection;
+  const $uuid = require('uuid/v1');
+  const bcrypt = require('bcrypt');
 
   class UserService {
 
     constructor() {
-
     }
 
     /**
@@ -36,6 +38,44 @@
       if(_result) { return _dtf.apply(this, [_result]); }
       else { return null; }
     }
+
+    /**
+     * Adds a new user
+     * @param username
+     * @param password
+     * @param email
+     * @param role
+     * @param uuid
+     * @return {Promise.<void>}
+     */
+    async add(username, password, email, role, uuid) {
+      const SQL = 'INSERT INTO USERS(UUID, USERNAME, PASSWORD, EMAIL, ROLE) VALUES(?, ?, ?, ?, ?)';
+
+      if(!uuid) { uuid = $uuid(); }
+      if(!role) { role = 'USER'; }
+
+      let _bCryptPassword = await bcrypt.hash(password, $config.server.security.bcryptSaltRounds);
+
+      //Execute query
+      await $dbConnection.run(SQL, [
+        uuid,
+        username,
+        _bCryptPassword,
+        email,
+        role
+      ]);
+
+      let user = new User();
+
+      user.username = username;
+      user.password = _bCryptPassword;
+      user.uuid = uuid;
+      user.email = email;
+      user.role = role;
+
+      return user;
+    }
+
   }
 
   /**
@@ -51,6 +91,7 @@
     user.password = result.password;
     user.uuid = result.uuid;
     user.email = result.email;
+    user.role = result.role;
 
     return user;
   }
