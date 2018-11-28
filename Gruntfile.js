@@ -38,6 +38,7 @@ module.exports = function(grunt) {
     }
   };
 
+  //Set up sass files
   gruntConfig.sass.dist.files[$config.files.app_css_dist] = $path.join($config.folders.app_sass, 'site.scss');
 
   //Eslint
@@ -59,7 +60,7 @@ module.exports = function(grunt) {
     app: {
       options: {separator: '\n\n' },
       src: $config.files.app_files,
-      dest: $config.files['concat_dest'],
+      dest: $config.files.concat_dest,
       nonull: true
     }
   };

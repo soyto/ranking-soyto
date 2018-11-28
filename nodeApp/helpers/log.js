@@ -5,7 +5,7 @@ function Log() {};
 
 Log.prototype.debug = function(msg) {
 
-  if(!$config.nodeApp.debug_mode) { return; }
+  if(!$config.server.debug_mode) { return; }
 
   var msg = arguments[0];
   var args =  [];

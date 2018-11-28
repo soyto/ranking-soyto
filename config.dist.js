@@ -13,6 +13,13 @@
   $config.server = {};
   $config.cache = {};
   $config.authorization = {};
+  $config.fsData = {};
+
+  /**
+   * Is server in debug mode?
+   * @type {boolean}
+   */
+  $config.server.debug_mode = true;
 
   /**
    * Server port
@@ -29,6 +36,11 @@
    * @type {string}
    */
   $config.authorization.secret = 'YOUR_SECRET_HERE';
+
+  /**
+   * fileSystem configuration
+   */
+  $config.fsData.prettyPrint = false;
 
   /*
    * CRAWLER CONFIGURATION
@@ -105,22 +117,6 @@
    * @type {void|*}
    */
   $config.files.gruntTasks_files = grunt.file.expand($path.join($config.folders.gruntTasks, '**/**.js'));
-
-
-  /**
-   * fileSystem configuration
-   */
-  $config.fsData = {
-    'prettyPrint': false
-  };
-
-  //NodeApp config
-  $config.nodeApp = {
-    'debug_mode': true
-  };
-
-
-
 
   module.exports = $config;
 })();
