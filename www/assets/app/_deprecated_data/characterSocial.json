@@ -340,5 +340,8 @@
   {"serverName": "Thor", "characterID": 1423248 , "buttons": {
     "twitch": "https://www.twitch.tv/flurryaion",
     "youtube": "https://www.youtube.com/channel/UCBKi-2QBcMPyQqMIZm9C7JQ"
+  }},
+  {"serverName": "Loki", "characterID": 1208981 , "buttons": {
+    "twitch": "https://www.twitch.tv/qnz_"
   }}
 ]
