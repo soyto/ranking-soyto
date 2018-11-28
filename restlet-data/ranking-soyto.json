@@ -5,13 +5,13 @@
     {
       "type": "Project",
       "id": "6dc1acca-90a5-4863-afaf-74e1c746ecf7",
-      "lastModified": "2018-11-28T16:04:58.616+01:00",
+      "lastModified": "2018-11-28T16:14:26.578+01:00",
       "name": "ranking-soyto"
     },
     {
       "type": "Scenario",
       "id": "68eebbf2-bc3f-43f6-b8cd-681840eb3a2e",
-      "lastModified": "2018-11-28T16:04:10.940+01:00",
+      "lastModified": "2018-11-28T16:21:40.192+01:00",
       "name": "Auth",
       "requestOrder": [
         "Login request- test",

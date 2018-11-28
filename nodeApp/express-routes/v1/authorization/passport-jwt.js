@@ -4,6 +4,7 @@
 
   const JwtStrategy = require('passport-jwt').Strategy;
   const ExtractJwt = require('passport-jwt').ExtractJwt;
+  const userService = require('../../../services').user;
 
   const jwt = require('jsonwebtoken');
 
@@ -29,8 +30,22 @@
       };
 
       //Initialize passport
-      this.passport.use('jwt', new JwtStrategy(_options, (jwt_payload, done) => {
-        return done(null, {'user': 'admin'});
+      this.passport.use('jwt', new JwtStrategy(_options, async (jwt_payload, done) => {
+        let _uuid = jwt_payload.uuid;
+
+        if(!_uuid) {
+          return done({'message': 'Invalid token'}, null);
+        }
+
+        let _user = await userService.get(_uuid);
+
+        if(!_user) {
+          return done({'message': 'Invalid token'}, null);
+        }
+        else {
+          return done(null, _user);
+        }
+
       }));
     }
 
