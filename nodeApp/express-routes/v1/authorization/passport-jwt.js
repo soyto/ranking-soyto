@@ -15,7 +15,7 @@
     }
 
     /**
-     *
+     * Initialize that passport method
      * @param passport
      */
     init (passport) {
@@ -58,7 +58,8 @@
     }
 
     /**
-     * Authorize method
+     * Authorize method, ir role is added will check if user has role to perform action
+     * @param role
      * @return {Function}
      */
     authorize (role) {
@@ -68,6 +69,7 @@
         return this.passport.authenticate('jwt', {'session': false});
       }
       else {
+
         //Generate specialized middleware
         return (req, res, next) => {
 
@@ -86,8 +88,6 @@
           })(req, res, next);
         };
       }
-
-
     }
   }
 

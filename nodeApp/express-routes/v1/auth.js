@@ -38,7 +38,12 @@
 
     //return token
     return res.json({
-      'token': _jwtToken
+      'token': _jwtToken,
+      'user': {
+        'username': _user.username,
+        'email': _user.email,
+        'role': _user.role
+      }
     });
 
   });
