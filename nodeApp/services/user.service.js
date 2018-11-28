@@ -4,6 +4,7 @@
   const $dbConnection = require('./index').database.connection;
 
   class UserService {
+
     constructor() {
 
     }
@@ -11,14 +12,29 @@
     /**
      * Gets an user given an UUID
      * @param uuid
-     * @return {Promise.<void>}
+     * @return {Promise.<*>}
      */
     async get(uuid) {
       const SQL = 'SELECT * FROM USERS WHERE UUID = ?';
 
       let _result = await $dbConnection.get(SQL, [uuid]);
 
-      return _dtf.apply(this, [_result]);
+      if(_result) { return _dtf.apply(this, [_result]); }
+      else { return null; }
+    }
+
+    /**
+     * Gets an user given an username
+     * @param username
+     * @return {Promise.<*>}
+     */
+    async getByUsername(username) {
+      const SQL = 'SELECT * FROM USERS WHERE USERNAME = ?';
+
+      let _result = await $dbConnection.get(SQL, [username]);
+
+      if(_result) { return _dtf.apply(this, [_result]); }
+      else { return null; }
     }
   }
 

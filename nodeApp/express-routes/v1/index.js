@@ -14,17 +14,8 @@
   //Init passport
   passportJwt.init(passport);
 
-
-  router.post('/login', async (req, res) => {
-    res.json({
-      'token': passportJwt.serialize({'user': 'admin'})
-    });
-  });
-
-  router.get('/test', passportJwt.authorize(), (req, res) => {
-    res.json({'done': true});
-  });
-
+  //Authorization users
+  router.use('/auth/', require('./auth'));
 
   module.exports = router;
 })();

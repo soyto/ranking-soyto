@@ -7,4 +7,6 @@
   module.exports.log = require('./log');
   module.exports.seo = require('./seo');
 
+  module.exports.express = require('./express.helper');
+
 })();
