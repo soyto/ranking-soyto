@@ -96,7 +96,7 @@ module.exports = function(grunt) {
     app: {
       files: $config.files.app_files,
       tasks: [
-        'jshint:app',
+        'eslint:app',
         'concat:app',
         'babel:app',
         'uglify:app'
@@ -117,13 +117,13 @@ module.exports = function(grunt) {
    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    */
 
-  //Default task, just jshint , concat and iglify for the moment
+  //Default task, just eslint , concat and iglify for the moment
   grunt.registerTask('default', ['compile']);
 
   //Compiles application
   grunt.registerTask('compile', [
     'generate-folder-dates',
-    'jshint:app',
+    'eslint:app',
     'concat:app',
     'babel:app',
     'uglify:app',
