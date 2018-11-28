@@ -43,6 +43,32 @@
   $config.fsData.prettyPrint = false;
 
   /*
+   * SERVER security
+   * -------------------------------------------------------------------
+   */
+
+  $config.server.security = {};
+
+  /**
+   * bCrypt num of rounds
+   * @type {number}
+   */
+  $config.server.security.bcryptSaltRounds = 10;
+
+  /*
+   * ADMIN USER
+   * -------------------------------------------------------------------
+   */
+
+  $config.server.admin = {};
+
+  $config.server.admin.uuid = '31ab09d0-f30c-11e8-9823-75e78e909b3d';
+  $config.server.admin.username = 'admin';
+  $config.server.admin.password = '1234';
+  $config.server.admin.email = 'YOUR_EMAIL_GOES_HERE';
+
+
+  /*
    * CRAWLER CONFIGURATION
    * -------------------------------------------------------------------
    */
@@ -67,11 +93,16 @@
 
   $config.folders = {};
 
+  //
+  // --------- MAIN FOLDERS
+  //
 
   $config.folders.data = 'data/';
   $config.folders.gruntTasks = 'grunt-tasks';
   $config.folders.nodeApp = 'nodeApp/';
   $config.folders.www = 'www/';
+  $config.folders.database = 'db/';
+  $config.folders.dbScripts = 'db_scripts/';
 
   $config.folders.servers = $path.join($config.folders.data, 'Servers');
   $config.folders.characters = $path.join($config.folders.data, 'Characters');
@@ -95,6 +126,8 @@
   $config.files.characterPics = $path.join($config.folders.www, 'assets', 'app', '_deprecated_data', 'characterPics.json');
   $config.files.characterSocial = $path.join($config.folders.www, 'assets', 'app', '_deprecated_data', 'characterSocial.json');
 
+  //Database
+  $config.files.database = $path.join($config.folders.database, 'db.db');
 
   $config.files.concat_dest = $path.join($config.folders.www, 'assets', 'dist', 'app.js');
   $config.files.uglify_dest = $path.join($config.folders.www, 'assets', 'dist', 'app.min.js');

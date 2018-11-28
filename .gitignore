@@ -18,3 +18,7 @@ www/*.xml
 
 #config file
 config.js
+
+#db folder and so
+db/
+db/*

@@ -156,4 +156,17 @@ Fs.prototype.rmdir = function(path, force) {
 
 };
 
+/**
+ * Exists a file?
+ * @param path
+ * @return {Promise}
+ */
+Fs.prototype.exists = function(path) {
+  return new Promise((resolve, reject) => {
+    $fs.exists(path, (exists) => {
+      resolve(exists);
+    });
+  });
+};
+
 module.exports = new Fs();
