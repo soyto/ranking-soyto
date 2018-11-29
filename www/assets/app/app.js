@@ -132,6 +132,7 @@
 
       }
     };
+    $routeProvider.when('/login', _loginRouteData);
 
     //404 route
     var _404RouteData = {

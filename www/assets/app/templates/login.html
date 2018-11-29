@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h4 class="panel-title text-center">Login</h4>
+      </div>
+
+      <div class="panel-body">
+
+        <div class="form-group">
+          <label for="{{ _NAME }}.username">Username</label>
+          <input id="{{ _NAME }}.username"
+                 type="text"
+                 class="form-control"
+                 data-ng-model="data.username.value"
+                 data-ng-change="onChange_username()"
+                 data-ng-keydown="onKeydown_username($event)"
+                 data-ng-focus="onFocus_username()"
+                 data-ng-blur="onBlur_username()">
+        </div>
+
+        <div class="form-group">
+          <label for="{{ _NAME }}.password">Password</label>
+          <input id="{{ _NAME }}.password"
+                 type="password"
+                 class="form-control"
+                 data-ng-model="data.password.value"
+                 data-ng-change="onChange_password()"
+                 data-ng-keydown="onKeydown_password($event)"
+                 data-ng-focus="onFocus_password()"
+                 data-ng-blur="onBlur_password()">
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
