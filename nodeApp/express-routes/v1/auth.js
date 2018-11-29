@@ -9,6 +9,17 @@
   let router = express.Router();
 
   /**
+   * Check router
+   */
+  router.get('/check', passportJwt.authorize(), (req, res) => {
+    res.json({
+      'username': req.user.username,
+      'email': req.user.email,
+      'role': req.user.role
+    });
+  });
+
+  /**
    * Login route
    */
   router.post('/login', async (req, res) => {

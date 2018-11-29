@@ -5,20 +5,152 @@
     {
       "type": "Project",
       "id": "6dc1acca-90a5-4863-afaf-74e1c746ecf7",
-      "lastModified": "2018-11-28T16:14:26.578+01:00",
+      "lastModified": "2018-11-29T09:58:53.727+01:00",
       "name": "ranking-soyto"
+    },
+    {
+      "type": "Service",
+      "id": "fad5df66-2346-4dad-aa53-3fc9f8d22d4f",
+      "lastModified": "2018-11-29T09:58:06.876+01:00",
+      "name": "auth/check",
+      "parentId": "6dc1acca-90a5-4863-afaf-74e1c746ecf7"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/auth/check"
+      },
+      "id": "8351f15e-036c-4754-824f-dd4b83815d5c",
+      "lastModified": "2018-11-29T09:58:21.014+01:00",
+      "name": "Check success",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMzFhYjA5ZDAtZjMwYy0xMWU4LTk4MjMtNzVlNzhlOTA5YjNkIiwiaWF0IjoxNTQzNDIyNDkyfQ.XfkJk-IGN587THlo09rcPp1SAY845g1IENcx4GnxQgA"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "github|13250982"
+      },
+      "parentId": "fad5df66-2346-4dad-aa53-3fc9f8d22d4f"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/auth/check"
+      },
+      "id": "11cd46f6-e20b-40fb-9bd7-1e8f6ded8ead",
+      "lastModified": "2018-11-29T09:58:53.727+01:00",
+      "name": "Check with bad JWT token",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMzFhYjA5ZDAtZjMwYy0xMWU4LTk4MjMtNzVlNzhlOTA5YjNkIiwiaWF0IjoxNTQzNDIyNDkyfQ.XfkJk-IGN587THlo09rcPp1SAY845g1IENcx4GnxQaA"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "github|13250982"
+      },
+      "parentId": "fad5df66-2346-4dad-aa53-3fc9f8d22d4f"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/auth/check"
+      },
+      "id": "059c49c8-3721-475f-9338-64f472b9f8bb",
+      "lastModified": "2018-11-29T09:57:33.419+01:00",
+      "name": "Check without Authorization Header",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "github|13250982"
+      },
+      "parentId": "fad5df66-2346-4dad-aa53-3fc9f8d22d4f"
     },
     {
       "type": "Scenario",
       "id": "68eebbf2-bc3f-43f6-b8cd-681840eb3a2e",
-      "lastModified": "2018-11-28T16:21:40.192+01:00",
-      "name": "Auth",
+      "lastModified": "2018-11-29T09:58:05.315+01:00",
+      "name": "auth/login",
       "requestOrder": [
-        "Login request- test",
         "Login success",
         "Login without parameters",
         "Login non existent user",
-        "Login bad password"
+        "Login bad password",
+        "Check succesfully",
+        "Check unsucessfull",
+        "Check successfull"
       ],
       "parentId": "6dc1acca-90a5-4863-afaf-74e1c746ecf7"
     },
