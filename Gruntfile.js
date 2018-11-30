@@ -137,7 +137,8 @@ module.exports = function(grunt) {
     'compile'
   ]);
 
-  grunt.registerTask('hbs', async () => {
+  grunt.registerTask('hbs', async function() {
+    let done = this.async();
     try {
       const hbsService = require('./nodeApp/services').handlebars;
 
@@ -145,5 +146,7 @@ module.exports = function(grunt) {
     } catch(error) {
       console.error(error);
     }
+
+    done();
   });
 };
