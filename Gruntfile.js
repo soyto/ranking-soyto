@@ -136,4 +136,14 @@ module.exports = function(grunt) {
     'git-pull',
     'compile'
   ]);
+
+  grunt.registerTask('hbs', async () => {
+    try {
+      const hbsService = require('./nodeApp/services').handlebars;
+
+      await hbsService.www.renderIndex();
+    } catch(error) {
+      console.error(error);
+    }
+  });
 };
