@@ -6,34 +6,60 @@
         <h4 class="panel-title text-center">Login</h4>
       </div>
 
-      <div class="panel-body">
+      <div class="panel-body" data-ng-class="{'has-error': data.$$state.global_error}">
 
-        <div class="form-group">
-          <label for="{{ _NAME }}.username">Username</label>
+        <span class="help-block">{{ data.$$state.global_error }}</span>
+
+        <div class="form-group" data-ng-class="{'has-error': data.$$state.has_sent && data.username.has_error}">
+          <label class="control-label" for="{{ _NAME }}.username">Username</label>
           <input id="{{ _NAME }}.username"
                  type="text"
                  class="form-control"
+                 data-ng-focus-on="_NAME + '.username'"
                  data-ng-model="data.username.value"
                  data-ng-change="onChange_username()"
                  data-ng-keydown="onKeydown_username($event)"
                  data-ng-focus="onFocus_username()"
-                 data-ng-blur="onBlur_username()">
+                 data-ng-blur="onBlur_username()"
+                 data-ng-disabled="data.$$state.loading.login"
+                 tabindex="1"
+          >
+          <span class="help-block" data-ng-if="data.$$state.has_sent && data.username.has_error">
+            {{ data.username.error }}
+          </span>
         </div>
 
-        <div class="form-group">
-          <label for="{{ _NAME }}.password">Password</label>
+        <div class="form-group" data-ng-class="{'has-error': data.$$state.has_sent && data.password.has_error}">
+          <label class="control-label" for="{{ _NAME }}.password">Password</label>
           <input id="{{ _NAME }}.password"
                  type="password"
                  class="form-control"
+                 data-ng-focus-on="_NAME + '.password'"
                  data-ng-model="data.password.value"
                  data-ng-change="onChange_password()"
                  data-ng-keydown="onKeydown_password($event)"
                  data-ng-focus="onFocus_password()"
-                 data-ng-blur="onBlur_password()">
+                 data-ng-blur="onBlur_password()"
+                 data-ng-disabled="data.$$state.loading.login"
+                 tabindex="2"
+          >
+          <span class="help-block" data-ng-if="data.$$state.has_sent && data.password.has_error">
+            {{ data.password.error }}
+          </span>
         </div>
+
+        <div class="form-group text-center">
+          <button class="btn btn-success"
+                  data-ng-disabled="data.$$state.loading.login || !data.$$state.isValid"
+                  data-ng-click="onClick_login()"
+                  tabindex="3"
+          >
+            <span data-ng-if="data.$$state.loading.login"><i class="fa fa-spin fa-spinner"></i></span>
+            Log in
+          </button>
+        </div>
+
       </div>
-
-
 
     </div>
   </div>

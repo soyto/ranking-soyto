@@ -17,9 +17,27 @@
     var $cookies = $hs.$instantiate('$cookies');
     var $moment = $hs.$instantiate('$moment');
 
-    $rs['_name'] = CONTROLLER_NAME;
+    const authService = $hs.$instantiate('mainApp.auth.service');
 
+    $rs['_name'] = CONTROLLER_NAME;
     $rs['$$currentPath'] = $location.path();
+
+
+    /**
+     * Sets current user on global scope
+     * @param user
+     */
+    $rs.setCurrentUser = function(user) {
+      $rs.user = user;
+    };
+
+    /**
+     * Removes current user
+     */
+    $rs.removeCurrentUser = function() {
+      delete $rs.user;
+    };
+
 
     $rs.$on('$routeChangeStart', function(event){
       cfpLoadingBar.start();
@@ -47,6 +65,12 @@
         $cookies.put('gdprPolicy', true, {'expires': $moment().add('months', 3). toDate() });
       });
     }
+
+
+    //Check if there is an user logged in
+    authService.check().then(userData => {
+      $rs.setCurrentUser(userData);
+    });
   }
 
 })(angular);

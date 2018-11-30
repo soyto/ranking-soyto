@@ -61,6 +61,12 @@
   /></noscript>
   <!-- End Facebook Pixel Code -->
 
+  <style>
+    [ng-cloak], [data-ng-cloak] {
+      display: none !important;
+    }
+  </style>
+
 </head>
 <body data-ng-class="{'soyto-full-party-bg': $$currentPath == '/404'}">
 
@@ -135,6 +141,16 @@
                 <a href="//www.facebook.com/soyto.github.io/" target="_blank">
                   <i class="fa fa-facebook"></i> Facebook
                 </a>
+              </li>
+            </ul>
+          </li>
+          <li data-ng-cloak data-ng-if="user">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-user"></i> {{user.username}}
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/logout">Logout</a>
               </li>
             </ul>
           </li>
@@ -236,7 +252,7 @@
     </div>
     <div class="modal-footer">
       <a href="https://www.eugdpr.org/" class="btn btn-link">Please, take me outta here</a>
-      <button class="btn btn-primary" data-ng-click="onClick_confirm()">It's ok, i trust in you</buttok>
+      <button class="btn btn-primary" data-ng-click="onClick_confirm()">It's ok, i trust in you</button>
     </div>
   </script>
   

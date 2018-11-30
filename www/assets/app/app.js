@@ -16,6 +16,7 @@
     .constant('$marked', marked)
     .constant('jQuery', jQuery)
     .constant('$gapi' , gapi)
+    .config(['$httpProvider', _$httpProvider])
     .config(['$locationProvider', _configHtml5Mode])
     .config(['$routeProvider', configRoutes])
     .config(['cfpLoadingBarProvider', cfpLoadingBarFn]);
@@ -30,6 +31,10 @@
     $locationProvider.hashPrefix('!');
   }
 
+  /**
+   * Config application routes
+   * @param $routeProvider
+   */
   function configRoutes($routeProvider) {
 
     //Index route
@@ -125,14 +130,28 @@
     };
     $routeProvider.when('/twitchChannels', twitchChannelsRouteData);
 
-    let _loginRouteData = {
-      'templateUrl': '/assets/app/templates/login.html',
-      'controller': 'mainApp.login',
-      'resolve': {
 
-      }
-    };
-    $routeProvider.when('/login', _loginRouteData);
+    // LOGIN
+    // ------------
+    $routeProvider.when('/login', {
+      'templateUrl': '/assets/app/templates/login.html',
+      'controller': 'mainApp.login.controller',
+    });
+
+    // LOGOUT
+    // ------------
+    $routeProvider.when('/logout', {
+      'template': '<div></div>',
+      'controller': ['$hs', $hs => {
+        const authService = $hs.$instantiate('mainApp.auth.service');
+        const $location = $hs.$instantiate('$location');
+        const $rs = $hs.$instantiate('$rootScope');
+
+        authService.removeCookie();
+        $location.url('/');
+        $rs.removeCurrentUser();
+      }]
+    });
 
     //404 route
     var _404RouteData = {
@@ -140,6 +159,29 @@
     };
     $routeProvider.when('/404', _404RouteData);
 
+  }
+
+  /**
+   * Manipulates httpProvider
+   * @param $httpProvider
+   * @private
+   */
+  function _$httpProvider($httpProvider) {
+    $httpProvider.interceptors.unshift(['$hs', $hs => {
+      return {
+        'request': config => {
+          const authService = $hs.$instantiate('mainApp.auth.service');
+
+          let _cookie = authService.getCookie();
+
+          if(_cookie) {
+            config.headers['Authorization'] = _cookie;
+          }
+
+          return config;
+        }
+      };
+    }]);
   }
 
   function cfpLoadingBarFn(cfpLoadingBarProvider) {

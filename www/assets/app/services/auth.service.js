@@ -29,6 +29,13 @@
       });
     };
 
+    /**
+     * Removes cookies
+     */
+    $this.removeCookie = function() {
+      $cookies.remove(COOKIE_NAME);
+    };
+
 
     /**
      * Check if user is logged in
@@ -42,6 +49,26 @@
       }
 
       return $hs.$q.likeNormal($http.get('/v1/auth/check'));
+    };
+
+    /**
+     * Logins in to the de application
+     * @param username
+     * @param password
+     * @return {Promise.<TResult>|*}
+     */
+    $this.login = function(username, password) {
+      return $hs.$q.likeNormal($http({
+        'url': '/v1/auth/login',
+        'method': 'POST',
+        'data': {
+          'username': username,
+          'password': password
+        }
+      })).then($$data => {
+        $this.setCookie('jwt ' + $$data.token);
+        return $$data;
+      });
     };
   }
 

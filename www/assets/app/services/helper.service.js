@@ -13,6 +13,7 @@
     var $q = $injector.get('$q');
     var $rs = $injector.get('$rootScope');
     var $window = $injector.get('$window');
+    const $timeout = $injector.get('$timeout');
 
     var $this = this;
 
@@ -74,6 +75,14 @@
     };
 
     $this.$q = $injector.get('helperService.$q').$setParent($this).$q;
+
+    /**
+     * Focus the required element
+     * @param elementName
+     */
+    $this.focus = function(elementName) {
+      $timeout(() => $rs.$broadcast('ngFocusOn', elementName));
+    };
   }
 
 })(angular);
