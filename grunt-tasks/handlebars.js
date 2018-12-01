@@ -1,6 +1,6 @@
 module.exports = function() {
 
-  let grunt = require('grunt');
+  const grunt = require('grunt');
   const hbsService = require('../nodeApp/services').handlebars;
 
 
@@ -9,6 +9,7 @@ module.exports = function() {
 
     try {
       await hbsService.www.renderIndex();
+      grunt.log.ok('index.html generated');
     } catch(error) {
       console.error(error);
     }

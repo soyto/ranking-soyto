@@ -22,3 +22,6 @@ config.js
 #db folder and so
 db/
 db/*
+
+#www index.html
+www/index.html
