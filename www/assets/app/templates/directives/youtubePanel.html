@@ -15,15 +15,15 @@
       <div class="panel-heading-bg">
         <div class="media">
           <div class="media-left">
-            <a data-ng-href="{{data.channel.url}}" class="thumbnail" target="_blank">
-              <img class="media-object" data-ng-src="{{ data.channel.snippet.thumbnails.medium.url }}">
+            <a data-ng-href="{!data.channel.url!}" class="thumbnail" target="_blank">
+              <img class="media-object" data-ng-src="{! data.channel.snippet.thumbnails.medium.url !}">
             </a>
           </div>
           <div class="media-body">
             <h4 class="panel-title text-center">
-              <a data-ng-href="{{data.channel.url}}" target="_blank">{{ data.channel.snippet.title }}</a>
+              <a data-ng-href="{!data.channel.url!}" target="_blank">{! data.channel.snippet.title !}</a>
             </h4>
-            <p class="panel-description">{{ data.channel.snippet.description }}</p>
+            <p class="panel-description">{! data.channel.snippet.description !}</p>
           </div>
         </div>
       </div>
@@ -32,13 +32,13 @@
     <div class="panel-body media-list">
       <div class="media" data-ng-repeat="video in data.videos">
         <div class="media-left">
-          <a data-ng-href="{{ video.url }}" target="_blank">
-            <img class="media-object" data-ng-src="{{ video.snippet.thumbnails.medium.url }}" style="max-width: 150px">
+          <a data-ng-href="{! video.url !}" target="_blank">
+            <img class="media-object" data-ng-src="{! video.snippet.thumbnails.medium.url !}" style="max-width: 150px">
           </a>
         </div>
         <div class="media-body">
-          <h4 class="video-title"><a data-ng-href="{{ video.url }}" target="_blank">{{ video.snippet.title }}</a></h4>
-          <h5 class="video-upload-date">{{ video.date|date }}</h5>
+          <h4 class="video-title"><a data-ng-href="{! video.url !}" target="_blank">{! video.snippet.title !}</a></h4>
+          <h5 class="video-upload-date">{! video.date|date !}</h5>
         </div>
       </div>
     </div>

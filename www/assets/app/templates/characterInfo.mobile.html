@@ -1,8 +1,8 @@
 <!-- Beadcrumb -->
 <ol class="breadcrumb">
   <li><a href="/#!/">Home</a></li>
-  <li><a data-ng-href="/#!/ranking/{{serverName}}">{{serverName}}</a></li>
-  <li><a data-ng-href="/#!/character/{{serverName}}/{{character.characterID}}">{{character.characterName}}</a></li>
+  <li><a data-ng-href="/#!/ranking/{!serverName!}">{!serverName!}</a></li>
+  <li><a data-ng-href="/#!/character/{!serverName!}/{!character.characterID!}">{!character.characterName!}</a></li>
 </ol><!-- /Beadcrumb -->
 
 <div class="row">
@@ -15,28 +15,28 @@
       <div class="panel-thumbnail">
 
         <!-- Image -->
-        <img src="{{character.pictureURL}}" class="img img-responsive" itemprop="image"><!-- /Image -->
+        <img src="{!character.pictureURL!}" class="img img-responsive" itemprop="image"><!-- /Image -->
 
         <!-- Social icons -->
         <div class="social-icons" data-ng-if="character.social">
 
           <!-- Facebook -->
-          <a data-ng-if="character.social.facebook" data-ng-href="{{character.social.facebook}}" target="_blank">
+          <a data-ng-if="character.social.facebook" data-ng-href="{!character.social.facebook!}" target="_blank">
             <i class="fa fa-facebook-square fa-2x"></i>
           </a><!-- /Facebook -->
 
           <!-- Youtube -->
-          <a data-ng-if="character.social.youtube" data-ng-href="{{character.social.youtube}}" target="_blank">
+          <a data-ng-if="character.social.youtube" data-ng-href="{!character.social.youtube!}" target="_blank">
             <i class="fa fa-youtube-square fa-2x"></i>
           </a><!-- /Youtube -->
 
           <!-- Twitch -->
-          <a data-ng-if="character.social.twitch" data-ng-href="{{character.social.twitch}}" target="_blank">
+          <a data-ng-if="character.social.twitch" data-ng-href="{!character.social.twitch!}" target="_blank">
             <i class="fa fa-twitch fa-2x"></i>
           </a><!-- /Twitch -->
 
           <!-- Mouseclick -->
-          <a data-ng-if="character.social.mouseClick_gearCalcID" data-ng-href="{{character.social.mouseClick_gearCalcID}}" target="_blank">
+          <a data-ng-if="character.social.mouseClick_gearCalcID" data-ng-href="{!character.social.mouseClick_gearCalcID!}" target="_blank">
             <i class="fa fa-address-card fa-2x"></i>
           </a><!-- /Mouseclick -->
 
@@ -46,9 +46,9 @@
 
       <!-- Panel body -->
       <div class="panel-body">
-        <h4><span itemprop="name">{{character.characterName}}</span> <small>{{character.raceName}} {{character.soldierRank.name}}</small></h4>
-        <h5><span itemprop="jobTitle">{{character.characterClass.name}}</span>
-          <span ng-if="character.guildName" itemprop="memberOf" itemscope itemtype="http://schema.org/Organization">of <span itemprop="name">{{character.guildName}}</span></span>
+        <h4><span itemprop="name">{!character.characterName!}</span> <small>{!character.raceName!} {!character.soldierRank.name!}</small></h4>
+        <h5><span itemprop="jobTitle">{!character.characterClass.name!}</span>
+          <span ng-if="character.guildName" itemprop="memberOf" itemscope itemtype="http://schema.org/Organization">of <span itemprop="name">{!character.guildName!}</span></span>
           <span ng-show="!character.guildName">without guild</span>
         </h5>
       </div><!-- /Panel body -->
@@ -79,16 +79,16 @@
         </div><!-- /Search form -->
 
         <!-- Loading results -->
-        <h5 data-ng-show="search.loading">Results for <b>{{ search.term }}</b>: <em>...</em></h5><!-- /Loading results -->
+        <h5 data-ng-show="search.loading">Results for <b>{! search.term !}</b>: <em>...</em></h5><!-- /Loading results -->
 
         <!-- Search results (When there is data) -->
         <div data-ng-show="!search.loading && search.results != null && search.results.length > 0">
-          <h5>Results for <b>{{ searchTerm }}</b>:</h5>
+          <h5>Results for <b>{! searchTerm !}</b>:</h5>
         </div><!-- /Search results (When there is data) -->
 
         <!-- Search results (Empty) -->
         <div data-ng-show="!search.loading && search.results != null && search.results.length === 0">
-          <h5>Results for <b>{{ search.term }}</b>: <em>No data was found</em></h5>
+          <h5>Results for <b>{! search.term !}</b>: <em>No data was found</em></h5>
         </div><!-- /Search results (Empty) -->
 
       </div><!-- /Body -->
@@ -96,16 +96,16 @@
       <!-- Search results (When there is data)-->
       <div class="list-group search-results" data-ng-show="!search.loading && search.results != null && search.results.length > 0">
         <a data-ng-repeat="searchItem in search.results" class="list-group-item search-result-item clearfix"
-           href="" data-ng-href="#!/character/{{searchItem.serverName}}/{{searchItem.id}}">
+           href="" data-ng-href="#!/character/{!searchItem.serverName!}/{!searchItem.id!}">
 
           <div class="search-result-item-heading pull-left">
-            <h4>{{searchItem.characterName}}-{{searchItem.serverName}}</h4>
-            <p class="lead"><b>Last status:</b> {{searchItem.lastStatus | date: 'MM-dd-yyyy'}}</p>
+            <h4>{!searchItem.characterName!}-{!searchItem.serverName!}</h4>
+            <p class="lead"><b>Last status:</b> {!searchItem.lastStatus | date: 'MM-dd-yyyy'!}</p>
           </div>
 
           <p class="search-result-item-text pull-right">
-            {{searchItem.raceName}} {{searchItem.characterClass.name}} <br/>
-            {{searchItem.soldierRank.name}}
+            {!searchItem.raceName!} {!searchItem.characterClass.name!} <br/>
+            {!searchItem.soldierRank.name!}
           </p>
         </a>
       </div><!-- /Search results (When there is data)-->
@@ -126,8 +126,8 @@
             </thead>
             <tbody>
             <tr ng-repeat="name in character.names">
-              <td>{{ name.date | date: 'MM/dd/yyyy' }}</td>
-              <td>{{ name.characterName }}</td>
+              <td>{! name.date | date: 'MM/dd/yyyy' !}</td>
+              <td>{! name.characterName !}</td>
             </tr>
             </tbody>
           </table>
@@ -149,8 +149,8 @@
             </thead>
             <tbody>
             <tr ng-repeat="guild in character.guilds">
-              <td>{{ guild.date | date: 'MM/dd/yyyy' }}</td>
-              <td>{{ guild.guildName }}</td>
+              <td>{! guild.date | date: 'MM/dd/yyyy' !}</td>
+              <td>{! guild.guildName !}</td>
             </tr>
             </tbody>
           </table>
@@ -180,12 +180,12 @@
             <tbody>
             <tr ng-repeat="status in pagination.current">
               <td>
-                <a ng-href="/#!/ranking/{{serverName}}/{{ status.date | date: 'MM-dd-yyyy' }}">
-                  {{ status.date | date: 'MM/dd/yyyy' }}
+                <a ng-href="/#!/ranking/{!serverName!}/{! status.date | date: 'MM-dd-yyyy' !}">
+                  {! status.date | date: 'MM/dd/yyyy' !}
                 </a>
               </td>
-              <td>{{ status.position }}</td>
-              <td>{{ status.gloryPoint }}</td>
+              <td>{! status.position !}</td>
+              <td>{! status.gloryPoint !}</td>
               <td>
                 <i class="fa" ng-class="{
                                       'fa-arrow-up': status.rankingPositionChange > 0,
@@ -193,7 +193,7 @@
                                       'fa-arrow-down': status.rankingPositionChange < 0,
                                       'text-danger': status.rankingPositionChange < 0,
                                       }"></i>
-                {{ status.rankingPositionChange }}
+                {! status.rankingPositionChange !}
               </td>
               <td>
                 <i class="fa" ng-class="{
@@ -202,9 +202,9 @@
                                       'fa-arrow-down': status.gloryPointChange < 0,
                                       'text-danger': status.gloryPointChange < 0,
                                       }"></i>
-                {{ status.gloryPointChange }}
+                {! status.gloryPointChange !}
               </td>
-              <td>{{ status.soldierRank.name }}</td>
+              <td>{! status.soldierRank.name !}</td>
             </tr>
             </tbody>
 
@@ -218,7 +218,7 @@
             </li>
 
             <li class="disabled">
-              <a herf="">{{ (pagination.currentPage + 1)}} / {{pagination.numPages}}</a>
+              <a herf="">{! (pagination.currentPage + 1)!} / {!pagination.numPages!}</a>
             </li>
 
             <li ng-class="{'disabled' : pagination.currentPage + 1 == pagination.numPages}">
@@ -242,7 +242,7 @@
     <div class="panel">
       <div class="panel-body">
         <div class="fb-comments" fb-comment-plugin
-             page-href="http://soyto.github.io/#/character/{{serverName}}/{{character.characterID}}" data-numposts="50"></div>
+             page-href="http://soyto.github.io/#/character/{!serverName!}/{!character.characterID!}" data-numposts="50"></div>
       </div>
     </div><!-- /Facebook panel -->
 

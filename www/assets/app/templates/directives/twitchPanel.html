@@ -12,17 +12,17 @@
         <!-- Media left -->
         <div class="media-left">
           <div class="thumbnail twitch-thumbnail">
-            <img class="media-object"  data-ng-src="{{ channelData.logo }}">
+            <img class="media-object"  data-ng-src="{! channelData.logo !}">
           </div>
         </div><!-- /Media left -->
 
         <div class="media-body">
 
           <h4 class="twitch-display-name text-center">
-            <a href="" data-ng-href="{{ channelData.url }}" target="_blank">{{ channelData.display_name }}</a>
+            <a href="" data-ng-href="{! channelData.url !}" target="_blank">{! channelData.display_name !}</a>
           </h4>
 
-          <h5 class="twitch-status">{{ channelData.status }}</h5>
+          <h5 class="twitch-status">{! channelData.status !}</h5>
 
           <!-- Is online or not -->
           <div class="twitch-online-status">
@@ -40,7 +40,7 @@
           </div><!-- /Is online or not -->
 
           <!-- Viewers -->
-          <div class="twitch-viewers text-right" data-ng-if="channelStream != null">{{ channelStream.viewers }} Viewers</div>
+          <div class="twitch-viewers text-right" data-ng-if="channelStream != null">{! channelStream.viewers !} Viewers</div>
 
         </div>
 

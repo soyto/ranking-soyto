@@ -8,7 +8,7 @@
 
     <!-- Last update well -->
     <div class="well well-last-update">
-      <h4>Last update: <b>{{ lastServerUpdateData }}</b></h4>
+      <h4>Last update: <b>{! lastServerUpdateData !}</b></h4>
     </div><!-- /Last update well -->
 
     <!-- Search Panel -->
@@ -37,16 +37,16 @@
         </div><!-- /Search form -->
 
         <!-- Loading results -->
-        <h5 data-ng-if="search.loading">Results for <b>{{ search.term }}</b>: <em>...</em></h5><!-- /Loading results -->
+        <h5 data-ng-if="search.loading">Results for <b>{! search.term !}</b>: <em>...</em></h5><!-- /Loading results -->
 
         <!-- Search results (When there is data) -->
         <div data-ng-if="!search.loading && search.results != null && search.results.length > 0">
-          <h5>Results for <b>{{ search.term }}</b>:</h5>
+          <h5>Results for <b>{! search.term !}</b>:</h5>
         </div><!-- /Search results (When there is data) -->
 
         <!-- Search results (Empty) -->
         <div data-ng-if="!search.loading && search.results != null && search.results.length === 0">
-          <h5>Results for <b>{{ search.term }}</b>: <em>No data was found</em></h5>
+          <h5>Results for <b>{! search.term !}</b>: <em>No data was found</em></h5>
         </div><!-- /Search results (Empty) -->
 
       </div><!-- /Body -->
@@ -55,19 +55,19 @@
       <div class="list-group search-results" data-ng-if="!search.loading && search.results != null && search.results.length > 0">
         <a data-ng-repeat="searchItem in search.results" class="list-group-item search-result-item clearfix"
            data-ng-class="{'active': $index == search.selectedIndex}"
-           data-ng-scroll-to="search-result-{{$index}}"
+           data-ng-scroll-to="search-result-{!$index!}"
            data-ng-scroll-to-offset="30"
            data-ng-scroll-to-element-margin="{'top': 40, 'bottom': 0}"
-           data-ng-href="/#!/character/{{searchItem.serverName}}/{{searchItem.id}}">
+           data-ng-href="/#!/character/{!searchItem.serverName!}/{!searchItem.id!}">
 
           <div class="search-result-item-heading pull-left">
-            <h4>{{searchItem.characterName}}-{{searchItem.serverName}}</h4>
-            <p class="lead"><b>Last status:</b> {{searchItem.lastStatus | date: 'MM-dd-yyyy'}}</p>
+            <h4>{!searchItem.characterName!}-{!searchItem.serverName!}</h4>
+            <p class="lead"><b>Last status:</b> {!searchItem.lastStatus | date: 'MM-dd-yyyy'!}</p>
           </div>
 
           <p class="search-result-item-text pull-right">
-            {{searchItem.raceName}} {{searchItem.characterClass.name}} <br/>
-            {{searchItem.soldierRank.name}}
+            {!searchItem.raceName!} {!searchItem.characterClass.name!} <br/>
+            {!searchItem.soldierRank.name!}
           </p>
         </a>
       </div><!-- /Search results (When there is data) -->
@@ -83,7 +83,7 @@
     <div class="panel panel-servers">
       <div class="panel-heading"><h4>Servers</h4></div>
       <div class="list-group">
-        <a ng-repeat="server in servers" class="list-group-item" data-ng-href="/#!/ranking/{{server.name}}">{{server.name}}</a>
+        <a ng-repeat="server in servers" class="list-group-item" data-ng-href="/#!/ranking/{!server.name!}">{!server.name!}</a>
       </div>
     </div><!-- /Servers Panel -->
 

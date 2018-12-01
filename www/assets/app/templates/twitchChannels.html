@@ -21,8 +21,8 @@
         <div class="panel-heading clearfix">
 
           <div class="pull-left">
-            <h4><a data-ng-href="/#!/character/{{itm.info.serverName}}/{{itm.info.characterID}}" style="font-size:18px">{{itm.info.characterName}}-{{itm.info.serverName}}</a></h4>
-            <h5><small>{{itm.info.soldierRank.name}} {{itm.info.characterClass.name}}</small></h5>
+            <h4><a data-ng-href="/#!/character/{!itm.info.serverName!}/{!itm.info.characterID!}" style="font-size:18px">{!itm.info.characterName!}-{!itm.info.serverName!}</a></h4>
+            <h5><small>{!itm.info.soldierRank.name!} {!itm.info.characterClass.name!}</small></h5>
 
           </div>
 
@@ -36,12 +36,12 @@
 
       <!-- Panel thumbnail -->
       <div class="panel-thumbnail">
-        <a data-ng-href="{{ itm.channel.url }}" target="_blank">
+        <a data-ng-href="{! itm.channel.url !}" target="_blank">
           <div class="panel-thumbnail-container">
             <div class="panel-thumbnail-image">
-              <img class="img img-responsive" data-ng-show="itm.isOnline" data-ng-src="{{ itm.stream.preview.large }}" />
-              <img class="img img-responsive" data-ng-show="!itm.isOnline && itm.channel.profile_banner" data-ng-src="{{ itm.channel.profile_banner }}" />
-              <img class="img img-responsive" data-ng-show="!itm.isOnline && !itm.channel.profile_banner" data-ng-src="{{ itm.info.pictureURL }}" />
+              <img class="img img-responsive" data-ng-show="itm.isOnline" data-ng-src="{! itm.stream.preview.large !}" />
+              <img class="img img-responsive" data-ng-show="!itm.isOnline && itm.channel.profile_banner" data-ng-src="{! itm.channel.profile_banner !}" />
+              <img class="img img-responsive" data-ng-show="!itm.isOnline && !itm.channel.profile_banner" data-ng-src="{! itm.info.pictureURL !}" />
             </div>
           </div>
         </a>
@@ -49,8 +49,8 @@
 
       <!-- Footer -->
       <div class="panel-footer">
-        <p>{{ itm.channel.status}}</p>
-        <p class="text-muted" data-ng-show="itm.isOnline">{{ itm.stream.viewers}} viewers in <a data-ng-href="{{ itm.channel.url }}" target="_blank">{{ itm.channel.name}}</a></p>
+        <p>{! itm.channel.status!}</p>
+        <p class="text-muted" data-ng-show="itm.isOnline">{! itm.stream.viewers!} viewers in <a data-ng-href="{! itm.channel.url !}" target="_blank">{! itm.channel.name!}</a></p>
       </div><!-- /Footer -->
 
     </div>

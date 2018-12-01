@@ -8,11 +8,11 @@
 
       <div class="panel-body" data-ng-class="{'has-error': data.$$state.global_error}">
 
-        <span class="help-block">{{ data.$$state.global_error }}</span>
+        <span class="help-block">{! data.$$state.global_error !}</span>
 
         <div class="form-group" data-ng-class="{'has-error': data.$$state.has_sent && data.username.has_error}">
-          <label class="control-label" for="{{ _NAME }}.username">Username</label>
-          <input id="{{ _NAME }}.username"
+          <label class="control-label" for="{! _NAME !}.username">Username</label>
+          <input id="{! _NAME !}.username"
                  type="text"
                  class="form-control"
                  data-ng-focus-on="_NAME + '.username'"
@@ -25,13 +25,13 @@
                  tabindex="1"
           >
           <span class="help-block" data-ng-if="data.$$state.has_sent && data.username.has_error">
-            {{ data.username.error }}
+            {! data.username.error !}
           </span>
         </div>
 
         <div class="form-group" data-ng-class="{'has-error': data.$$state.has_sent && data.password.has_error}">
-          <label class="control-label" for="{{ _NAME }}.password">Password</label>
-          <input id="{{ _NAME }}.password"
+          <label class="control-label" for="{! _NAME !}.password">Password</label>
+          <input id="{! _NAME !}.password"
                  type="password"
                  class="form-control"
                  data-ng-focus-on="_NAME + '.password'"
@@ -44,7 +44,7 @@
                  tabindex="2"
           >
           <span class="help-block" data-ng-if="data.$$state.has_sent && data.password.has_error">
-            {{ data.password.error }}
+            {! data.password.error !}
           </span>
         </div>
 

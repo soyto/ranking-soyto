@@ -123,6 +123,7 @@ module.exports = function(grunt) {
 
   //Compiles application
   grunt.registerTask('compile', [
+    'hbs-app',
     'generate-folder-dates',
     'eslint:app',
     'concat:app',
@@ -134,19 +135,6 @@ module.exports = function(grunt) {
   //Pulls from remote repo and compile em all
   grunt.registerTask('pull', [
     'git-pull',
-    'compile'
+    'compile',
   ]);
-
-  grunt.registerTask('hbs', async function() {
-    let done = this.async();
-    try {
-      const hbsService = require('./nodeApp/services').handlebars;
-
-      await hbsService.www.renderIndex();
-    } catch(error) {
-      console.error(error);
-    }
-
-    done();
-  });
 };

@@ -20,7 +20,7 @@
             'tada': data.$$state.animating && data.$$state.enchantResult == 'failure',
             'flash': data.$$state.animating && data.$$state.enchantResult == 'critical',
             }"
-         data-ng-animationend="onAnimationEnd()">{{ data.currentLevel }}</div>
+         data-ng-animationend="onAnimationEnd()">{! data.currentLevel !}</div>
 
     <div class="btn-group btn-group-justified enchant-stones" role="group">
       <div class="btn-group" role="group">
@@ -46,9 +46,9 @@
   <div class="panel-success-overlay" data-ng-if="data.$$state.completed">
     <h1 class="swing success-title animated">Congratulations</h1>
     <ul class="stone-list animated bounceIn delay-1s">
-      <li class="">Ancient stones: {{ data.usage.ancient }}</li>
-      <li>Legendary stones: {{ data.usage.legendary }}</li>
-      <li>Ultimate stones: {{ data.usage.ultimate }}</li>
+      <li class="">Ancient stones: {! data.usage.ancient !}</li>
+      <li>Legendary stones: {! data.usage.legendary !}</li>
+      <li>Ultimate stones: {! data.usage.ultimate !}</li>
     </ul>
     <button class="btn btn-link btn-reset animated zoomInDown delay-2s" data-ng-click="onClick_reset()">
       <i class="fa fa-repeat fa-3x fa-rotate-90"></i>

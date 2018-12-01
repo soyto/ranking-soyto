@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li><a href="/#!/">Home</a></li>
-  <li><a ng-href="/#!/ranking/{{serverData.serverName}}">{{serverData.serverName}}</a></li>
-  <li><a ng-href="/#!/ranking/{{serverData.serverName}}/{{serverData.date}}">{{serverData.date}}</a></li>
+  <li><a ng-href="/#!/ranking/{!serverData.serverName!}">{!serverData.serverName!}</a></li>
+  <li><a ng-href="/#!/ranking/{!serverData.serverName!}/{!serverData.date!}">{!serverData.date!}</a></li>
 </ol>
 
 <!-- If is not empty -->
@@ -56,10 +56,10 @@
         <div class="panel-heading">
           <ul class="nav nav-tabs" data-ng-init="showing='elyos'">
               <li role="presentation" data-ng-class="{active: showing=='elyos'}">
-                <a ng-click="showing='elyos'">Elyos <span ng-show="filteredData">({{elyosData.length}})</span></a>
+                <a ng-click="showing='elyos'">Elyos <span ng-show="filteredData">({!elyosData.length!})</span></a>
               </li>
               <li role="presentation" data-ng-class="{active: showing=='asmodians'}">
-                <a ng-click="showing='asmodians'">Asmodians <span ng-show="filteredData">({{asmodianData.length}})</span></a>
+                <a ng-click="showing='asmodians'">Asmodians <span ng-show="filteredData">({!asmodianData.length!})</span></a>
               </li>
           </ul>
         </div>
@@ -82,12 +82,12 @@
                   </thead>
                   <tbody>
                   <tr ng-repeat="character in elyosData">
-                      <td>{{ character.position }}</td>
-                      <td><a data-ng-href="/#!/character/{{serverData.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
-                      <td>{{ character.characterClass.name }}</td>
-                      <td>{{ character.guildName }}</td>
-                      <td>{{ character.gloryPoint }}</td>
-                      <td>{{ character.soldierRank.name }}</td>
+                      <td>{! character.position !}</td>
+                      <td><a data-ng-href="/#!/character/{!serverData.serverName!}/{!character.characterID!}">{! character.characterName !}</a></td>
+                      <td>{! character.characterClass.name !}</td>
+                      <td>{! character.guildName !}</td>
+                      <td>{! character.gloryPoint !}</td>
+                      <td>{! character.soldierRank.name !}</td>
                       <td>
                           <i class="fa" ng-class="{
                           'fa-arrow-up': character.rankingPositionChange > 0,
@@ -95,7 +95,7 @@
                           'fa-arrow-down': character.rankingPositionChange < 0,
                           'text-danger': character.rankingPositionChange < 0,
                           }"></i>
-                          {{ character.rankingPositionChange }}
+                          {! character.rankingPositionChange !}
                       </td>
                       <td>
 
@@ -105,7 +105,7 @@
                           'fa-arrow-down': character.gloryPointChange < 0,
                           'text-danger': character.gloryPointChange < 0,
                           }"></i>
-                          {{ character.gloryPointChange || '--' }}
+                          {! character.gloryPointChange || '--' !}
                       </td>
                   </tr>
                   </tbody>
@@ -120,7 +120,7 @@
                           </a>
                       </li>
                       <li ng-click="page.elyos.goTo()">
-                          <a herf="">{{ (pagination.elyos.currentPage + 1)}} / {{pagination.elyos.numPages}}</a>
+                          <a herf="">{! (pagination.elyos.currentPage + 1)!} / {!pagination.elyos.numPages!}</a>
                       </li>
                       <li class="next"ng-class="{'disabled': pagination.elyos.currentPage + 1 >= pagination.elyos.numPages }" ng-click="page.elyos.next()">
                           <a href="" aria-label="Next">Next <span aria-hidden="true">&rarr;</span></a>
@@ -147,12 +147,12 @@
                   </thead>
                   <tbody>
                   <tr ng-repeat="character in asmodianData">
-                      <td>{{ character.position }}</td>
-                      <td><a data-ng-href="/#!/character/{{serverData.serverName}}/{{character.characterID}}">{{ character.characterName }}</a></td>
-                      <td>{{ character.characterClass.name }}</td>
-                      <td>{{ character.guildName }}</td>
-                      <td>{{ character.gloryPoint }}</td>
-                      <td>{{ character.soldierRank.name }}</td>
+                      <td>{! character.position !}</td>
+                      <td><a data-ng-href="/#!/character/{!serverData.serverName!}/{!character.characterID!}">{! character.characterName !}</a></td>
+                      <td>{! character.characterClass.name !}</td>
+                      <td>{! character.guildName !}</td>
+                      <td>{! character.gloryPoint !}</td>
+                      <td>{! character.soldierRank.name !}</td>
                       <td>
                           <i class="fa" ng-class="{
                           'fa-arrow-up': character.rankingPositionChange > 0,
@@ -160,7 +160,7 @@
                           'fa-arrow-down': character.rankingPositionChange < 0,
                           'text-danger': character.rankingPositionChange < 0,
                           }"></i>
-                          {{ character.rankingPositionChange }}
+                          {! character.rankingPositionChange !}
                       </td>
                       <td>
                         <i class="fa" ng-class="{
@@ -169,7 +169,7 @@
                           'fa-arrow-down': character.gloryPointChange < 0,
                           'text-danger': character.gloryPointChange < 0,
                           }"></i>
-                          {{ character.gloryPointChange || '--'}}
+                          {! character.gloryPointChange || '--'!}
                       </td>
                   </tr>
                   </tbody>
@@ -184,7 +184,7 @@
                           </a>
                       </li>
                       <li ng-click="page.asmodians.goTo()">
-                          <a herf="">{{ (pagination.asmodians.currentPage + 1)}} / {{pagination.asmodians.numPages}}</a>
+                          <a herf="">{! (pagination.asmodians.currentPage + 1)!} / {!pagination.asmodians.numPages!}</a>
                       </li>
                       <li class="next"ng-class="{'disabled': pagination.asmodians.currentPage + 1 >= pagination.asmodians.numPages }" ng-click="page.asmodians.next()">
                           <a href="" aria-label="Next">Next <span aria-hidden="true">&rarr;</span></a>
