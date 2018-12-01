@@ -158,7 +158,7 @@
     let _script = await $fs.read($path.join($config.folders.dbScripts, '0.0.1.sql'));
 
     //Spit script with special comments
-    let _fragments = _script.split('---- #\n');
+    let _fragments = _script.split('---- #');
 
     //Execute each fragment
     for(let $$fragment of _fragments) {
