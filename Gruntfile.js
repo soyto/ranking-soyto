@@ -98,15 +98,18 @@ module.exports = function(grunt) {
       files: $config.files.app_files,
       tasks: [
         'eslint:app',
-        'concat:app',
-        'babel:app',
-        'uglify:app'
       ]
     },
     'sass': {
       'files': ['www/assets/scss/**/*.scss'],
       'tasks': [
         'sass'
+      ]
+    },
+    'hbs': {
+      'files': ['nodeApp/templates/www/**/*.hbs'],
+      'tasks': [
+        'hbs-app'
       ]
     }
   };
