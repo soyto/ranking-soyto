@@ -25,3 +25,7 @@ db/*
 
 #www index.html
 www/index.html
+
+#App templates
+www/assets/app/templates
+www/assets/app/templates/
