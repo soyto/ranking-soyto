@@ -26,12 +26,10 @@
     .config(['$routeProvider', configRoutes])
     .config(['cfpLoadingBarProvider', cfpLoadingBarFn]);
 
-
   function _$interpolateProvider($interpolateProvider) {
     $interpolateProvider.startSymbol('{!');
     $interpolateProvider.endSymbol('!}');
   }
-
 
   /**
    * Manipulates httpProvider
@@ -55,7 +53,6 @@
       };
     }]);
   }
-
 
   function _configHtml5Mode($locationProvider) {
     $locationProvider.html5Mode(true);
@@ -166,22 +163,14 @@
     // ------------
     $routeProvider.when('/login', {
       'templateUrl': '/assets/app/templates/login.html',
-      'controller': 'mainApp.login.controller',
+      'controller': 'mainApp.auth.login.controller',
     });
 
     // LOGOUT
     // ------------
     $routeProvider.when('/logout', {
       'template': '<div></div>',
-      'controller': ['$hs', $hs => {
-        const authService = $hs.$instantiate('mainApp.auth.service');
-        const $location = $hs.$instantiate('$location');
-        const $rs = $hs.$instantiate('$rootScope');
-
-        authService.removeCookie();
-        $location.url('/');
-        $rs.removeCurrentUser();
-      }]
+      'controller': 'mainApp.auth.logout.controller'
     });
 
     //404 route
@@ -191,8 +180,6 @@
     $routeProvider.when('/404', _404RouteData);
 
   }
-
-
 
   function cfpLoadingBarFn(cfpLoadingBarProvider) {
     cfpLoadingBarProvider['includeSpinner'] = false;

@@ -1,6 +1,6 @@
 ((ng) => {
 
-  const CONTROLLER_NAME = 'mainApp.login.controller';
+  const CONTROLLER_NAME = 'mainApp.auth.login.controller';
 
   ng.module('mainApp').controller(CONTROLLER_NAME, ['$hs', '$scope', _fn]);
 
