@@ -107,7 +107,7 @@ Fs.prototype.unlink = function(path) {
  */
 Fs.prototype.mkdir = function(path) {
   return new Promise((resolve, reject) => {
-    $fs.mkdir(path, (error) => {
+    $fs.mkdir(path, {'recursive': true}, (error) => {
       if(error) { return reject(error); }
       else { return resolve(); }
     });

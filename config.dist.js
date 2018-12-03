@@ -151,5 +151,11 @@
    */
   $config.files.gruntTasks_files = grunt.file.expand($path.join($config.folders.gruntTasks, '**/**.js'));
 
+  /**
+   * Node app hbs files
+   * @type {void|*}
+   */
+  $config.files.nodeApp_hbs_files = grunt.file.expand($path.join($config.folders.templates, 'www', '**/*.hbs'));
+
   module.exports = $config;
 })();

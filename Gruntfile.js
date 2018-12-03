@@ -107,7 +107,7 @@ module.exports = function(grunt) {
       ]
     },
     'hbs': {
-      'files': ['nodeApp/templates/www/**/*.hbs'],
+      'files': $config.files.nodeApp_hbs_files,
       'tasks': [
         'hbs-app'
       ]

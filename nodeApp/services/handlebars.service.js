@@ -24,6 +24,10 @@
 
     }
 
+    /**
+     * Renders Index
+     * @return {Promise.<void>}
+     */
     async renderIndex() {
       let _templateInputLocation = $path.join($config.folders.templates, 'www', 'index.hbs');
       let _templateOutputLocation = $path.join($config.folders.www, 'index.html');
@@ -33,13 +37,54 @@
       };
 
       if($config.server.debug_mode) {
-        _data.app_scripts = $config.files.app_files.map(_mapFile);
+        _data.app_scripts = $config.files.app_files.map(_mapScript);
       }
       else {
-        _data.app_scripts = [$config.files.uglify_dest].map(_mapFile);
+        _data.app_scripts = [$config.files.uglify_dest].map(_mapScript);
       }
 
       return await _render(_templateInputLocation, _templateOutputLocation, _data);
+    }
+
+
+    async renderAll() {
+
+
+      for(let file of $config.files.nodeApp_hbs_files) {
+
+        //Main index file has some special needs
+        if(file == $path.join($config.folders.templates, 'www', 'index.hbs')) {
+          $log.debug('Rendering [%s]', $path.join($config.folders.www, 'index.html'));
+          await this.renderIndex();
+        }
+        else {
+
+          let _inputFilePath = file.split('/');
+          let _inputFileName = _inputFilePath.splice(_inputFilePath.length -1)[0];
+          _inputFilePath = _inputFilePath.join('/');
+
+          let _outputFilePath = _inputFilePath;
+          let _outputFileName = _inputFileName;
+
+          _outputFilePath = _outputFilePath.replace(
+            $path.join($config.folders.templates, 'www', 'templates'),
+            $path.join($config.folders.www, 'assets', 'app', 'templates')
+          );
+
+          //Create output file path if not exists
+          if(!(await $fs.exists(_outputFilePath))) {
+            await $fs.mkdir(_outputFilePath);
+          }
+
+          //Change hbs extension with html
+          _outputFileName = _outputFileName.replace(/\.hbs$/, '.html');
+
+          let _destinationFile = $path.join(_outputFilePath, _outputFileName);
+
+          $log.debug('Rendering [%s]', _destinationFile);
+          await _render(file, _destinationFile, {});
+        }
+      }
     }
   }
 
@@ -49,7 +94,7 @@
    * @returns {*}
    * @private
    */
-  function _mapFile(file) {
+  function _mapScript(file) {
     return file.replace('www', '').replace(/\\/g, '/');
   }
 

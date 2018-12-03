@@ -146,9 +146,9 @@
         </li>
 
         {{!-- If user is logged in --}}
-        <li data-ng-cloak data-ng-if="user">
+        <li data-ng-cloak data-ng-if="data.currentUser.value">
           <a class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-user"></i> {!user.username!}
+            <i class="fa fa-user"></i> {! data.currentUser.value.username !}
           </a>
           <ul class="dropdown-menu">
             <li>

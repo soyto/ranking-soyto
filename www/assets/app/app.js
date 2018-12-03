@@ -162,7 +162,7 @@
     // LOGIN
     // ------------
     $routeProvider.when('/login', {
-      'templateUrl': '/assets/app/templates/login.html',
+      'templateUrl': '/assets/app/templates/auth/login.html',
       'controller': 'mainApp.auth.login.controller',
     });
 
@@ -171,6 +171,27 @@
     $routeProvider.when('/logout', {
       'template': '<div></div>',
       'controller': 'mainApp.auth.logout.controller'
+    });
+
+    // ADMIN  index
+    // ------------
+    $routeProvider.when('/admin', {
+      'templateUrl': '/assets/app/templates/admin/index.html',
+      'controller': 'mainApp.admin.index.controller',
+      'resolve': {
+        'user': ['$rootScope', '$location', function($rs, $location) {
+          return $rs.getCurrentUser().then(user => {
+            if(user.role !== 'ADMIN') {
+              $location.url('/');
+              return null;
+            }
+
+            return user;
+          }).catch(() => {
+            $location.url('/');
+          });
+        }]
+      }
     });
 
     //404 route

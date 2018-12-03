@@ -8,8 +8,7 @@ module.exports = function() {
     let done = this.async();
 
     try {
-      await hbsService.www.renderIndex();
-      grunt.log.ok('index.html generated');
+      await hbsService.www.renderAll();
     } catch(error) {
       console.error(error);
     }

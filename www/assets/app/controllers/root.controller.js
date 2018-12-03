@@ -1,7 +1,5 @@
-(function(ng){
-  'use strict';
-
-  var CONTROLLER_NAME = 'mainApp.main.controller';
+(ng => {
+  const CONTROLLER_NAME = 'mainApp.main.controller';
 
   ng.module('mainApp').controller(CONTROLLER_NAME,['$hs', _fn]);
 
@@ -19,58 +17,88 @@
 
     const authService = $hs.$instantiate('mainApp.auth.service');
 
-    $rs['_name'] = CONTROLLER_NAME;
-    $rs['$$currentPath'] = $location.path();
+
+    let _data = {
+      'currentUser': {
+        'value': null,
+        'promise': null
+      }
+    };
+
+    _init();
+
+    /*--------------------------------------------  SCOPE FUNCTIONS  -------------------------------------------------*/
 
 
     /**
-     * Sets current user on global scope
-     * @param user
+     * Gets current user
+     * @return {*}
      */
-    $rs.setCurrentUser = function(user) {
-      $rs.user = user;
+    $rs.getCurrentUser = function() {
+      return _data.currentUser.promise.then(() => {
+        return _data.currentUser.value;
+      });
     };
 
     /**
      * Removes current user
      */
     $rs.removeCurrentUser = function() {
-      delete $rs.user;
+      delete _data.currentUser.value;
     };
 
+    /*--------------------------------------------  PRIVATE FUNCTIONS  -------------------------------------------------*/
 
-    $rs.$on('$routeChangeStart', function(event){
-      cfpLoadingBar.start();
-      $rs['oggs'] = [];
-    });
+    function _init() {
+      $rs._NAME = CONTROLLER_NAME;
+      $rs.$$currentPath = $location.path();
 
-    $rs.$on('$viewContentLoaded', function(event){
-      cfpLoadingBar.complete();
-      $window.ga('send', 'pageview', {'page': $location.path() });
-      $rs['$$currentPath'] = $location.path();
-    });
+      $rs.data = _data;
 
-    if(!$cookies.get('gdprPolicy')) {
-      $uibModal.open({
-        'animation': false,
-        'template': $templateCache.get('gdprPolicy.modal.tpl.html'),
-        'size': 'lg',
-        'backdrop': 'static',
-        'controller': ['$uibModalInstance', '$scope', function($instance, $msc) {
-          $msc.onClick_confirm = function() {
-            $instance.close();
-          };
-        }]
-      }).result.then(function() {
-        $cookies.put('gdprPolicy', true, {'expires': $moment().add('months', 3). toDate() });
+      _data.currentUser.promise = _getCurrentUser();
+
+      if(!$cookies.get('gdprPolicy')) {
+        $uibModal.open({
+          'animation': false,
+          'template': $templateCache.get('gdprPolicy.modal.tpl.html'),
+          'size': 'lg',
+          'backdrop': 'static',
+          'controller': ['$uibModalInstance', '$scope', function($instance, $msc) {
+            $msc.onClick_confirm = function() {
+              $instance.close();
+            };
+          }]
+        }).result.then(function() {
+          $cookies.put('gdprPolicy', true, {'expires': $moment().add('months', 3). toDate() });
+        });
+      }
+    }
+
+    /**
+     * Retrieves current user from service
+     * @return {Promise.<TResult>}
+     * @private
+     */
+    function _getCurrentUser() {
+      return authService.check().then(userData => {
+        _data.currentUser.value = userData;
       });
     }
 
+    /*--------------------------------------------  WATCHER FUNCTIONS  -------------------------------------------------*/
 
-    //Check if there is an user logged in
-    authService.check().then(userData => {
-      $rs.setCurrentUser(userData);
+    /*--------------------------------------------  EVENT FUNCTIONS  -------------------------------------------------*/
+
+    $rs.$on('$routeChangeStart', event => {
+      cfpLoadingBar.start();
     });
+
+    $rs.$on('$viewContentLoaded', event => {
+      cfpLoadingBar.complete();
+      $window.ga('send', 'pageview', {'page': $location.path() });
+      $rs.$$currentPath = $location.path();
+    });
+
   }
 
 })(angular);
