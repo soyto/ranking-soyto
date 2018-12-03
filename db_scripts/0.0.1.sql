@@ -8,6 +8,21 @@ CREATE TABLE USERS(
 
 ---- #
 
+CREATE TABLE CHARACTERS(
+  uuid VARCHAR(255) PRIMARY KEY NOT NULL,
+  serverName VARCHAR(255) NOT NULL,
+  characterId INT NOT NULL,
+  profile_pic_url VARCHAR(255),
+  facebook_url VARCHAR(255),
+  twitch_url VARCHAR(255),
+  youtube_url VARCHAR(255),
+  mouseClick_gearCalc_url VARCHAR(255),
+  hide_old_names BOOLEAN,
+  hide_old_legions BOOLEAN
+);
+
+---- #
+
 CREATE TABLE VERSION(
   version VARCHAR(255) PRIMARY KEY NOT NULL
 );
