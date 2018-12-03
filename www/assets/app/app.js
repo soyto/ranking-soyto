@@ -65,6 +65,19 @@
    */
   function configRoutes($routeProvider) {
 
+    let _checkIfIsAdmin = ['$rootScope', '$location', function($rs, $location) {
+      return $rs.getCurrentUser().then(user => {
+        if(user.role !== 'ADMIN') {
+          $location.url('/');
+          return null;
+        }
+
+        return user;
+      }).catch(() => {
+        $location.url('/');
+      });
+    }];
+
     //Index route
     var _indexRouteData = {
       'templateUrl': '/assets/app/templates/index.html',
@@ -179,20 +192,20 @@
       'templateUrl': '/assets/app/templates/admin/index.html',
       'controller': 'mainApp.admin.index.controller',
       'resolve': {
-        'user': ['$rootScope', '$location', function($rs, $location) {
-          return $rs.getCurrentUser().then(user => {
-            if(user.role !== 'ADMIN') {
-              $location.url('/');
-              return null;
-            }
-
-            return user;
-          }).catch(() => {
-            $location.url('/');
-          });
-        }]
+        'user': _checkIfIsAdmin
       }
     });
+
+    // ADMIN characters
+    // ------------
+    $routeProvider.when('/admin/characters', {
+      'templateUrl': '/assets/app/templates/admin/characters.html',
+      'controller': 'mainApp.admin.characters.controller',
+      'resolve': {
+        'user': _checkIfIsAdmin
+      }
+    });
+
 
     //404 route
     var _404RouteData = {
