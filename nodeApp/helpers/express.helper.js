@@ -13,6 +13,16 @@
       response.json({
         'message': message,
       });
+      response.end();
+    }
+
+    /**
+     * Helps sending not found
+     * @param response
+     */
+    notFound(response) {
+      response.status(404);
+      response.end();
     }
   }
 
