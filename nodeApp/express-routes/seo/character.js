@@ -6,6 +6,8 @@ const $log = require('../../helpers').log;
 const $seo = require('../../helpers').seo;
 const express = require('express');
 const Handlebars = require('handlebars');
+const characterService = require('../../services').character;
+
 require('../../handlebars_helpers');
 
 let router = express.Router();
@@ -22,8 +24,8 @@ router.get('/:serverName/:characterID', async (req, res) => {
       return res.status(404).end();
     }
 
-    let _characterPic = (await $fs.readJSON($config.files.characterPics)).filter(x => x.characterID == req.params.characterID && x.serverName == req.params.serverName).shift();
-    let _characterSocial = (await $fs.readJSON($config.files.characterSocial)).filter(x => x.characterID == req.params.characterID && x.serverName == req.params.serverName).shift();
+    let _dbCharacterData = await characterService.get(req.params.serverName, req.params.characterID);
+
     let _template = Handlebars.compile(await $fs.read($path.join($config.folders.templates, 'seo', 'characterInfo.hbs')));
 
     let _result = _template({
@@ -31,9 +33,14 @@ router.get('/:serverName/:characterID', async (req, res) => {
       'description': $seo.character.description(_characterData),
       'keywords': $seo.character.keywords(_characterData),
       'character': _characterData,
-      'picture': _getPicture(_characterPic, _characterData),
-      'social': _characterSocial
+      'picture': _getPicture(_dbCharacterData.profile_pic_url, _characterData),
+      'social': {}
     });
+
+    _result.social.facebook = _dbCharacterData.facebook_url;
+    _result.social.twitch = _dbCharacterData.twitch_url;
+    _result.social.youtube = _dbCharacterData.youtube_url;
+    _result.social.mouseClick_gearCalcID = _dbCharacterData.mouseClick_gearCalc_url;
 
     res.send(_result);
 
@@ -45,7 +52,7 @@ router.get('/:serverName/:characterID', async (req, res) => {
 
 function _getPicture(characterPic, characterData) {
   if(characterPic) {
-    return characterPic.pic;
+    return characterPic;
   }
   else if(characterData) {
     return '//placehold.it/450X300/DD66DD/EE77EE/?text=' + encodeURI(characterData.characterName);
