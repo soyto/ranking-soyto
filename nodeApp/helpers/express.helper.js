@@ -24,6 +24,12 @@
       response.status(404);
       response.end();
     }
+
+    error(response, error) {
+      response.status(500);
+      response.json(error);
+      response.end();
+    }
   }
 
 

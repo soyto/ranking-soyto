@@ -5,7 +5,7 @@
     {
       "type": "Project",
       "id": "6dc1acca-90a5-4863-afaf-74e1c746ecf7",
-      "lastModified": "2018-12-04T11:21:07.186+01:00",
+      "lastModified": "2018-12-04T17:15:05.486+01:00",
       "name": "ranking-soyto"
     },
     {
@@ -88,6 +88,233 @@
         "ownerId": "google-oauth2|102077457322996692140"
       },
       "parentId": "dc179bfb-1847-495a-8f2b-45d53dc85062"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/characters/"
+      },
+      "id": "9d00fad2-bbf4-4b58-b3c4-e385e49258aa",
+      "lastModified": "2018-12-04T16:58:00.166+01:00",
+      "name": "GET-ALL Authorized",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMzFhYjA5ZDAtZjMwYy0xMWU4LTk4MjMtNzVlNzhlOTA5YjNkIiwiaWF0IjoxNTQzNDIyNDkyfQ.XfkJk-IGN587THlo09rcPp1SAY845g1IENcx4GnxQgA"
+        },
+        {
+          "enabled": true,
+          "name": "",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "dc179bfb-1847-495a-8f2b-45d53dc85062"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "page",
+              "value": "a"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/characters"
+      },
+      "id": "4e53adec-44bf-478b-b2fd-e2b8df8aebf8",
+      "lastModified": "2018-12-04T17:15:05.487+01:00",
+      "name": "GET-ALL Authorized get invalid page value",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMzFhYjA5ZDAtZjMwYy0xMWU4LTk4MjMtNzVlNzhlOTA5YjNkIiwiaWF0IjoxNTQzNDIyNDkyfQ.XfkJk-IGN587THlo09rcPp1SAY845g1IENcx4GnxQgA"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "dc179bfb-1847-495a-8f2b-45d53dc85062"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "page",
+              "value": "2"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/characters"
+      },
+      "id": "f7146722-6c00-4e12-8e2d-4ef09cf255e3",
+      "lastModified": "2018-12-04T17:14:35.682+01:00",
+      "name": "GET-ALL Authorized get page 2",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMzFhYjA5ZDAtZjMwYy0xMWU4LTk4MjMtNzVlNzhlOTA5YjNkIiwiaWF0IjoxNTQzNDIyNDkyfQ.XfkJk-IGN587THlo09rcPp1SAY845g1IENcx4GnxQgA"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "dc179bfb-1847-495a-8f2b-45d53dc85062"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/characters/"
+      },
+      "id": "097d40ed-769d-417c-af6d-9c9befa62f85",
+      "lastModified": "2018-12-04T16:58:21.804+01:00",
+      "name": "GET-ALL Unauthorized",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "dc179bfb-1847-495a-8f2b-45d53dc85062"
+    },
+    {
+      "type": "Service",
+      "id": "122c8344-9d31-49d8-81df-b55504263c64",
+      "lastModified": "2018-12-04T12:39:25.670+01:00",
+      "name": "Twitch",
+      "parentId": "6dc1acca-90a5-4863-afaf-74e1c746ecf7"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/twitch"
+      },
+      "id": "bd458e3b-48e6-4ab0-954e-94c917faf632",
+      "lastModified": "2018-12-04T12:39:46.130+01:00",
+      "name": "Get",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "122c8344-9d31-49d8-81df-b55504263c64"
     },
     {
       "type": "Service",

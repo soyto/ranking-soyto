@@ -3,6 +3,7 @@
   const $config = require('../../config');
   const Character = require('../models').Character;
   const $dbConnection = require('./index').database.connection;
+  const Pagination = require('../helpers').SQL.Pagination;
 
   class CharacterService {
     constructor() {
@@ -35,17 +36,14 @@
      * @param limit
      * @return {Promise.<void>}
      */
-    async getAll(filters, orderby, limit) {
+    async getAll(filters, orderby, pagination) {
 
       let SQL = 'SELECT * FROM CHARACTERS ';
       let params = [];
 
       //If there is no limit
-      if(!limit) {
-        limit = {
-          'elementsPerPage': 20,
-          'page': 0
-        };
+      if(!pagination || !(pagination instanceof Pagination)) {
+        pagination = new Pagination(20, 0);
       }
 
       //If we have filters
@@ -71,8 +69,8 @@
       }
 
       SQL += 'LIMIT ?,?';
-      params.push(limit.elementsPerPage * limit.page);
-      params.push(limit.elementsPerPage * (limit.page + 1));
+      params.push(pagination.startIndex);
+      params.push(pagination.endIndex);
 
       let result = await $dbConnection.all(SQL, params);
 
