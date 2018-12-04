@@ -224,6 +224,16 @@
       });
     };
 
+    /**
+     * Gets twitch cahracters
+     */
+    $this.getTwitchCharacters = function() {
+      return $hs.$q.likeNormal($http({
+        'url': '/v1/twitch',
+        'method': 'GET'
+      }));
+    };
+
     //Retrieve last date
     function _getLastDate() {
       return $this.storedDates[$this.storedDates.length - 1];

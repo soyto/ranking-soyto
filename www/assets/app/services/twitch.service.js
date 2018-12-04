@@ -17,6 +17,16 @@
 
     //Retrieves twitch channel
     $this.getChannel = function(channelId) {
+
+      let _channel = null;
+
+      if(Array.isArray(channelId)) {
+        _channel = channelId.join(',');
+      }
+      else {
+        _channel = channelId;
+      }
+
       return $q.likeNormal($http({
         'ignoreLoadingBar': true,
         'url': 'https://api.twitch.tv/kraken/channels/' + channelId,

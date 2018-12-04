@@ -1,4 +1,5 @@
 (async () => {
+
   const $log = require('./nodeApp/helpers').log;
   const $config = require('./config');
   const express = require('express');

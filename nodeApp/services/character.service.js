@@ -49,12 +49,14 @@
       }
 
       //If we have filters
-      if(filters && typeof(filters) == 'object') {
+      if(filters && filters.length) {
         SQL += 'WHERE ';
-        for(let key of Object.keys(filters)) {
-          SQL += '?=? ';
-          params.push(key);
-          params.push(filters[key]);
+
+        for(let filter of filters) {
+          let _filterResult = filter.apply();
+
+          SQL += _filterResult.SQL + ' ';
+          params = params.concat(_filterResult.params);
         }
       }
 
@@ -118,6 +120,8 @@
 
     }
   }
+
+
 
   /**
    * Creates a character given an object

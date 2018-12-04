@@ -23,6 +23,7 @@
   //Authorization users
   router.use('/auth/', require('./auth'));
   router.use('/characters', require('./characters'));
+  router.use('/twitch', require('./twitch'));
 
   module.exports = router;
 })();

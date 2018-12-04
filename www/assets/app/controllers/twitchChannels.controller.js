@@ -45,29 +45,86 @@
         .setKeywords('soyto aion ranking pvp characters')
         .setNav('twitchChannels');
 
-      characterSocialService.getGithubSocialData().then(function($$data) {
+      storedDataService.getTwitchCharacters().then($$data => {
 
-        $$data['characterSocial']
-          .where(function(x){ return x['buttons']['twitch'] != null; })
-          .forEach(function(x) { _data['streams'].push({
+        _data.streams = $$data.map(x => {
+          return {
             'character': x,
-            'info': null,
             'channel_id': null,
             'channel': null,
             'stream': null,
             'isOnline': false
-          }); });
+          };
+        }).map(x => {
+          x.character.soldierRank = storedDataService.getCharacterRank(x.character.soldierRankID);
+          x.character.characterClass = storedDataService.getCharacterClass(x.character.characterClassID);
+          return x;
+        });
 
+      }).then(_setUpStreams)
+        .then(() => _data.$$state.loading = false);
+    }
 
-        _setUpStreams().then(function(){
-          _data['$$state']['loading'] = false;
+    function _setUpStreams() {
+      let _$$q = $hs.$q.resolve();
+
+      let _promises = [];
+
+      //Update all channels
+      for(let stream of _data.streams) {
+        let _twitchName = stream.character.social.twitch.split('/')[3];
+
+        _promises.push(twitchService.getChannel(_twitchName)
+          .then($$twitchChannel => {
+            stream.channel = $$twitchChannel;
+            stream.channel_id = $$twitchChannel._id;
+          }).catch(x => {
+            stream.has_error = true;
+          }));
+      }
+
+      //Wait for all
+      _$$q = _$$q.then(() => $hs.$q.all(_promises));
+
+      //Remove streams with error
+      _$$q = _$$q.then(() => {
+        _data.streams = _data.streams.filter(x => !x.has_error);
+      });
+
+      //Get if streams are online or not
+      _$$q = _$$q.then(() => {
+        let _twitchChannels = _data.streams.map(x => x.character.social.twitch.split('/')[3]);
+
+        return twitchService.getOnlinePeople(_twitchChannels)
+          .then($$twitchStreams => {
+            for(let $$twitchStream of $$twitchStreams.streams) {
+              let _$$stream = _data.streams.filter(x => x.channel_id == $$twitchStream.channel._id).shift();
+
+              if(_$$stream) {
+                _$$stream.channel = $$twitchStreams.streams[0].channel;
+                _$$stream.stream = $$twitchStreams.streams[0];
+                _$$stream.isOnline = true;
+              }
+            }
+
+          });
+      });
+
+      //Sort streams
+      _$$q = _$$q.then(() => {
+        _data.streams.sort((a, b) => {
+          if(a.isOnline && !b.isOnline) { return -1; }
+          if(!a.isOnline && b.isOnline) { return 1; }
+
+          return a.character.characterName.localeCompare(b.character.characterName);
         });
       });
 
+      return _$$q;
     }
 
     //Set up the streams
-    function _setUpStreams() {
+    function _setUpStreams_deprecated() {
 
       var _$q = $q.resolve();
 

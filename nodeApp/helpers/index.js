@@ -9,4 +9,5 @@
 
   module.exports.express = require('./express.helper');
 
+  module.exports.SQL = require('./SQL');
 })();
