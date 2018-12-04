@@ -5,14 +5,14 @@
     {
       "type": "Project",
       "id": "6dc1acca-90a5-4863-afaf-74e1c746ecf7",
-      "lastModified": "2018-11-29T09:58:53.727+01:00",
+      "lastModified": "2018-12-04T11:21:07.186+01:00",
       "name": "ranking-soyto"
     },
     {
       "type": "Service",
-      "id": "fad5df66-2346-4dad-aa53-3fc9f8d22d4f",
-      "lastModified": "2018-11-29T09:58:06.876+01:00",
-      "name": "auth/check",
+      "id": "dc179bfb-1847-495a-8f2b-45d53dc85062",
+      "lastModified": "2018-12-04T09:34:05.627+01:00",
+      "name": "Character",
       "parentId": "6dc1acca-90a5-4863-afaf-74e1c746ecf7"
     },
     {
@@ -41,10 +41,91 @@
           "version": "V11"
         },
         "host": "ranking.soyto.localhost",
+        "path": "/v1/characters/Antriksha/161318"
+      },
+      "id": "ff4de1fe-5144-403b-bcfe-c1d108167d66",
+      "lastModified": "2018-12-04T09:46:32.439+01:00",
+      "name": "GET existent",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "dc179bfb-1847-495a-8f2b-45d53dc85062"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/characters/Hellion/32633346"
+      },
+      "id": "c99fc76d-22ac-43b2-807e-9fbe94da58df",
+      "lastModified": "2018-12-04T09:45:12.680+01:00",
+      "name": "GET non existent",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "dc179bfb-1847-495a-8f2b-45d53dc85062"
+    },
+    {
+      "type": "Service",
+      "id": "fad5df66-2346-4dad-aa53-3fc9f8d22d4f",
+      "lastModified": "2018-11-29T09:58:06.876+01:00",
+      "name": "auth/check",
+      "parentId": "6dc1acca-90a5-4863-afaf-74e1c746ecf7"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Raw",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
         "path": "/v1/auth/check"
       },
       "id": "8351f15e-036c-4754-824f-dd4b83815d5c",
-      "lastModified": "2018-11-29T09:58:21.014+01:00",
+      "lastModified": "2018-11-29T10:02:28.484+01:00",
       "name": "Check success",
       "headers": [
         {
@@ -54,7 +135,7 @@
         }
       ],
       "metaInfo": {
-        "ownerId": "github|13250982"
+        "ownerId": "google-oauth2|102077457322996692140"
       },
       "parentId": "fad5df66-2346-4dad-aa53-3fc9f8d22d4f"
     },
@@ -97,7 +178,7 @@
         }
       ],
       "metaInfo": {
-        "ownerId": "github|13250982"
+        "ownerId": "google-oauth2|102077457322996692140"
       },
       "parentId": "fad5df66-2346-4dad-aa53-3fc9f8d22d4f"
     },
@@ -134,202 +215,16 @@
       "name": "Check without Authorization Header",
       "headers": [],
       "metaInfo": {
-        "ownerId": "github|13250982"
+        "ownerId": "google-oauth2|102077457322996692140"
       },
       "parentId": "fad5df66-2346-4dad-aa53-3fc9f8d22d4f"
     },
     {
-      "type": "Scenario",
-      "id": "68eebbf2-bc3f-43f6-b8cd-681840eb3a2e",
-      "lastModified": "2018-11-29T09:58:05.315+01:00",
+      "type": "Service",
+      "id": "edf7fe8a-241a-40cc-a0ad-e2fda78365f4",
+      "lastModified": "2018-12-04T11:21:07.187+01:00",
       "name": "auth/login",
-      "requestOrder": [
-        "Login success",
-        "Login without parameters",
-        "Login non existent user",
-        "Login bad password",
-        "Check succesfully",
-        "Check unsucessfull",
-        "Check successfull"
-      ],
       "parentId": "6dc1acca-90a5-4863-afaf-74e1c746ecf7"
-    },
-    {
-      "type": "Request",
-      "method": {
-        "requestBody": true,
-        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
-        "name": "POST"
-      },
-      "body": {
-        "formBody": {
-          "overrideContentType": true,
-          "encoding": "application/x-www-form-urlencoded",
-          "items": [
-            {
-              "enabled": true,
-              "type": "Text",
-              "name": "password",
-              "value": "12345"
-            },
-            {
-              "enabled": true,
-              "type": "Text",
-              "name": "username",
-              "value": "admin"
-            }
-          ]
-        },
-        "bodyType": "Text",
-        "autoSetLength": true,
-        "textBodyEditorHeight": 254,
-        "textBody": "{\n  \"username\": \"admin\",\n  \"password\": \"1234\"\n}"
-      },
-      "headersType": "Form",
-      "uri": {
-        "query": {
-          "delimiter": "&",
-          "items": []
-        },
-        "scheme": {
-          "name": "http",
-          "version": "V11"
-        },
-        "host": "ranking.soyto.localhost",
-        "path": "/v1/auth/login"
-      },
-      "id": "7a7d4833-504e-434d-ba36-bea9eb81987e",
-      "lastModified": "2018-11-28T16:04:50.982+01:00",
-      "name": "Login success",
-      "headers": [
-        {
-          "enabled": true,
-          "name": "Content-Type",
-          "value": "application/json"
-        }
-      ],
-      "metaInfo": {
-        "ownerId": "github|13250982"
-      },
-      "parentId": "68eebbf2-bc3f-43f6-b8cd-681840eb3a2e"
-    },
-    {
-      "type": "Request",
-      "method": {
-        "requestBody": true,
-        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
-        "name": "POST"
-      },
-      "body": {
-        "formBody": {
-          "overrideContentType": true,
-          "encoding": "application/x-www-form-urlencoded",
-          "items": [
-            {
-              "enabled": true,
-              "type": "Text",
-              "name": "password",
-              "value": "12345"
-            },
-            {
-              "enabled": true,
-              "type": "Text",
-              "name": "username",
-              "value": "admin"
-            }
-          ]
-        },
-        "bodyType": "Text",
-        "autoSetLength": true,
-        "textBodyEditorHeight": 254,
-        "textBody": ""
-      },
-      "headersType": "Form",
-      "uri": {
-        "query": {
-          "delimiter": "&",
-          "items": []
-        },
-        "scheme": {
-          "name": "http",
-          "version": "V11"
-        },
-        "host": "ranking.soyto.localhost",
-        "path": "/v1/auth/login"
-      },
-      "id": "a4049275-7699-41f9-bac7-8316852c5fd1",
-      "lastModified": "2018-11-28T16:04:53.257+01:00",
-      "name": "Login without parameters",
-      "headers": [
-        {
-          "enabled": true,
-          "name": "Content-Type",
-          "value": "application/json"
-        }
-      ],
-      "metaInfo": {
-        "ownerId": "github|13250982"
-      },
-      "parentId": "68eebbf2-bc3f-43f6-b8cd-681840eb3a2e"
-    },
-    {
-      "type": "Request",
-      "method": {
-        "requestBody": true,
-        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
-        "name": "POST"
-      },
-      "body": {
-        "formBody": {
-          "overrideContentType": true,
-          "encoding": "application/x-www-form-urlencoded",
-          "items": [
-            {
-              "enabled": true,
-              "type": "Text",
-              "name": "password",
-              "value": "12345"
-            },
-            {
-              "enabled": true,
-              "type": "Text",
-              "name": "username",
-              "value": "admin"
-            }
-          ]
-        },
-        "bodyType": "Text",
-        "autoSetLength": true,
-        "textBodyEditorHeight": 254,
-        "textBody": "{\n  \"username\": \"noExistent1\",\n  \"password\": \"1234\"\n}"
-      },
-      "headersType": "Form",
-      "uri": {
-        "query": {
-          "delimiter": "&",
-          "items": []
-        },
-        "scheme": {
-          "name": "http",
-          "version": "V11"
-        },
-        "host": "ranking.soyto.localhost",
-        "path": "/v1/auth/login"
-      },
-      "id": "d832a6d7-a016-4232-a2af-06c025c07307",
-      "lastModified": "2018-11-28T16:04:56.039+01:00",
-      "name": "Login non existent user",
-      "headers": [
-        {
-          "enabled": true,
-          "name": "Content-Type",
-          "value": "application/json"
-        }
-      ],
-      "metaInfo": {
-        "ownerId": "github|13250982"
-      },
-      "parentId": "68eebbf2-bc3f-43f6-b8cd-681840eb3a2e"
     },
     {
       "type": "Request",
@@ -375,8 +270,8 @@
         "host": "ranking.soyto.localhost",
         "path": "/v1/auth/login"
       },
-      "id": "1af1c03a-27e7-4d08-9201-6234e31ea2dd",
-      "lastModified": "2018-11-28T16:04:58.616+01:00",
+      "id": "d90fe3fa-74bf-448e-8ed8-4ca880ba4323",
+      "lastModified": "2018-12-04T11:20:56.139+01:00",
       "name": "Login bad password",
       "headers": [
         {
@@ -386,9 +281,186 @@
         }
       ],
       "metaInfo": {
-        "ownerId": "github|13250982"
+        "ownerId": "google-oauth2|102077457322996692140"
       },
-      "parentId": "68eebbf2-bc3f-43f6-b8cd-681840eb3a2e"
+      "parentId": "edf7fe8a-241a-40cc-a0ad-e2fda78365f4"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "password",
+              "value": "12345"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "username",
+              "value": "admin"
+            }
+          ]
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 254,
+        "textBody": "{\n  \"username\": \"noExistent1\",\n  \"password\": \"1234\"\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/auth/login"
+      },
+      "id": "8e6e1bdd-11c1-46e8-92e9-53a1a4b65444",
+      "lastModified": "2018-12-04T11:20:51.520+01:00",
+      "name": "Login non existent user",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "edf7fe8a-241a-40cc-a0ad-e2fda78365f4"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "password",
+              "value": "12345"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "username",
+              "value": "admin"
+            }
+          ]
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 254,
+        "textBody": "{\n  \"username\": \"admin\",\n  \"password\": \"1234\"\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/auth/login"
+      },
+      "id": "dfeca5e5-9d0d-4b6c-87aa-6c69a5d8db1d",
+      "lastModified": "2018-12-04T11:20:42.010+01:00",
+      "name": "Login success",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "edf7fe8a-241a-40cc-a0ad-e2fda78365f4"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "password",
+              "value": "12345"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "username",
+              "value": "admin"
+            }
+          ]
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 254,
+        "textBody": ""
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "ranking.soyto.localhost",
+        "path": "/v1/auth/login"
+      },
+      "id": "778c0c33-83de-4720-9374-b5947c67eb4a",
+      "lastModified": "2018-12-04T11:20:46.470+01:00",
+      "name": "Login without parameters",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "google-oauth2|102077457322996692140"
+      },
+      "parentId": "edf7fe8a-241a-40cc-a0ad-e2fda78365f4"
     }
   ]
 }

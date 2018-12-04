@@ -12,15 +12,11 @@
     var $http = $hs.$instantiate('$http');
     var $window = $hs.$instantiate('$window');
     var $timeout = $hs.$instantiate('$timeout');
-    var characterSocialService = $hs.$instantiate('characterSocialService');
     var $location = $hs.$instantiate('$location');
 
     var _cacheServerData = [];
     var _cacheCharacterInfo = [];
     var _cacheCharacterCheatSheet = null;
-
-    var _cacheOldNameRemoval = null;
-    var _cacheOldLegionRemoval = null;
 
 	  $window.$cacheServerData = _cacheServerData;
 	  $window.$cacheCharacterInfo = _cacheCharacterInfo;
@@ -155,7 +151,9 @@
     //Retrieve character info
     $this.getCharacterInfo = function(serverName, characterID) {
 
-      var _cachedItem = _cacheCharacterInfo.first(function(itm){ return itm.serverName == serverName && itm.characterID == characterID; });
+      var _cachedItem = _cacheCharacterInfo.filter((itm) => {
+        return itm.serverName == serverName && itm.characterID == characterID;
+      }).shift();
 
       if(_cachedItem) {
         return $q.resolve(_cachedItem);
@@ -164,7 +162,7 @@
       return $http({
         'url': '/data/Characters/' + serverName + '/' + characterID + '.json',
         'method': 'GET'
-      }).then(function(response){
+      }).then(response => {
 
         response['data']['status'].forEach(function($$item){
           $$item['date'] = _normalizeDateString($$item['date']);
@@ -263,6 +261,7 @@
         'serverName': serverName,
         'characterID': characterInfoData['characterID'],
         'characterName': characterInfoData['characterName'],
+        'pictureURL': '//placehold.it/450X300/DD66DD/EE77EE/?text=' + characterInfoData.characterName,
         'names': characterInfoData['names'],
         'characterClassID': characterInfoData['characterClassID'],
         'characterClass': $this.getCharacterClass(characterInfoData['characterClassID']),
@@ -278,6 +277,7 @@
         'soldierRankID': characterInfoData['soldierRankID'],
         'soldierRank': $this.getCharacterRank(characterInfoData['soldierRankID']),
         'status': characterInfoData['status'].slice(-50),
+        'social': {}
       };
 
       //Normalize and sort collection dates
@@ -290,32 +290,30 @@
         $$status['soldierRank'] = $this.getCharacterRank($$status['soldierRankID']);
       });
 
-      return $q.resolve().then(function() {
-        return _getOldNameRemoval().then(function($$data) {
+      return _getCharacterMetaData(serverName, _result.characterID)
+        .then(response => {
 
-          var _removeOldNames = $$data.filter(function(x) {
-            return x.serverName == _result.serverName && x.characterID == _result.characterID;
-          }).length > 0;
-
-          if(_removeOldNames) {
-            _result.names.splice(1, _result.names.length - 1);
-          }
-        });
-      }).then(function() {
-        return _getOldLegionRemoval().then(function($$data) {
-
-          var _removeOldLegions = $$data.filter(function(x) {
-            return x.serverName == _result.serverName && x.characterID == _result.characterID;
-          }).length > 0;
-
-          if(_removeOldLegions) {
-            _result.guilds.splice(1, _result.guilds.length - 1);
+          //Set character pic
+          if(response.profile_pic_url) {
+            _result.pictureURL = response.profile_pic_url;
           }
 
-        });
-      }).then(function() {
-        return characterSocialService.setCharacterSocialData(_result);
-      });
+          if(response.facebook_url) { _result.social.facebook = response.facebook_url; }
+          if(response.twitch_url) { _result.social.twitch = response.twitch_url; }
+          if(response.youtube_url) { _result.social.youtube = response.youtube_url; }
+          if(response.mouseClick_gearCalc_url) { _result.social.mouseClick_gearCalcID = response.mouseClick_gearCalc_url; }
+
+          if(response.hide_old_names) {
+            _result.names.splice(1);
+          }
+
+          if(response.hide_old_legions) {
+            _result.guilds.splice(1);
+          }
+
+        })
+        .catch(() => { return _result; })
+        .then(() => { return _result; });
     }
 
     //Normalize a collection specified on first param on date stored on second param
@@ -353,38 +351,18 @@
       return new Date(parseInt(_splitDate[2]), parseInt(_splitDate[0]) - 1, parseInt(_splitDate[1]));
     }
 
-    /**
-     * Get old name removal
-     * @private
-     */
-    function _getOldNameRemoval() {
-      if(_cacheOldNameRemoval != null) {
-        return $q.resolve(_cacheOldNameRemoval);
-      }
-
-      var _url = '/assets/app/_deprecated_data/oldNameRemoval.json';
-
-      return $q.likeNormal($http.get(_url)).then(function($$data) {
-        _cacheOldNameRemoval = $$data;
-        return $$data;
-      });
-    }
 
     /**
-     * Get old name removal
+     * Retrieves character meta data
+     * @param serverName
+     * @param characterId
      * @private
      */
-    function _getOldLegionRemoval() {
-      if(_cacheOldLegionRemoval != null) {
-        return $q.resolve(_cacheOldLegionRemoval);
-      }
-
-      var _url = '/assets/app/_deprecated_data/oldLegionRemoval.json';
-
-      return $q.likeNormal($http.get(_url)).then(function($$data) {
-        _cacheOldLegionRemoval = $$data;
-        return $$data;
-      });
+    function _getCharacterMetaData(serverName, characterId) {
+      return $hs.$q.likeNormal($http({
+        'url': '/v1/characters/' + serverName + '/' + characterId,
+        'method': 'GET'
+      }));
     }
 
   }
