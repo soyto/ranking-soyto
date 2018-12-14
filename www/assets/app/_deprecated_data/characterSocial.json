@@ -343,5 +343,9 @@
   }},
   {"serverName": "Loki", "characterID": 1208981 , "buttons": {
     "twitch": "https://www.twitch.tv/qnz_"
+  }},
+  {"serverName": "Nergal", "characterID": 10770 , "buttons": {
+    "twitch": "https://www.twitch.tv/devrqst",
+    "youtube": "https://www.youtube.com/channel/UCOFfaFbnz2yWDj_U2zHCLrw"
   }}
 ]
