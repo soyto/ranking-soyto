@@ -347,5 +347,8 @@
   {"serverName": "Nergal", "characterID": 10770 , "buttons": {
     "twitch": "https://www.twitch.tv/devrqst",
     "youtube": "https://www.youtube.com/channel/UCOFfaFbnz2yWDj_U2zHCLrw"
+  }},
+  {"serverName": "Thor", "characterID": 2039540 , "buttons": {
+    "facebook": "https://www.facebook.com/yeot.aion"
   }}
 ]
