@@ -134,7 +134,7 @@ module.exports = function() {
   //Updates version
   function _updateVersion(newVersion) {
     var _file = 'package.json';
-    var _packageLockFile = 'package-lock.json';
+    var _packageLockFile = 'npm-shrinkwrap.json';
 
     var _gruntFile = grunt.file.readJSON(_file);
     var _gruntFileLock = grunt.file.readJSON(_packageLockFile);
