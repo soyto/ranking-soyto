@@ -30,20 +30,25 @@
 
     //Wich servers
     $this.serversList = [
-      {'id': 53, 'name': 'Antriksha'},      //0
-      {'id': 49, 'name': 'Barus'},          //1
-      {'id': 52, 'name': 'Deyla'},          //2
-      {'id': 54, 'name': 'Hellion'},        //3
-      {'id': 55, 'name': 'Hyperion'},       //4
-      {'id': 50, 'name': 'Loki'},           //5
-      {'id': 37, 'name': 'Thor'},           //6
-      {'id': 40, 'name': 'Urtem'},          //7
-      //{'id': 56, 'name': 'Grendal'},      //8
-      //{'id': 57, 'name': 'Fregion'},      //9
-      //{'id': 58, 'name': 'Padmarashka'},  //10
-      //{'id': 59, 'name': 'Miren'},        //11
-      {'id': 60, 'name': 'Nergal'},         //12
-      {'id': 61, 'name': 'Ereshkigal'},     //13
+      // {'id': 53, 'name': 'Antriksha'},      //0
+      // {'id': 49, 'name': 'Barus'},          //1
+      // {'id': 52, 'name': 'Deyla'},          //2
+      // {'id': 54, 'name': 'Hellion'},        //3
+      // {'id': 55, 'name': 'Hyperion'},       //4
+      // {'id': 50, 'name': 'Loki'},           //5
+      // {'id': 37, 'name': 'Thor'},           //6
+      // {'id': 40, 'name': 'Urtem'},          //7
+      // {'id': 56, 'name': 'Grendal'},      //8
+      // {'id': 57, 'name': 'Fregion'},      //9
+      // {'id': 58, 'name': 'Padmarashka'},  //10
+      // {'id': 59, 'name': 'Miren'},        //11
+      // {'id': 60, 'name': 'Nergal'},         //12
+      // {'id': 61, 'name': 'Ereshkigal'},     //13
+
+      {id: 35, name: 'Stormwing'},
+      {id: 38, name: 'Sillus'},
+      {id: 63, name: 'Ragnarok'},
+      {id: 62, name: 'Odin'},
     ];
 
     //Wich dates we have stored

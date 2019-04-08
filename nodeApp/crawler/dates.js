@@ -1,6 +1,6 @@
 const $config = require('../config');
-let $fs = require('../helpers').fs;
-let $log = require('../helpers').log;
+const $fs = require('../helpers').fs;
+const $log = require('../helpers').log;
 
 /**
  * Constructor
@@ -13,12 +13,15 @@ function Dates() {}
 Dates.prototype.generate = function() {
   return new Promise(async (resolve, reject) => {
     try {
+
+      await $config.generateBasicFolders();
+
       let files = await $fs.readdir($config.folders.servers);
 
       //Sort files
       files.sort((a, b) => (new Date(a).getTime() - (new Date(b).getTime())));
 
-      var _txt = 'window.storedDates = ' + JSON.stringify(files).replace(/"/g, '\'') + ';'
+      let _txt = 'window.storedDates = ' + JSON.stringify(files).replace(/"/g, '\'') + ';';
 
       await $fs.write($config.files.foldersDates, _txt);
       

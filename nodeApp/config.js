@@ -1,6 +1,7 @@
-var $path = require('path');
+/* global require */
+const $path = require('path');
 
-var $config  = {
+let $config  = {
   'application': {
     'servers-folder': 'data/Servers/',
 
@@ -88,5 +89,32 @@ $config.server = {
   'port': 8080
 };
 
+/**
+ * Will generate the basic folders
+ * @returns {Promise<void>}
+ */
+$config.generateBasicFolders = async function() {
+
+  const $fs = require('./helpers').fs;
+
+  //Create data folder
+  if(!(await $fs.exists('data/'))) {
+    await $fs.mkdir('data/');
+  }
+
+  //Create servers folder
+  if(!(await $fs.exists($config.folders.servers))) {
+    await $fs.mkdir($config.folders.servers);
+  }
+
+  //Create appData folder
+  if(!(await $fs.exists($config.folders.appData))) {
+    await $fs.mkdir($config.folders.appData);
+  }
+
+  if(!(await $fs.exists($config.folders.characters))) {
+    await $fs.mkdir($config.folders.characters);
+  }
+};
 
 module.exports = $config;

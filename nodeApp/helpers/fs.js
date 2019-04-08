@@ -89,6 +89,19 @@ Fs.prototype.lstat = function(path) {
 };
 
 /**
+ * Exists?
+ * @param path
+ * @returns {*}
+ */
+Fs.prototype.exists = function(path) {
+  return new Promise((resolve, reject) => {
+    $fs.exists(path, (exists) => {
+      return resolve(exists);
+    });
+  });
+};
+
+/**
  * Removes a file
  * @param {*} path
  */

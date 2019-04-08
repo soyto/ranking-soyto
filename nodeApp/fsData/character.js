@@ -36,6 +36,11 @@ Character.prototype.store = function(serverName, characterID, characterData) {
   return new Promise(async (resolve, reject) => {
     try {
 
+      //Create character folder if doesn't exists
+      if(!(await $fs.exists($path.join($config.folders.characters, serverName)))) {
+        await $fs.mkdir($path.join($config.folders.characters, serverName));
+      }
+
       let _filePath = $path.join($config.folders.characters, serverName, characterID + '.json');
 
       return resolve(await $fs.writeJSON(_filePath, characterData, $config.fsData.prettyPrint));

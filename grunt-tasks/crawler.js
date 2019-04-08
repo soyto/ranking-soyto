@@ -27,6 +27,9 @@ module.exports = function() {
     let _loginCookie = await $crawler.server.login();
     let _currentDate = moment().format('MM-DD-YYYY');
 
+    //Generate basic folders
+    await $config.generateBasicFolders();
+
     //Retrieve servers
     let _serversData = await _getServersData(_currentDate, _loginCookie);
 
