@@ -2,5 +2,8 @@
   {"serverName": "Odin", "characterID": 685335, "buttons": {
     "facebook": "https://www.facebook.com/shiemysan.kromede",
     "youtube": "https://www.youtube.com/channel/UCgAkNQHD-zoV1BjU9oC4iDA"
+  }},
+  {"serverName": "Stormwing", "characterID": 580875, "buttons": {
+    "youtube": "https://www.youtube.com/channel/UCEG8m_a3vnNljz6DeLszcuw"
   }}
 ]
